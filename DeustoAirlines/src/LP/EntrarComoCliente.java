@@ -1,6 +1,5 @@
 package LP;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,23 +11,22 @@ import java.awt.event.ActionListener;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-
 import static COMUN.Definiciones.*;
 
-public class Principal extends JFrame implements ActionListener
+
+public class EntrarComoCliente extends JFrame implements ActionListener
 {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnTrabajador;
 	private JButton btnCliente;
-	private JLabel lblBienvenidoADeustoairlines;
-	private JLabel lbliconoData;
+
 	
 	/**
 	 * Constructor sin parámetros.
 	 */
-	public Principal() 
+	public EntrarComoCliente() 
 	{
 		
 		createAndShowGUI();
@@ -50,7 +48,7 @@ public class Principal extends JFrame implements ActionListener
 		//setClosable(true);
 		
 		setForeground(Color.BLACK);
-		setTitle("MENÚ PRINCIPAL");
+		setTitle("Acceder como cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 393);
 		
@@ -59,31 +57,24 @@ public class Principal extends JFrame implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		btnTrabajador = new JButton("ENTRAR COMO TRABAJADOR");
+		btnTrabajador = new JButton("CLIENTE REGISTRADO");
 		btnTrabajador.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-		btnTrabajador.setBounds(68, 149, 308, 57);
-		btnTrabajador.setActionCommand(CMD_BTN_TRABAJADOR);
+		btnTrabajador.setBounds(68, 85, 308, 57);
+		btnTrabajador.setActionCommand(CMD_BTN_REGISTRADO);
 		contentPane.add(btnTrabajador);
 		btnTrabajador.addActionListener(this);
 		
 		
-		btnCliente = new JButton("ENTRAR COMO CLIENTE");
+		btnCliente = new JButton("CLIENTE NO REGISTRADO");
 		btnCliente.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-		btnCliente.setBounds(68, 247, 308, 57);
-		btnCliente.setActionCommand(CMD_BTN_CLIENTE);
+		btnCliente.setBounds(68, 199, 308, 57);
+		btnCliente.setActionCommand(CMD_BTN_NOREGISTRADO);
 		btnCliente.addActionListener(this);
 		contentPane.add(btnCliente);
 		
-		lblBienvenidoADeustoairlines = new JLabel("BIENVENIDO A DEUSTOAIRLINES");
-		lblBienvenidoADeustoairlines.setFont(new Font("Tekton Pro Ext", Font.ITALIC, 22));
-		lblBienvenidoADeustoairlines.setBounds(23, 11, 425, 116);
-		contentPane.add(lblBienvenidoADeustoairlines);
-		btnCliente.addActionListener(this);
+	
 
-		lbliconoData = new JLabel("");
-		lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/avion.jpg")));
-		lbliconoData.setBounds(-313, -45, 1059, 408);
-		getContentPane().add(lbliconoData);
+	
 
 	}
 	}
@@ -91,33 +82,32 @@ public class Principal extends JFrame implements ActionListener
 
 @Override
 public void actionPerformed(ActionEvent e)
-{
-	switch(e.getActionCommand())
+{switch(e.getActionCommand())
 	
 	 {
-	case CMD_BTN_TRABAJADOR:
-		this.Trabajador();
+	case CMD_BTN_REGISTRADO:
+		this.Registrado();
 		break;
 		
-	case CMD_BTN_CLIENTE:
-		this.Cliente();
+	case CMD_BTN_NOREGISTRADO:
+		this.NoRegistrado();
 		break;
 		
 	} 
 }
 
 
-private void Cliente() 
+private void Registrado() 
 {
-	EntrarComoCliente objCliente = new EntrarComoCliente();
+	ClienteRegistrado objCliente = new ClienteRegistrado();
 	objCliente.setVisible(true);
 	this.dispose();
 }
 
-private void Trabajador() 
+private void NoRegistrado() 
 {
-	EntrarComoTrabajador objTrabajador = new EntrarComoTrabajador();
-	objTrabajador.setVisible(true);
+	ClienteNoRegistrado objClienteNo = new ClienteNoRegistrado();
+	//objClienteNo.setVisible(true);
 	this.dispose();
 }
 
@@ -126,4 +116,3 @@ private void Trabajador()
 
 
 }
-
