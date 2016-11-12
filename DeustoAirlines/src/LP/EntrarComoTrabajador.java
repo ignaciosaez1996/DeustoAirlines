@@ -117,7 +117,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private void Trabajador() 
 	{
 		PrincipalTrabajador objTrabajador = new PrincipalTrabajador();
-		//objTrabajador.setVisible(true);
+		objTrabajador.setVisible(true);
 		this.dispose();
 	}
 }
