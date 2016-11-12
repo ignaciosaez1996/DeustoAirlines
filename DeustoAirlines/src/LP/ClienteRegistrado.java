@@ -48,26 +48,25 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	{		
 		lblcorreo = new JLabel(" Introduzca el correo electrónico ");
 		lblcorreo.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-		lblcorreo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblcorreo.setBounds(35, 61, 304, 17);
+		lblcorreo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblcorreo.setBounds(33, 51, 304, 17);
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(33, 105, 212, 25);
+		txtCorreo.setBounds(33, 79, 257, 25);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		lblContrasena = new JLabel("Introduzca la contraseña");
-		lblContrasena.setHorizontalAlignment(SwingConstants.CENTER);
+		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
 		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-		lblContrasena.setBounds(33, 162, 190, 14);
+		lblContrasena.setBounds(33, 141, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		txtContrasena = new JTextField();
 		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(44, 203, 201, 25);
+		txtContrasena.setBounds(33, 166, 229, 25);
 		getContentPane().add(txtContrasena);
-		
 		
 		
 		btnAceptar = new JButton("ACEPTAR");
@@ -107,6 +106,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 			break;
 			
 		case CMD_BTN_CANCELAR:
+			this.dispose();
 			break;
 			
 		} 
@@ -115,10 +115,12 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	
 	private void Cliente() 
 	{
-		PrincipalCliente objCliente = new PrincipalCliente();
+		PrincipalCliente objCliente = new PrincipalCliente( );
 		objCliente.setVisible(true);
 		this.dispose();
 	}
+	
+	
 	
 	
 }

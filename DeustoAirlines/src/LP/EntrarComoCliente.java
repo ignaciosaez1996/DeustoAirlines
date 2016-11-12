@@ -107,7 +107,7 @@ private void Registrado()
 private void NoRegistrado() 
 {
 	ClienteNoRegistrado objClienteNo = new ClienteNoRegistrado();
-	//objClienteNo.setVisible(true);
+	objClienteNo.setVisible(true);
 	this.dispose();
 }
 
