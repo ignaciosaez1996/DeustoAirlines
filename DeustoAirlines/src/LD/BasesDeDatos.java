@@ -57,9 +57,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists CLIENTE (correo string, nombre_cliente string, contrasenya_cliente string)");
-		} catch (SQLException e) 
+			statement.executeUpdate("CREATE TABLE CLIENTE CORREO VARCHAR(40) NOT NULL PRIMARY KEY,"+
+									"NOMBRE_CLI VARCHAR (30),"+
+									"CONTRASEÑA_CLI VARCHAR(30))");
+	} catch (SQLException e) 
 		{
 			e.printStackTrace();  
 		}
@@ -74,8 +75,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists TRABAJADOR (dni string, nombre_trabajador string, contrasenya_trabajador string, categoria string)");
+			statement.executeUpdate("CREATE TABLE TRABAJADOR DNI_TRABAJADOR VARCHAR(9) NOT NULL PRIMARY KEY,"+
+									"NOMBRE_TRA VARCHAR (30),"+
+									"CATEGORIA VARCHAR (40),"+
+									"CONTRASEÑA_TRA VARCHAR(30))");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  
@@ -91,8 +94,9 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists VUELO (cod_vuelo string, capacidad int, fecha date)");
+			statement.executeUpdate("CREATE TABLE VUELO COD_VUELO VARCHAR(10) NOT NULL PRIMARY KEY,"+
+									"CAPACIDAD NUMBER (4),"+
+									"FECHA TIMESTAMP)");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  
@@ -108,8 +112,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists BILLETE (cod_billete string, precio double)");
+			statement.executeUpdate("CREATE TABLE BILLETE COD_BILLETE VARCHAR(10) NOT NULL PRIMARY KEY,"+
+									"PRECIO NUMBER(3) DEFAULT 100,"+
+									"COD_VUELO VARCHAR (10) NOT NULL REFERENCES VUELO(COD_VUELO) ON DELETE CASCADE,"+
+									"CORREO VARCHAR(40) NOT NULL REFERENCES CLIENTE(CORREO)");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  
@@ -125,8 +131,8 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists CIU_ORIGEN (cod_postal_ori int, nombre_ori double)");
+			statement.executeUpdate("CREATE TABLE CIUDAD_ORIGEN COD_POSTAL_O NUMBER(5) NOT NULL PRIMARY KEY,"+
+									"NOMBRE_CIU_O VARCHAR(30))");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  
@@ -142,8 +148,26 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			// Hay que poner cual es la clave primaria, las claves primarias de las demas?
-			statement.executeUpdate("create table if not exists CIU_DESTINO (cod_postal_des int, nombre_des double)");
+			statement.executeUpdate("CREATE TABLE CIUDAD_DESTINO COD_POSTAL_D NUMBER(5) NOT NULL PRIMARY KEY,"+
+									"NOMBRE_CIU_D VARCHAR(30))");
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();  
+		}
+	}
+	
+	/** 
+	 * Crea una tabla de ciudades destino en una base de datos, si no existía ya.
+	 * Debe haberse inicializado la conexión correctamente.
+	 */
+	public static void crearTablaTareaBD()
+	{
+		if (statement==null) return; 
+		try 
+		{
+			statement.executeUpdate("CREATE TABLE TAREA COD_VUELO VARCHAR(10) NOT NULL REFERENCES VUELO(COD_VUELO) ON DELETE CASCADE,"+
+									"DNI_TRABAJADOR VARCHAR(9) NOT NULL REFERENCES TRABAJADOR(DNI_TRABAJADOR) ON DELETE CASCADE)" +
+									"PRIMARY KEY (COD_VUELO, DNI_TRABAJADOR))");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  
