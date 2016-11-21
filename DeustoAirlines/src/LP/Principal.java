@@ -52,10 +52,11 @@ public class Principal extends JFrame implements ActionListener
 		setForeground(Color.BLACK);
 		setTitle("MENÚ PRINCIPAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 474, 393);
+		setBounds(450, 200, 445, 400);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setSize(500, 500);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

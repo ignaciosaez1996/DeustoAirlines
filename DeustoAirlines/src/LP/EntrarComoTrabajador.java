@@ -1,9 +1,12 @@
 package LP;
 
+
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,12 +22,13 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JLabel 	   		lblDNI;
 	private JLabel 	   		lblContrasena;
+	private JLabel 	   		lblSingUpIcon;
 
 	
 	private JButton    		btnAceptar;
 	private JButton    		btnCancelar;
 	
-	private JTextField 		txtCorreo;
+	private JTextField 		txtDNI;
 	private JTextField 		txtContrasena;
 	
 	
@@ -47,24 +51,24 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	{		
 		lblDNI = new JLabel(" Introduzca el DNI (debe contener 9 caracteres) ");
 		lblDNI.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-		lblDNI.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDNI.setBounds(35, 61, 304, 17);
+		lblDNI.setHorizontalAlignment(SwingConstants.LEFT);
+		lblDNI.setBounds(33, 64, 299, 17);
 		getContentPane().add(lblDNI);
 		
-		txtCorreo = new JTextField();
-		txtCorreo.setBounds(33, 105, 212, 25);
-		getContentPane().add(txtCorreo);
-		txtCorreo.setColumns(10);
+		txtDNI = new JTextField();
+		txtDNI.setBounds(33, 105, 274, 35);
+		getContentPane().add(txtDNI);
+		txtDNI.setColumns(10);
 		
 		lblContrasena = new JLabel("Introduzca la contraseña");
-		lblContrasena.setHorizontalAlignment(SwingConstants.CENTER);
+		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
 		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
 		lblContrasena.setBounds(33, 162, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		txtContrasena = new JTextField();
 		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(44, 203, 201, 25);
+		txtContrasena.setBounds(33, 203, 274, 35);
 		getContentPane().add(txtContrasena);
 		
 		
@@ -82,6 +86,12 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		getContentPane().add(btnCancelar);
+		
+		lblSingUpIcon = new JLabel("");
+		lblSingUpIcon.setIcon(new ImageIcon(EntrarComoTrabajador.class.getResource("/imagenes/Sign-up-icon.png")));
+		lblSingUpIcon.setBounds(310, 30, 106, 100);
+		getContentPane().add(lblSingUpIcon);
+				
 		
 		
 		setVisible(true);
@@ -106,7 +116,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 			break;
 			
 		case CMD_BTN_CLIENTE:
-			
+			this.dispose();
 			break;
 			
 		} 

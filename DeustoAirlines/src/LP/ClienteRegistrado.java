@@ -90,7 +90,6 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//setIconifiable(true);		
 		setTitle("Acceso para los clientes registrados");
-		//setFrameIcon(new ImageIcon(frmAltaVivienda.class.getResource("/imagenes/plus.png")));
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);
 

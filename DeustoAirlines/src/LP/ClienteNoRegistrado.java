@@ -52,34 +52,34 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		lblcorreo = new JLabel(" Introduzca el correo electrónico ");
 		lblcorreo.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
 		lblcorreo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblcorreo.setBounds(20, 95, 255, 17);
+		lblcorreo.setBounds(20, 121, 255, 17);
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(20, 126, 255, 25);
+		txtCorreo.setBounds(20, 152, 255, 25);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		lblContrasena = new JLabel("Introduzca la contraseña");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
 		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-		lblContrasena.setBounds(20, 184, 190, 14);
+		lblContrasena.setBounds(20, 209, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		txtContrasena = new JTextField();
 		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(20, 220, 212, 25);
+		txtContrasena.setBounds(20, 235, 212, 25);
 		getContentPane().add(txtContrasena);
 		
 		JLabel lblIntroduzcaSuNombre = new JLabel(" Introduzca su nombre y apellido");
 		lblIntroduzcaSuNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIntroduzcaSuNombre.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
-		lblIntroduzcaSuNombre.setBounds(20, 11, 255, 17);
+		lblIntroduzcaSuNombre.setBounds(20, 38, 255, 17);
 		getContentPane().add(lblIntroduzcaSuNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(20, 39, 212, 25);
+		txtNombre.setBounds(20, 66, 212, 25);
 		getContentPane().add(txtNombre);
 
 		
@@ -105,7 +105,6 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//setIconifiable(true);		
 		setTitle("Acceder como cliente no registrado");
-		//setFrameIcon(new ImageIcon(frmAltaVivienda.class.getResource("/imagenes/plus.png")));
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);
 		

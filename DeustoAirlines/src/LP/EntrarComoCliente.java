@@ -42,15 +42,18 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 	{
 	
 	{
-		//setMaximizedBounds(true);
-		//setIconifiable(true);
-		//setResizable(true);
-		//setClosable(true);
+		/*setMaximizedBounds(true);
+		setIconifiable(true);
+		setResizable(true);
+		setClosable(true);
+		*/
+		
 		
 		setForeground(Color.BLACK);
 		setTitle("Acceder como cliente");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 474, 393);
+		
+		setBounds(450, 200, 445, 400);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
