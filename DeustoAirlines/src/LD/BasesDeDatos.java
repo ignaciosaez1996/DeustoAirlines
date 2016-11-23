@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class BasesDeDatos 
 {
 	private static Connection connection = null;
@@ -18,7 +20,21 @@ public class BasesDeDatos
 	 */
 	public static Connection initBD (String nombreBD)
 	{
-		return connection;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
+			statement = connection.createStatement();
+			statement.setQueryTimeout(30); //poner timeout 30 msg
+			JOptionPane.showMessageDialog(null, "La Base de Datos se ha conectado");
+			return connection;
+		} catch (ClassNotFoundException | SQLException e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "La base de datos no se ha podido conectar");
+			return null;
+		}
+		
 	}
 	
 	/** 
@@ -26,7 +42,15 @@ public class BasesDeDatos
 	 */
 	public static void close()
 	{
-	
+		 	if(statement != null)
+			try
+		 	{
+				statement.close();
+				connection.close();
+			} catch (SQLException e)
+		 	{
+				JOptionPane.showMessageDialog(null, "El cierre de la conexión ha fallado");
+			}
 	}
 	
 	/** 
@@ -97,7 +121,7 @@ public class BasesDeDatos
 			statement.executeUpdate("CREATE TABLE VUELO COD_VUELO VARCHAR(10) NOT NULL PRIMARY KEY,"+
 									"CAPACIDAD NUMBER (4),"+
 									"FECHA TIMESTAMP" +
-									"COD_POSTAL_O VARCHAR(40) NOT NULL REFERENCES CIUDAD_ORIGEN(COD_CIUDAD_O)"+
+									"COD_POSTAL_O VARCHAR(40) NOT NULL REFERENCES CIUDAD_ORIGEN(COD_CIUDAD_O)" +
 									"COD_POSTAL_D VARCHAR(40) NOT NULL REFERENCES CIUDAD_DESTINO(COD_CIUDAD_D)");
 		} catch (SQLException e) 
 		{
@@ -174,5 +198,25 @@ public class BasesDeDatos
 		{
 			e.printStackTrace();  
 		}
+	}
+	
+	public static void InsertarTrabajadores()
+	{
+		if(statement==null)
+		{
+			
+		}
+		else
+		{
+			try 
+			{
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“72545454B” ,  “Antonio” , “Piloto” , “7254”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“7255555C” ,  “Laura” , “Azafata” , “7255”)");
+			} catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+			
 	}
 }
