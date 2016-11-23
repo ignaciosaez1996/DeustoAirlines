@@ -1,5 +1,6 @@
 package LN;
 
-public class clsCliente {
+public class clsCliente 
+{
 
 }

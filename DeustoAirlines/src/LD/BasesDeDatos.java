@@ -96,7 +96,9 @@ public class BasesDeDatos
 		{
 			statement.executeUpdate("CREATE TABLE VUELO COD_VUELO VARCHAR(10) NOT NULL PRIMARY KEY,"+
 									"CAPACIDAD NUMBER (4),"+
-									"FECHA TIMESTAMP)");
+									"FECHA TIMESTAMP" +
+									"COD_POSTAL_O VARCHAR(40) NOT NULL REFERENCES CIUDAD_ORIGEN(COD_CIUDAD_O)"+
+									"COD_POSTAL_D VARCHAR(40) NOT NULL REFERENCES CIUDAD_DESTINO(COD_CIUDAD_D)");
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();  

@@ -1,5 +1,6 @@
 package LN;
 
-public class clsPersona {
+public class clsPersona
+{
 
 }

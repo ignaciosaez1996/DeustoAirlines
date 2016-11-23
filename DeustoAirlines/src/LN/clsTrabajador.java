@@ -1,5 +1,6 @@
 package LN;
 
-public class clsTrabajador {
+public class clsTrabajador
+{
 
 }

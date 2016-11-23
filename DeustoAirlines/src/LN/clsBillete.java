@@ -1,5 +1,6 @@
 package LN;
 
-public class clsBillete {
+public class clsBillete 
+{
 
 }
