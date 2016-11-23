@@ -51,7 +51,7 @@ public class BasesDeDatos
 				JOptionPane.showMessageDialog(null, "El cierre de la conexión ha fallado");
 			}
 	}
-	
+
 	/** 
 	 * Devuelve la conexion si ha sido establecida previamente (#initBD()).
 	 * @return	Conexion con la BD, null si no se ha establecido correctamente.
