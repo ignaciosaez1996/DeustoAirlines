@@ -201,7 +201,7 @@ public class BasesDeDatos
 	
 	/**
 	 * Crea filas para la tabla de trabajadores.
-	 * Debe haberse inicializado la conexión correctamente.
+	 * Debe haberse inicializada la conexión correctamente.
 	 */
 	public static void InsertarTrabajadores()
 	{
