@@ -34,7 +34,6 @@ public class BasesDeDatos
 			JOptionPane.showMessageDialog(null, "La base de datos no se ha podido conectar");
 			return null;
 		}
-		
 	}
 	
 	/** 
@@ -200,6 +199,10 @@ public class BasesDeDatos
 		}
 	}
 	
+	/**
+	 * Crea filas para la tabla de trabajadores.
+	 * Debe haberse inicializado la conexión correctamente.
+	 */
 	public static void InsertarTrabajadores()
 	{
 		if(statement==null)
@@ -212,11 +215,16 @@ public class BasesDeDatos
 			{
 				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“72545454B” ,  “Antonio” , “Piloto” , “7254”)");
 				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“7255555C” ,  “Laura” , “Azafata” , “7255”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“34565758D” ,  “Belen” , “Recepcionista” , “3456”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“56544323E” ,  “Mikel” , “Controlador Aéreo” , “5654”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“23234556L” ,  “Jon” , “Mecanico” , “2323”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“72437891O” ,  “Arritxu” , “Azafata” , “7243”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“54434356K” ,  “Gorka” , “Piloto” , “5443”)");
+				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“89765643T” ,  “Miren” , “Mecanica” , “8976”)");
 			} catch (SQLException e) 
 			{
 				e.printStackTrace();
 			}
-		}
-			
+		}		
 	}
 }

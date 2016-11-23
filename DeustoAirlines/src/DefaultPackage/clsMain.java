@@ -19,7 +19,8 @@ public class clsMain
 		            break;
 		        }
 		    }
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
 		}	
 		
