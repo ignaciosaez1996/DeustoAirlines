@@ -8,12 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import LD.BasesDeDatos;
+import LN.GestorCliente;
 import static COMUN.Definiciones.*;
-
 
 
 public class ClienteNoRegistrado extends JFrame implements ActionListener
@@ -23,20 +25,13 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JLabel 	   		lblcorreo;
 	private JLabel 	   		lblContrasena;
-
 	
 	private JButton    		btnAceptar;
 	private JButton    		btnCancelar;
 	
 	private JTextField 		txtCorreo;
-	private JPasswordField passwordField;
+	private JPasswordField  passwordField;
 	private JTextField      txtNombre;
-	
-	
-	@SuppressWarnings("unused")
-
-	private int DNI;
-	private String contrasena;
 	
 	private final static int x = (1400/2) - ((int)465/2);
 	private final static int y = (680/2) - (480/2);	
@@ -114,15 +109,21 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		switch(e.getActionCommand())
-		
 		 {
-		case CMD_BTN_ACEPTAR:
-			this.Cliente();
-			break;
-			
-		case CMD_BTN_CANCELAR:
-			this.dispose();
-			break;
+			case CMD_BTN_ACEPTAR:
+				if(txtCorreo.getText()==null && passwordField.getText()==null && txtNombre.getText()==null)
+				{
+					JOptionPane.showMessageDialog(null, "Algún campo no ha sido rellenado");
+				}
+				else
+				{
+					this.Cliente();
+				}
+				break;
+				
+			case CMD_BTN_CANCELAR:
+				this.dispose();
+				break;
 			
 		} 
 		
@@ -130,9 +131,21 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	
 	private void Cliente() 
 	{
+		BasesDeDatos.crearTablaClienteBD();
+		GestorCliente gesCli = new GestorCliente();
+		
+		String correo = txtCorreo.getText();
+		char[] passWord = passwordField.getPassword();
+		String contrasenya = String.valueOf(passWord);
+		String nombre = txtNombre.getText();
+		
+	
+		gesCli.ClienteNuevo(correo, nombre, contrasenya);
+		
 		PrincipalCliente objCliente = new PrincipalCliente( );
 		objCliente.setVisible(true);
 		this.dispose();
+		
 	}
 }
 

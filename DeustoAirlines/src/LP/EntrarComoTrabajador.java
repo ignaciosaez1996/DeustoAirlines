@@ -1,6 +1,9 @@
 package LP;
 
-
+/*
+ * Hay que poner en algun sitio lo siguiente para que se cree la tabla de trabajadores:
+ * BasesDeDatos.crearTablaTrabajadorBD();
+ */
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -14,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import LD.BasesDeDatos;
 import static COMUN.Definiciones.*;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
