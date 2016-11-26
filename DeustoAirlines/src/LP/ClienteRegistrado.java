@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -26,14 +27,15 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	private JButton    		btnCancelar;
 	
 	private JTextField 		txtCorreo;
-	private JTextField 		txtContrasena;
+	private JPasswordField passwordField;
+
 	
 	
 	
 	@SuppressWarnings("unused")
 
 	private int DNI;
-	private String contrasena;
+
 	
 	private final static int x = (1400/2) - ((int)465/2);
 	private final static int y = (680/2) - (480/2);	
@@ -63,11 +65,10 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		lblContrasena.setBounds(33, 141, 190, 14);
 		getContentPane().add(lblContrasena);
 		
-		txtContrasena = new JTextField();
-		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(33, 166, 229, 25);
-		getContentPane().add(txtContrasena);
-		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(33, 185, 257, 25);
+		getContentPane().add(passwordField);
+
 		
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setBounds(102, 326, 100, 23);
@@ -76,19 +77,17 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		this.getRootPane().setDefaultButton(btnAceptar);
 		getContentPane().add(btnAceptar);
 		
+		
 		btnCancelar = new JButton("CANCELAR");
 		btnCancelar.setBounds(239, 326, 100, 23);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
+		btnCancelar.setVisible(true);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		getContentPane().add(btnCancelar);
 		
-		
 		setVisible(true);
-		//setMaximizable(true);
-		//setClosable(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setIconifiable(true);		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setTitle("Acceso para los clientes registrados");
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);

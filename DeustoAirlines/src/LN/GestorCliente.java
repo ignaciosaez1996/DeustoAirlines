@@ -2,7 +2,7 @@ package LN;
 
 public class GestorCliente
 {
-	public void ClienteNuevo()
+	public void ClienteNuevo() // ianire
 	{
 		
 	}

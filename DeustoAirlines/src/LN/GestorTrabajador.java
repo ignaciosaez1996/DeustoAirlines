@@ -2,7 +2,7 @@ package LN;
 
 public class GestorTrabajador 
 {
-	public void CrearVuelos() //Ciudad de origen y destino distintas
+	public void CrearVuelos() //Ciudad de origen y destino distintas // maitane
 	{
 		
 	}

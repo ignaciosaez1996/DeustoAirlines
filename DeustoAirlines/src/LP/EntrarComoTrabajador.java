@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -29,7 +30,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private JButton    		btnCancelar;
 	
 	private JTextField 		txtDNI;
-	private JTextField 		txtContrasena;
+	private JPasswordField passwordField;
 	
 	
 	
@@ -66,10 +67,9 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		lblContrasena.setBounds(33, 162, 190, 14);
 		getContentPane().add(lblContrasena);
 		
-		txtContrasena = new JTextField();
-		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(33, 203, 274, 35);
-		getContentPane().add(txtContrasena);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(33, 198, 274, 35);
+		getContentPane().add(passwordField);
 		
 		
 		

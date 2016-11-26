@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -28,7 +29,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	private JButton    		btnCancelar;
 	
 	private JTextField 		txtCorreo;
-	private JTextField 		txtContrasena;
+	private JPasswordField passwordField;
 	private JTextField      txtNombre;
 	
 	
@@ -66,10 +67,9 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		lblContrasena.setBounds(20, 209, 190, 14);
 		getContentPane().add(lblContrasena);
 		
-		txtContrasena = new JTextField();
-		txtContrasena.setColumns(10);
-		txtContrasena.setBounds(20, 235, 212, 25);
-		getContentPane().add(txtContrasena);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(20, 250, 255, 25);
+		getContentPane().add(passwordField);
 		
 		JLabel lblIntroduzcaSuNombre = new JLabel(" Introduzca su nombre y apellido");
 		lblIntroduzcaSuNombre.setHorizontalAlignment(SwingConstants.LEFT);

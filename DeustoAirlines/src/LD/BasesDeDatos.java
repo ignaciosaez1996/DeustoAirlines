@@ -46,7 +46,8 @@ public class BasesDeDatos
 		 	{
 				statement.close();
 				connection.close();
-			} catch (SQLException e)
+			
+		 	} catch (SQLException e)
 		 	{
 				JOptionPane.showMessageDialog(null, "El cierre de la conexión ha fallado");
 			}
