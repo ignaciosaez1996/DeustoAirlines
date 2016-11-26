@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 
 public class BasesDeDatos 
 {
+	
+	
 	private static Connection connection = null;
 	private static Statement statement = null;
 	
@@ -17,7 +19,10 @@ public class BasesDeDatos
 	 * metodo antes que ningun otro, y debe devolver no null para poder seguir trabajando con la BD.
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexion con la base de datos indicada. Si hay algún error, se devuelve null
+	
 	 */
+	
+	
 	public static Connection initBD (String nombreBD)
 	{
 		try 
@@ -35,6 +40,7 @@ public class BasesDeDatos
 			return null;
 		}
 	}
+	  
 	
 	/** 
 	 * Cierra la conexion con la Base de Datos
@@ -229,3 +235,4 @@ public class BasesDeDatos
 		}		
 	}
 }
+

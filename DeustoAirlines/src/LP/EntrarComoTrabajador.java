@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -105,6 +106,9 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		getContentPane().setLayout(null);
 
 	}
+	
+
+	
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	
