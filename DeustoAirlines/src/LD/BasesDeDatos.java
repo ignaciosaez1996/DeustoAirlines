@@ -87,12 +87,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE CLIENTE CORREO VARCHAR(40) NOT NULL PRIMARY KEY,"+
-									"NOMBRE_CLI VARCHAR (30),"+
-									"CONTRASEÑA_CLI VARCHAR(30))");
+			statement.executeUpdate("create table CLIENTE ( correo string, nombre_cli string, contrasenya string )");
 	} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla CLIENTE ha fallado");  
 		}
 	}
 	
@@ -105,13 +103,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE TRABAJADOR DNI_TRABAJADOR VARCHAR(9) NOT NULL PRIMARY KEY,"+
-									"NOMBRE_TRA VARCHAR (30),"+
-									"CATEGORIA VARCHAR (40),"+
-									"CONTRASEÑA_TRA VARCHAR(30))");
+			statement.executeUpdate("create table if not exists TRABAJADOR( dni_tra string, nombre_tra string, contrasenya_tra string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla TRABAJADOR ha fallado");  //Señal de que la tabla ya existe
 		}
 	}
 	
@@ -144,13 +139,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE BILLETE COD_BILLETE VARCHAR(10) NOT NULL PRIMARY KEY,"+
-									"PRECIO NUMBER(3) DEFAULT 100,"+
-									"COD_VUELO VARCHAR (10) NOT NULL REFERENCES VUELO(COD_VUELO) ON DELETE CASCADE,"+
-									"CORREO VARCHAR(40) NOT NULL REFERENCES CLIENTE(CORREO)");
+			statement.executeUpdate("create table BILLETE ( cod_billete string, precio int, cod_vuelo string, correo string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla BILLETE ha fallado");
 		}
 	}
 	
@@ -163,11 +155,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE CIUDAD_ORIGEN COD_POSTAL_O NUMBER(5) NOT NULL PRIMARY KEY,"+
-									"NOMBRE_CIU_O VARCHAR(30))");
+			statement.executeUpdate("create table CIUDAD_ORIGEN ( cod_postal_o int, nombre_ciu_o string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla CIUDAD_ORIGEN ha fallado");  
 		}
 	}
 	
@@ -180,11 +171,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE CIUDAD_DESTINO COD_POSTAL_D NUMBER(5) NOT NULL PRIMARY KEY,"+
-									"NOMBRE_CIU_D VARCHAR(30))");
+			statement.executeUpdate("create table CIUDAD_DESTINO ( cod_postal_d int, nombre_ciu_d string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla CIUDAD_DESTINO ha fallado");  
 		}
 	}
 	
@@ -197,12 +187,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE TAREA COD_VUELO VARCHAR(10) NOT NULL REFERENCES VUELO(COD_VUELO) ON DELETE CASCADE,"+
-									"DNI_TRABAJADOR VARCHAR(9) NOT NULL REFERENCES TRABAJADOR(DNI_TRABAJADOR) ON DELETE CASCADE)" +
-									"PRIMARY KEY (COD_VUELO, DNI_TRABAJADOR))");
+			statement.executeUpdate("create table TAREA ( cod_vuelo string, dni_trabajador string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla TAREA ha fallado");   
 		}
 	}
 	
@@ -210,7 +198,7 @@ public class BasesDeDatos
 	 * Crea filas para la tabla de trabajadores.
 	 * Debe haberse inicializada la conexión correctamente.
 	 */
-	public static void InsertarTrabajadores()
+	public static void InsertarTrabajadores(Statement statement)
 	{
 		if(statement==null)
 		{
@@ -220,7 +208,7 @@ public class BasesDeDatos
 		{
 			try 
 			{
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“72545454B” ,  “Antonio” , “Piloto” , “7254”)");
+				statement.executeUpdate("insert into TRABAJADOR values('72545454B','Antonio', 'Piloto', '7254");
 				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“7255555C” ,  “Laura” , “Azafata” , “7255”)");
 				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“34565758D” ,  “Belen” , “Recepcionista” , “3456”)");
 				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“56544323E” ,  “Mikel” , “Controlador Aéreo” , “5654”)");
