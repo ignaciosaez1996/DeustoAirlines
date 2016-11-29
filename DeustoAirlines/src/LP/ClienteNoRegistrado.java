@@ -111,9 +111,12 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		switch(e.getActionCommand())
 		 {
 			case CMD_BTN_ACEPTAR:
-				if(txtCorreo.getText()==null && passwordField.getText()==null && txtNombre.getText()==null)
+				char[] passWord = passwordField.getPassword();
+				String contrasenya = String.valueOf(passWord);
+				//isEmpty()==trueif its not null
+				if(txtCorreo.getText().isEmpty()||passWord.toString().isEmpty() ||txtNombre.getText().isEmpty())
 				{
-					JOptionPane.showMessageDialog(null, "Algún campo no ha sido rellenado");
+					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
 				}
 				else
 				{
