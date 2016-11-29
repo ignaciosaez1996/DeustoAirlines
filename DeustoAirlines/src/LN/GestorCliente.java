@@ -2,7 +2,7 @@ package LN;
 
 public class GestorCliente
 {
-	public void ClienteNuevo() // ianire
+	public void ClienteNuevo(String correo, String nombre, String contrasenya) 
 	{
 		
 	}

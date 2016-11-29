@@ -87,7 +87,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table CLIENTE ( correo string, nombre_cli string, contrasenya string )");
+			statement.executeUpdate("create table if not exists CLIENTE ( correo string, nombre_cli string, contrasenya string )");
 	} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla CLIENTE ha fallado");  
@@ -103,7 +103,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table if not exists TRABAJADOR( dni_tra string, nombre_tra string, contrasenya_tra string )");
+			statement.executeUpdate("create table if not exists TRABAJADOR( dni_tra string, nombre_tra string, categoria string,contrasenya_tra string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla TRABAJADOR ha fallado");  //Señal de que la tabla ya existe
@@ -119,14 +119,10 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("CREATE TABLE VUELO COD_VUELO VARCHAR(10) NOT NULL PRIMARY KEY,"+
-									"CAPACIDAD NUMBER (4),"+
-									"FECHA TIMESTAMP" +
-									"COD_POSTAL_O VARCHAR(40) NOT NULL REFERENCES CIUDAD_ORIGEN(COD_CIUDAD_O)" +
-									"COD_POSTAL_D VARCHAR(40) NOT NULL REFERENCES CIUDAD_DESTINO(COD_CIUDAD_D)");
+			statement.executeUpdate("create table if not exists VUELO ( cod_vuelo string, capacidad int, fecha Date, cod_postal_o int, cod_postal_d string )");
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();  
+			JOptionPane.showMessageDialog(null, "La creación de tabla VUELO ha fallado"); 
 		}
 	}
 	
@@ -139,7 +135,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table BILLETE ( cod_billete string, precio int, cod_vuelo string, correo string )");
+			statement.executeUpdate("create table if not exists BILLETE ( cod_billete string, precio int, cod_vuelo string, correo string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla BILLETE ha fallado");
@@ -155,7 +151,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table CIUDAD_ORIGEN ( cod_postal_o int, nombre_ciu_o string )");
+			statement.executeUpdate("create table if not exists CIUDAD_ORIGEN ( cod_postal_o int, nombre_ciu_o string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla CIUDAD_ORIGEN ha fallado");  
@@ -171,7 +167,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table CIUDAD_DESTINO ( cod_postal_d int, nombre_ciu_d string )");
+			statement.executeUpdate("create table if not exists CIUDAD_DESTINO ( cod_postal_d int, nombre_ciu_d string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla CIUDAD_DESTINO ha fallado");  
@@ -187,7 +183,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table TAREA ( cod_vuelo string, dni_trabajador string )");
+			statement.executeUpdate("create table if not exists TAREA ( cod_vuelo string, dni_trabajador string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla TAREA ha fallado");   
@@ -208,14 +204,13 @@ public class BasesDeDatos
 		{
 			try 
 			{
-				statement.executeUpdate("insert into TRABAJADOR values('72545454B','Antonio', 'Piloto', '7254");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“7255555C” ,  “Laura” , “Azafata” , “7255”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“34565758D” ,  “Belen” , “Recepcionista” , “3456”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“56544323E” ,  “Mikel” , “Controlador Aéreo” , “5654”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“23234556L” ,  “Jon” , “Mecanico” , “2323”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“72437891O” ,  “Arritxu” , “Azafata” , “7243”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“54434356K” ,  “Gorka” , “Piloto” , “5443”)");
-				statement.executeUpdate("INSERT INTO TRABAJADOR VALUES (“89765643T” ,  “Miren” , “Mecanica” , “8976”)");
+				statement.executeUpdate("insert into TRABAJADOR values('72545454B','Antonio', 'Piloto', '7254' )");
+				statement.executeUpdate("insert into TRABAJADOR values('7255555C','Laura', 'Azafata', '7255' )");
+				statement.executeUpdate("insert into TRABAJADOR values('34565758D','Belen', 'Recepcionista', '3456' )");
+				statement.executeUpdate("insert into TRABAJADOR values('56544323E','Mikel', 'Controlador Aéreo', '5654' )");
+				statement.executeUpdate("insert into TRABAJADOR values('72437891O','Arritxu', 'Azafata', '7243' )");
+				statement.executeUpdate("insert into TRABAJADOR values('54434356K','Gorka', 'Piloto', '5443' )");
+				statement.executeUpdate("insert into TRABAJADOR values('89765643T','Miren', 'Mecanica', '8976' )");
 			} catch (SQLException e) 
 			{
 				e.printStackTrace();
