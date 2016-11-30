@@ -138,10 +138,22 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
 		String nombre = txtNombre.getText();
-		boolean existe;
 		
+		//Devuelve true si ya existe algun cliente con ese correo
+		boolean existe;
 		existe=gesCli.ExisteCliente(correo);
-		gesCli.ClienteNuevo(correo, nombre, contrasenya);
+		if(existe==true)
+		{
+			
+		}
+		else
+		{
+			existe=gesCli.ClienteNuevo(correo, nombre, contrasenya);
+			if(existe==true)
+			{
+				JOptionPane.showMessageDialog(this, "Cliente registrado");
+			}
+		}
 		
 		PrincipalCliente objCliente = new PrincipalCliente( );
 		objCliente.setVisible(true);
