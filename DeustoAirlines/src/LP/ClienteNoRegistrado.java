@@ -45,8 +45,8 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	}
 	private void createAndShowGUI() 	
 	{		
-		lblcorreo = new JLabel(" Introduzca el correo electrónico ");
-		lblcorreo.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblcorreo = new JLabel(" Introduzca el correo electrónico:");
+		lblcorreo.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblcorreo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblcorreo.setBounds(20, 121, 255, 17);
 		getContentPane().add(lblcorreo);
@@ -56,9 +56,9 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		lblContrasena = new JLabel("Introduzca la contraseña");
+		lblContrasena = new JLabel("Introduzca la contraseña: ");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblContrasena.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblContrasena.setBounds(20, 209, 190, 14);
 		getContentPane().add(lblContrasena);
 		
@@ -66,9 +66,9 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		passwordField.setBounds(20, 250, 255, 25);
 		getContentPane().add(passwordField);
 		
-		JLabel lblIntroduzcaSuNombre = new JLabel(" Introduzca su nombre y apellido");
+		JLabel lblIntroduzcaSuNombre = new JLabel("Introduzca su nombre y apellido: ");
 		lblIntroduzcaSuNombre.setHorizontalAlignment(SwingConstants.LEFT);
-		lblIntroduzcaSuNombre.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblIntroduzcaSuNombre.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblIntroduzcaSuNombre.setBounds(20, 38, 255, 17);
 		getContentPane().add(lblIntroduzcaSuNombre);
 		
@@ -77,7 +77,6 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		txtNombre.setBounds(20, 66, 212, 25);
 		getContentPane().add(txtNombre);
 
-		
 		
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setBounds(102, 326, 100, 23);
@@ -111,10 +110,8 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		switch(e.getActionCommand())
 		 {
 			case CMD_BTN_ACEPTAR:
-				char[] passWord = passwordField.getPassword();
-				String contrasenya = String.valueOf(passWord);
 				//isEmpty()==trueif its not null
-				if(txtCorreo.getText().isEmpty()||passWord.toString().isEmpty() ||txtNombre.getText().isEmpty())
+				if(txtCorreo.getText().isEmpty()|| passwordField.getText().isEmpty() ||txtNombre.getText().isEmpty())
 				{
 					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
 				}
@@ -141,8 +138,9 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
 		String nombre = txtNombre.getText();
+		boolean existe;
 		
-	
+		existe=gesCli.ExisteCliente(correo);
 		gesCli.ClienteNuevo(correo, nombre, contrasenya);
 		
 		PrincipalCliente objCliente = new PrincipalCliente( );
