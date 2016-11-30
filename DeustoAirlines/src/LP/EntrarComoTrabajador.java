@@ -52,9 +52,12 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	}
 	
 	private void createAndShowGUI() 	
-	{		
-		lblDNI = new JLabel(" Introduzca el DNI (debe contener 9 caracteres) ");
-		lblDNI.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+	{	
+		/*Por mi (Ianire) si se puede ponemos que salte un mensaje y no deje seguir si tiene más de 9 caracteres, o menos
+		 * y quitamos el aviso que hay entre paréntesis
+		*/
+		lblDNI = new JLabel("Introduzca el DNI (debe contener 9 caracteres): ");
+		lblDNI.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblDNI.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDNI.setBounds(33, 64, 299, 17);
 		getContentPane().add(lblDNI);
@@ -64,16 +67,15 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		getContentPane().add(txtDNI);
 		txtDNI.setColumns(10);
 		
-		lblContrasena = new JLabel("Introduzca la contraseña");
+		lblContrasena = new JLabel("Introduzca la contraseña: ");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblContrasena.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblContrasena.setBounds(33, 162, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(33, 198, 274, 35);
 		getContentPane().add(passwordField);
-		
 		
 		
 		btnAceptar = new JButton("ACEPTAR");

@@ -48,8 +48,8 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	
 	private void createAndShowGUI() 	
 	{		
-		lblcorreo = new JLabel(" Introduzca el correo electrónico ");
-		lblcorreo.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblcorreo = new JLabel("Introduzca el correo electrónico: ");
+		lblcorreo.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblcorreo.setHorizontalAlignment(SwingConstants.LEFT);
 		lblcorreo.setBounds(33, 51, 304, 17);
 		getContentPane().add(lblcorreo);
@@ -59,9 +59,9 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
-		lblContrasena = new JLabel("Introduzca la contraseña");
+		lblContrasena = new JLabel("Introduzca la contraseña: ");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
-		lblContrasena.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 14));
+		lblContrasena.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblContrasena.setBounds(33, 141, 190, 14);
 		getContentPane().add(lblContrasena);
 		
