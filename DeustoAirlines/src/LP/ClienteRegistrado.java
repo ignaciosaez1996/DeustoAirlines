@@ -17,7 +17,6 @@ import static COMUN.Definiciones.*;
 public class ClienteRegistrado extends JFrame implements ActionListener
 {
 
-
 	private static final long serialVersionUID = 1L;
 	private JLabel 	   		lblcorreo;
 	private JLabel 	   		lblContrasena;
@@ -46,6 +45,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		createAndShowGUI();	
 	
 	}
+	
 	private void createAndShowGUI() 	
 	{		
 		lblcorreo = new JLabel(" Introduzca el correo electrónico ");
@@ -82,7 +82,6 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		btnCancelar.setBounds(239, 326, 100, 23);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
-		btnCancelar.setVisible(true);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		getContentPane().add(btnCancelar);
 		

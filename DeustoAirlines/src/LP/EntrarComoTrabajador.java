@@ -13,12 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import LD.BasesDeDatos;
 import static COMUN.Definiciones.*;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
@@ -53,6 +50,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		createAndShowGUI();	
 	
 	}
+	
 	private void createAndShowGUI() 	
 	{		
 		lblDNI = new JLabel(" Introduzca el DNI (debe contener 9 caracteres) ");
@@ -98,14 +96,9 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		getContentPane().add(lblSingUpIcon);
 				
 		
-		
 		setVisible(true);
-		//setMaximizable(true);
-		//setClosable(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setIconifiable(true);		
 		setTitle("Acceder como trabajador");
-		//setFrameIcon(new ImageIcon(frmAltaVivienda.class.getResource("/imagenes/plus.png")));
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);
 
@@ -123,13 +116,11 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 			this.Trabajador();
 			break;
 			
-		case CMD_BTN_CLIENTE:
+		case CMD_BTN_CANCELAR:
 			this.dispose();
 			break;
 			
 		} 
-		
-		
 	}
 	
 	private void Trabajador() 

@@ -113,13 +113,11 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		menuBar.add(mnInicio);
 		
 		mnitmComprBille = new JMenuItem("Comprar Billete");		
-		//mnitmViviList.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
 		mnitmComprBille.setActionCommand(null);
 		mnitmComprBille.addActionListener(this);
 		mnInicio.add(mnitmComprBille);
 		
 		mnitmCancBille = new JMenuItem("Cancelar billete");
-		//mnitmCancBille.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmCancBille.setActionCommand(null);
 		mnitmCancBille.addActionListener(this);
 		mnInicio.add(mnitmCancBille);
@@ -138,7 +136,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		menuBar.add(mnHorario);
 		
 		mnitmConsHorario = new JMenuItem("Consultar horarios");		
-		//mnitmListaVivi.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmConsHorario.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mnitmConsHorario.setActionCommand(null);
 		mnitmConsHorario.addActionListener(this);
@@ -149,7 +146,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		menuBar.add(mnHistorial);
 		
 		mnitmHistorial = new JMenuItem("Historial de compras");
-		//mnitmListaLoc.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmHistorial.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mnitmHistorial.setActionCommand(null);
 		mnitmHistorial.addActionListener(this);
@@ -160,7 +156,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		menuBar.add(mnJustificante);
 		
 		mnitmJustifi = new JMenuItem("Justificante de compras");
-		//mnitmListaLoc.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmJustifi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mnitmJustifi.setActionCommand(null);
 		mnitmJustifi.addActionListener(this);
@@ -186,6 +181,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 			case CMD_SALIR:
 				String ObjButtons[] = {"Si","Cancelar"};
 		        int PromptResult = JOptionPane.showOptionDialog(null,"¿Seguro que deseas salir?","Inmo M&J - Aviso",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+		        
 		        if(PromptResult==JOptionPane.YES_OPTION)
 		        {
 		            System.exit(0);
