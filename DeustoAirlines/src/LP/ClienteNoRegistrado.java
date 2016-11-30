@@ -4,6 +4,7 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -141,22 +142,22 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		
 		//Devuelve true si ya existe algun cliente con ese correo
 		boolean existe;
-		existe=gesCli.ExisteCliente(correo);
+		Statement state = BasesDeDatos.getStatement();
+		existe=gesCli.ExisteCliente(state, correo);
 		if(existe==true)
 		{
-			
+			JOptionPane.showMessageDialog(this, "El correo introducido ya está registrado");
 		}
 		else
 		{
-			existe=gesCli.ClienteNuevo(correo, nombre, contrasenya);
+			existe=gesCli.ClienteNuevo(state, correo, nombre, contrasenya);
 			if(existe==true)
 			{
 				JOptionPane.showMessageDialog(this, "Cliente registrado");
 			}
+			PrincipalCliente objCliente = new PrincipalCliente( );
+			objCliente.setVisible(true);
 		}
-		
-		PrincipalCliente objCliente = new PrincipalCliente( );
-		objCliente.setVisible(true);
 		this.dispose();
 		
 	}
