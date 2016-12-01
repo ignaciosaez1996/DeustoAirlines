@@ -52,10 +52,6 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	public final static int panelWidth = 1400;
 	public final static int panelHeight = 680;
 	
-	@SuppressWarnings("unused")
-	private String 	usuario;
-	@SuppressWarnings("unused")
-	private int 	codigoUsuario;
 	
 	
 
@@ -70,7 +66,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	{
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
 	
-		setTitle("Opciones del trabajador - Menu Principal (" + usuario + ")");
+		setTitle("Opciones del trabajador - Menu Principal ");
 		
 		createAndShowGUI();
 	}
@@ -115,7 +111,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmCreaerVuelo = new JMenuItem("Crear vuelos");		
 		//mnitmCreaerVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
-		mnitmCreaerVuelo.setActionCommand(null);
+		mnitmCreaerVuelo.setActionCommand(CMD_CREARVUELO);
 		mnitmCreaerVuelo.addActionListener(this);
 		mnInicio.add(mnitmCreaerVuelo);
 		
@@ -210,9 +206,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private void CrearVuelo() 
 	{
 		
-			//CrearVuelo objCrea = new CrearVuelo();	
-			//objCrea.setVisible(true);
-			//panel.add(objCrea);	
+			Crearvuelo objCrea = new Crearvuelo();	
+			objCrea.setVisible(true);
+			panel.add(objCrea);	
 		
 		
 	}
