@@ -15,9 +15,10 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import com.toedter.calendar.JDayChooser;
 
-public class CrearVuelo extends JFrame implements ActionListener
+public class Crearvuelo extends JFrame implements ActionListener
 
 {
+	private static final long serialVersionUID = 1L;
 	
 	JPanel contentPane;
 	private JTextField textField;
@@ -25,8 +26,19 @@ public class CrearVuelo extends JFrame implements ActionListener
 	private JTextField textField_2;
 	private JLabel lblIntroduzcaElCodigo;
 	private JLabel lblCapacidad;
+	private JSpinner spinner;
+	private JLabel lblFecha;
+	private JButton btnNewButton;
+	private JLabel lblCodigoPostalCiudad;
+	private  JLabel lblCodigoPostalCiudad_1;
+	private JCalendar calendar;
+	private JButton btnNewButton_1;
+	private JButton btnCancelar;
 	
-	public CrearVuelo()
+	private final static int x = (1400) - ((int)465);
+	private final static int y = (680) - (480);	
+	
+	public Crearvuelo()
 	{
 		
 		createAndShowGUI();
@@ -48,63 +60,71 @@ public class CrearVuelo extends JFrame implements ActionListener
 		contentPane.add(lblIntroduzcaElCodigo);
 		
 		textField = new JTextField();
-		textField.setBounds(20, 66, 214, 22);
+		textField.setBounds(20, 58, 225, 40);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		 lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCapacidad.setBounds(319, 228, 163, 22);
+		lblCapacidad.setBounds(349, 227, 163, 22);
 		contentPane.add(lblCapacidad);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(319, 261, 36, 30);
+		spinner = new JSpinner();
+		spinner.setBounds(349, 267, 53, 42);
 		contentPane.add(spinner);
 		
-		JLabel lblFecha = new JLabel("Fecha");
+		 lblFecha = new JLabel("Fecha");
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblFecha.setBounds(20, 99, 73, 30);
 		contentPane.add(lblFecha);
 		
-		JButton btnNewButton = new JButton("Guardar fecha seleccionada");
+		 btnNewButton = new JButton("Guardar fecha seleccionada");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(30, 302, 184, 23);
+		btnNewButton.setBounds(63, 341, 195, 30);
 		contentPane.add(btnNewButton);
 		
-		JLabel lblCodigoPostalCiudad = new JLabel("Codigo postal ciudad origen");
+		lblCodigoPostalCiudad = new JLabel("Codigo postal ciudad origen");
 		lblCodigoPostalCiudad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad.setBounds(318, 31, 214, 22);
+		lblCodigoPostalCiudad.setBounds(349, 31, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad);
 		
-		JLabel lblCodigoPostalCiudad_1 = new JLabel("Codigo postal ciudad destino");
+		 lblCodigoPostalCiudad_1 = new JLabel("Codigo postal ciudad destino");
 		lblCodigoPostalCiudad_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad_1.setBounds(318, 143, 214, 22);
+		lblCodigoPostalCiudad_1.setBounds(349, 130, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad_1);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(318, 66, 214, 22);
+		textField_1.setBounds(349, 58, 214, 42);
 		contentPane.add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(318, 177, 214, 22);
+		textField_2.setBounds(349, 163, 214, 40);
 		contentPane.add(textField_2);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.setBounds(30, 138, 184, 153);
+		 calendar = new JCalendar();
+		calendar.setBounds(10, 130, 300, 200);
 		contentPane.add(calendar);
 		
-		JButton btnNewButton_1 = new JButton("GUARDAR");
-		btnNewButton_1.setBounds(141, 398, 89, 23);
+		 btnNewButton_1 = new JButton("GUARDAR");
+		btnNewButton_1.setBounds(156, 409, 102, 30);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(290, 398, 89, 23);
+		 btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBounds(283, 409, 119, 27);
 		contentPane.add(btnCancelar);
+		
+		
+		
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Crear un vuelo");
+		setBounds(x, y, 802, 597);
+		getContentPane().setLayout(null);
 		
 		
 	}
