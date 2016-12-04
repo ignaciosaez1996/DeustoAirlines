@@ -206,9 +206,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private void CrearVuelo() 
 	{
 		
-			Crearvuelo objCrea = new Crearvuelo();	
-			objCrea.setVisible(true);
-			panel.add(objCrea);	
+			//Crearvuelo objCrea = new Crearvuelo();	
+			//objCrea.setVisible(true);
+			//panel.add(objCrea);	
 		
 		
 	}
