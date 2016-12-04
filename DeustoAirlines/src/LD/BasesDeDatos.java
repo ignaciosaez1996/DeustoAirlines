@@ -194,6 +194,28 @@ public class BasesDeDatos
 	 * Crea filas para la tabla de trabajadores.
 	 * Debe haberse inicializada la conexión correctamente.
 	 */
+	public static  void insertarBilletes(Statement statement)
+	{
+		crearTablaBilleteBD();
+		if (statement ==  null)
+		{
+			
+		}
+		else
+		{
+			try
+			{
+				statement.executeUpdate("insert into BILLETE values ('020021','22.0','das2332d','sdasffdfs')");
+				statement.executeUpdate("insert into BILLETE values ('020ed21','22.0','d1s2332d','sdasafdfs')");
+				
+			}catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+		
+	}
 	public static void InsertarTrabajadores(Statement statement)
 	{
 		if(statement==null)
@@ -211,6 +233,7 @@ public class BasesDeDatos
 				statement.executeUpdate("insert into TRABAJADOR values('72437891O','Arritxu', 'Azafata', '7243' )");
 				statement.executeUpdate("insert into TRABAJADOR values('54434356K','Gorka', 'Piloto', '5443' )");
 				statement.executeUpdate("insert into TRABAJADOR values('89765643T','Miren', 'Mecanica', '8976' )");
+				
 			} catch (SQLException e) 
 			{
 				e.printStackTrace();
