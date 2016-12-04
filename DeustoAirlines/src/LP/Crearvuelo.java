@@ -115,7 +115,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 		
 		txtcodpost_d = new JTextField();
 		txtcodpost_d.setColumns(10);
-		txtcodpost_d.setBounds(349, 163, 214, 30);
+		txtcodpost_d.setBounds(349, 163, 214, 32);
 		contentPane.add(txtcodpost_d);
 		
 		calendar = new JCalendar();
