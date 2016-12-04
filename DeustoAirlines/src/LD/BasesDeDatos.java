@@ -194,25 +194,6 @@ public class BasesDeDatos
 	 * Crea filas para la tabla de trabajadores.
 	 * Debe haberse inicializada la conexión correctamente.
 	 */
-	public static  void insertarBilletes(Statement statement)
-	{
-		crearTablaBilleteBD();
-		if (statement ==  null)
-		{
-			
-		}
-		else
-		{
-			try
-			{
-				statement.executeUpdate("insert into BILLETE values ('020021','22.0','das2332d','sdasffdfs')");
-				statement.executeUpdate("insert into BILLETE values ('020ed21','22.0','d1s2332d','sdasafdfs')");
-				
-			}catch(SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
 
 		
 	}
