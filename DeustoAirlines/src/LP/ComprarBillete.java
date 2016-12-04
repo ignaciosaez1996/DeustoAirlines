@@ -2,22 +2,31 @@ package LP;
 
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 
-public class ComprarBillete extends JFrame
+public class ComprarBillete extends JFrame implements ActionListener
+
 {	
 	private JPanel contentPane;
 	private JTable table;
 	public final static int panelWidth = 1400;
 	public final static int panelHeight = 680;
 	
-	
+	public static void main(String[] args)
+	{
+		ComprarBillete obj = new ComprarBillete();
+		obj.setVisible(true);
+	}
 	public ComprarBillete()
 	{
 		
@@ -63,12 +72,35 @@ public class ComprarBillete extends JFrame
 		contentPane.add(comboBox_1);
 		
 		table = new JTable();
-		table.setBounds(10, 260, 951, 400);
+		table.setBounds(10, 260, 950, 300);
 		contentPane.add(table);
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblVuelosOfrecids.setBounds(10, 199, 371, 33);
 		contentPane.add(lblVuelosOfrecids);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(420, 600, 69, 43);
+		contentPane.add(spinner);
+		
+		JButton btnNewButton = new JButton("COMPRAR\r\n");
+		btnNewButton.setBounds(607, 600, 121, 41);
+		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("Seleccione cuantos billetes desea comprar");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel_1.setBounds(118, 600, 289, 29);
+		contentPane.add(lblNewLabel_1);
+		
+		JButton btnNewButton_1 = new JButton("CANCELAR");
+		btnNewButton_1.setBounds(777, 600, 121, 43);
+		contentPane.add(btnNewButton_1);
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		
+		
 	}
 }
