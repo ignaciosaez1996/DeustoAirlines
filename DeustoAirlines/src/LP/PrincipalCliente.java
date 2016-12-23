@@ -24,7 +24,7 @@ import static COMUN.Definiciones.*;
 
 public class PrincipalCliente extends JFrame implements ActionListener
 {
-	
+	LP.ComprarBillete objBillete= new ComprarBillete();
 	private JDesktopPane 	panel;
 	
 	private JMenuBar 		menuBar;
@@ -171,7 +171,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		switch(arg0.getActionCommand())
 		{
 			case CMD_COMPRABILLETE:
-				this.ComprarBillete();
+				this.ComprarBillete();objBillete.setVisible(true);
 				break;
 				
 			case CMD_CANCELARBILLETE:

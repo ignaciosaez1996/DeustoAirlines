@@ -1,47 +1,51 @@
 package LP;
 
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
-public class ComprarBillete extends JFrame implements ActionListener
+public class ComprarBillete extends JFrame implements ActionListener {
 
-{	
 	private JPanel contentPane;
-	private JTable table;
-	public final static int panelWidth = 1400;
-	public final static int panelHeight = 680;
+	private JTable tabla;
+	private DefaultTableModel modelo;
+
+	/**
+	 * Launch the application.
+	 */
 	
-	public static void main(String[] args)
-	{
-		ComprarBillete obj = new ComprarBillete();
-		obj.setVisible(true);
-	}
 	public ComprarBillete()
 	{
-		
+		setVisible(true);
 		createAndShowGUI();
 	}
 	
-	private void createAndShowGUI()
-	
-	{
-		
-		contentPane = new JPanel();	
-		contentPane.setSize(panelWidth,panelHeight);	
+	/**
+	 * Create the frame.
+	 */
+	public  void createAndShowGUI() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1045, 876);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setExtendedState(Frame.MAXIMIZED_BOTH);	
 		
 		JLabel lblBilletes = new JLabel("Escoga el viaje que quiere realizar");
 		lblBilletes.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -71,9 +75,15 @@ public class ComprarBillete extends JFrame implements ActionListener
 		comboBox_1.setBounds(607, 136, 89, 19);
 		contentPane.add(comboBox_1);
 		
-		table = new JTable();
-		table.setBounds(10, 260, 950, 300);
-		contentPane.add(table);
+		DefaultTableModel modelo= new DefaultTableModel();
+		tabla = new JTable();
+		tabla.setBounds(10, 260, 1024, 246);
+		tabla.setModel(modelo);
+		JScrollPane scroll= new JScrollPane(tabla);
+		add(scroll);
+		contentPane.add(tabla);
+
+		
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -81,26 +91,54 @@ public class ComprarBillete extends JFrame implements ActionListener
 		contentPane.add(lblVuelosOfrecids);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(420, 600, 69, 43);
+		spinner.setBounds(420, 542, 69, 43);
 		contentPane.add(spinner);
 		
 		JButton btnNewButton = new JButton("COMPRAR\r\n");
-		btnNewButton.setBounds(607, 600, 121, 41);
+		btnNewButton.setBounds(607, 543, 121, 41);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione cuantos billetes desea comprar");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(118, 600, 289, 29);
+		lblNewLabel_1.setBounds(118, 559, 289, 29);
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton_1 = new JButton("CANCELAR");
-		btnNewButton_1.setBounds(777, 600, 121, 43);
+		btnNewButton_1.setBounds(777, 542, 121, 43);
 		contentPane.add(btnNewButton_1);
 	}
-	@Override
-	public void actionPerformed(ActionEvent arg0) 
+	public void cargarDatosTabla(Statement state)
 	{
+		try{
+		String vuelos;
+		String fecha;
+		int capacidad;
+		String SelectBD = "select * from VUELO";
+		ResultSet rs = state.executeQuery( SelectBD );
+		String [] columnas ={"VUELOS DISPONIBLES (De__A__)", "FECHA DE VUELO","CAPACIDAD DEL VUELO"};
+		modelo.setColumnIdentifiers(columnas);
+		while (rs.next())
+		{
+			vuelos= rs.getString("VUELOS DISPONIBLES (De__A__)");
+			fecha= rs.getString("FECHA DE VUELO");
+			capacidad= rs.getInt("CAPACIDAD DEL VUELO");
+			modelo.addRow(new Object[]{vuelos,fecha,capacidad});
+			
+			
+		}
 		
+		}catch(Exception e)
+		{
+			JOptionPane.showInternalMessageDialog(null,"No ha vuelos disponibles");
+			
+		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
+
+
+
 }
