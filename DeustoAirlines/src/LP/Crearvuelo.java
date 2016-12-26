@@ -48,6 +48,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 	private JCalendar calendar;
 	private JButton btnNewButton_1;
 	private JButton btnCancelar;
+
 	
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
@@ -55,9 +56,10 @@ public class Crearvuelo extends JFrame implements ActionListener
 	public Crearvuelo()
 	{
 		createAndShowGUI();
+		setLocationRelativeTo(null);
 	}
 	
-	
+
 	
 	private void createAndShowGUI()
 	{
@@ -66,6 +68,8 @@ public class Crearvuelo extends JFrame implements ActionListener
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+	
 		
 		lblIntroduzcaElCodigo = new JLabel("Codigo del vuelo");
 		lblIntroduzcaElCodigo.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -79,51 +83,51 @@ public class Crearvuelo extends JFrame implements ActionListener
 		
 		 lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCapacidad.setBounds(349, 227, 163, 22);
+		lblCapacidad.setBounds(466, 250, 163, 22);
 		contentPane.add(lblCapacidad);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(349, 267, 53, 42);
+		spinner.setBounds(467, 305, 53, 42);
 		contentPane.add(spinner);
 		
 		 lblFecha = new JLabel("Fecha");
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblFecha.setBounds(20, 99, 73, 30);
+		lblFecha.setBounds(20, 126, 73, 30);
 		contentPane.add(lblFecha);
 		
 		lblCodigoPostalCiudad = new JLabel("Codigo postal ciudad origen");
 		lblCodigoPostalCiudad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad.setBounds(349, 31, 214, 22);
+		lblCodigoPostalCiudad.setBounds(465, 31, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad);
 		
 		 lblCodigoPostalCiudad_1 = new JLabel("Codigo postal ciudad destino");
 		lblCodigoPostalCiudad_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad_1.setBounds(349, 130, 214, 22);
+		lblCodigoPostalCiudad_1.setBounds(465, 130, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad_1);
 		
 		txtcodpost_o = new JTextField();
 		txtcodpost_o.setColumns(10);
-		txtcodpost_o.setBounds(349, 58, 214, 30);
+		txtcodpost_o.setBounds(465, 58, 214, 30);
 		contentPane.add(txtcodpost_o);
 		
 		txtcodpost_d = new JTextField();
 		txtcodpost_d.setColumns(10);
-		txtcodpost_d.setBounds(349, 163, 214, 32);
+		txtcodpost_d.setBounds(465, 176, 214, 32);
 		contentPane.add(txtcodpost_d);
 		
 		calendar = new JCalendar();
-		calendar.setBounds(10, 130, 300, 200);
+		calendar.setBounds(10, 190, 380, 280);
 		contentPane.add(calendar);
 		
 		btnNewButton_1 = new JButton("GUARDAR");
-		btnNewButton_1.setBounds(156, 409, 102, 30);
+		btnNewButton_1.setBounds(260, 486, 102, 30);
 		btnNewButton_1.setActionCommand(CMD_BTN_ACEPTAR);
 		btnNewButton_1.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnNewButton_1);
 		contentPane.add(btnNewButton_1);
 		
 		btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(283, 409, 102, 30);
+		btnCancelar.setBounds(450, 486, 102, 30);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
