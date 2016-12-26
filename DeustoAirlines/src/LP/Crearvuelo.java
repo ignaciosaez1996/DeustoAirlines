@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.sql.Statement;
 
 import javax.swing.JTextField;
@@ -41,7 +43,6 @@ public class Crearvuelo extends JFrame implements ActionListener
 	private JLabel lblCapacidad;
 	private JSpinner spinner;
 	private JLabel lblFecha;
-	private JButton btnNewButton;
 	private JLabel lblCodigoPostalCiudad;
 	private  JLabel lblCodigoPostalCiudad_1;
 	private JCalendar calendar;
@@ -89,14 +90,6 @@ public class Crearvuelo extends JFrame implements ActionListener
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblFecha.setBounds(20, 99, 73, 30);
 		contentPane.add(lblFecha);
-		
-		 btnNewButton = new JButton("Guardar fecha seleccionada");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(63, 341, 195, 30);
-		contentPane.add(btnNewButton);
 		
 		lblCodigoPostalCiudad = new JLabel("Codigo postal ciudad origen");
 		lblCodigoPostalCiudad.setFont(new Font("Tahoma", Font.BOLD, 13));
