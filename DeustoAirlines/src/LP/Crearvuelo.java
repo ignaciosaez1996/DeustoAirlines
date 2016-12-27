@@ -178,13 +178,14 @@ public class Crearvuelo extends JFrame implements ActionListener
 		Statement state = BasesDeDatos.getStatement();
 	
 		existe=gesTra.ExisteVuelo(state, CodVuelo);
+		
 		if(existe==true)
 		{
 			JOptionPane.showMessageDialog(this, "El codigo introducido ya está registrado");
 		}
 		else
 		{
-			existe=gesTra.CrearVuelos(state, CodVuelo , capacidad, fecha , codpost_o, codpost_d );
+			existe = gesTra.CrearVuelos(state, CodVuelo , capacidad, fecha , codpost_o, codpost_d );
 			if(existe==true)
 			{
 				JOptionPane.showMessageDialog(this, "Vuelo registrado");
