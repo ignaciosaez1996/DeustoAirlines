@@ -8,14 +8,20 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import LD.BasesDeDatos;
+import LN.GestorCliente;
+import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
@@ -48,7 +54,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	public EntrarComoTrabajador() 
 	{
 		createAndShowGUI();	
-	
 	}
 	
 	private void createAndShowGUI() 	
@@ -103,32 +108,54 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		setTitle("Acceder como trabajador");
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);
-
 	}
-	
 
-	
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	
-	{switch(e.getActionCommand())
-		
+	public void actionPerformed(ActionEvent e) 	
+	{
+		switch(e.getActionCommand())
 		 {
-		case CMD_BTN_ACEPTAR:
-			this.Trabajador();
-			break;
-			
-		case CMD_BTN_CANCELAR:
-			this.dispose();
-			break;
-			
+			case CMD_BTN_ACEPTAR:
+				//isEmpty()==trueif its not null
+				if(txtDNI.getText().isEmpty()|| passwordField.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+				}
+				else
+				{
+					this.Trabajador();
+				}
+				break;
+				
+			case CMD_BTN_CANCELAR:
+				this.dispose();
+				break;	
 		} 
 	}
 	
 	private void Trabajador() 
 	{
-		PrincipalTrabajador objTrabajador = new PrincipalTrabajador();
-		objTrabajador.setVisible(true);
-		this.dispose();
+		Statement state = BasesDeDatos.getStatement();
+		BasesDeDatos.crearTablaTrabajadorBD();
+		BasesDeDatos.InsertarTrabajadores(state);
+		
+		String DNI = txtDNI.getText();
+		char[] passWord = passwordField.getPassword();
+		String contrasenya = String.valueOf(passWord);
+		GestorTrabajador gesTra = new GestorTrabajador(DNI, contrasenya);
+		boolean existe;
+	
+		
+		existe = gesTra.ValidarEntradaTra(state, DNI, contrasenya);
+		if(existe == true)
+		{
+			PrincipalTrabajador objTrabajador = new PrincipalTrabajador();
+			objTrabajador.setVisible(true);
+			this.dispose();
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "DNI o contraseña incorrectas, vuelva a introducirlas");
+		}
 	}
 }

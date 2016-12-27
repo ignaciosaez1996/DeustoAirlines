@@ -8,7 +8,15 @@ import javax.swing.JOptionPane;
 
 public class GestorCliente
 {
-	//Decolvera false en caso de que no se halla podido introducir el cliente
+	String contrasenya;
+	String correo;
+	
+	public GestorCliente(String correo, String contrasenya)
+	{
+		this.correo = correo;
+		this.contrasenya = contrasenya;
+	}
+	//Devolvera false en caso de que no se halla podido introducir el cliente
 	public boolean ClienteNuevo(Statement state, String correo, String nombre, String contrasenya) 
 	{
 		try 
@@ -54,6 +62,30 @@ public class GestorCliente
 			return false;
 		}
 	}
+	
+	//Devolvera la true si existe algún cliente con el correo y contraseña introducidos
+	public boolean ValidarEntradaCli(Statement state, String correo, String contrasenya)
+	{
+		String SelectBD = "select * from CLIENTE where (correo = '" + correo + "' and contrasenya = '" + contrasenya + "')";
+		try 
+		{
+			ResultSet rs = state.executeQuery( SelectBD );
+			if(rs.next())
+			{
+				rs.close();
+				JOptionPane.showMessageDialog(null, "Nombre de usuario y contraseña correctas", "Correcto",JOptionPane.INFORMATION_MESSAGE);					return true;
+			}
+			else
+			{
+				return false;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void ComprarBillete()
 	{
 		

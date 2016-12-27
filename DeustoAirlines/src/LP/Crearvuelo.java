@@ -44,7 +44,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 	private JSpinner spinner;
 	private JLabel lblFecha;
 	private JLabel lblCodigoPostalCiudad;
-	private  JLabel lblCodigoPostalCiudad_1;
+	private JLabel lblCodigoPostalCiudad_1;
 	private JCalendar calendar;
 	private JButton btnNewButton_1;
 	private JButton btnCancelar;
@@ -56,20 +56,15 @@ public class Crearvuelo extends JFrame implements ActionListener
 	public Crearvuelo()
 	{
 		createAndShowGUI();
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
 	}
-	
-
 	
 	private void createAndShowGUI()
 	{
-		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-	
 		
 		lblIntroduzcaElCodigo = new JLabel("Codigo del vuelo");
 		lblIntroduzcaElCodigo.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -81,7 +76,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 		contentPane.add(txtcodvuelo);
 		txtcodvuelo.setColumns(10);
 		
-		 lblCapacidad = new JLabel("Capacidad");
+		lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCapacidad.setBounds(466, 250, 163, 22);
 		contentPane.add(lblCapacidad);
@@ -90,7 +85,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 		spinner.setBounds(467, 305, 53, 42);
 		contentPane.add(spinner);
 		
-		 lblFecha = new JLabel("Fecha");
+		lblFecha = new JLabel("Fecha");
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblFecha.setBounds(20, 126, 73, 30);
 		contentPane.add(lblFecha);
@@ -100,7 +95,7 @@ public class Crearvuelo extends JFrame implements ActionListener
 		lblCodigoPostalCiudad.setBounds(465, 31, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad);
 		
-		 lblCodigoPostalCiudad_1 = new JLabel("Codigo postal ciudad destino");
+		lblCodigoPostalCiudad_1 = new JLabel("Codigo postal ciudad destino");
 		lblCodigoPostalCiudad_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCodigoPostalCiudad_1.setBounds(465, 130, 214, 22);
 		contentPane.add(lblCodigoPostalCiudad_1);
@@ -139,7 +134,6 @@ public class Crearvuelo extends JFrame implements ActionListener
 		setBounds(x, y, 802, 597);
 		getContentPane().setLayout(null);
 		
-		
 	}
 
 	@Override
@@ -163,16 +157,13 @@ public class Crearvuelo extends JFrame implements ActionListener
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;
-			
 		} 
-	
 	}
-	
-	
+
 	private void Vuelo()
 	{
 		BasesDeDatos.crearTablaVueloBD();
-		GestorTrabajador  gesTra = new GestorTrabajador();
+		GestorTrabajador  gesTra = new GestorTrabajador(null,null);
 		
 		String CodVuelo = txtcodvuelo.getText();
 		String capacidad = spinner.getValue().toString();
@@ -199,8 +190,9 @@ public class Crearvuelo extends JFrame implements ActionListener
 			}
 			PrincipalTrabajador objTrabajador = new PrincipalTrabajador( );
 			objTrabajador.setVisible(true);
+			this.dispose();
 		}
-		this.dispose();
+		
 		
 		
 	}

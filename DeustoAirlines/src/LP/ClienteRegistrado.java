@@ -3,14 +3,18 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import LD.BasesDeDatos;
+import LN.GestorCliente;
 import static COMUN.Definiciones.*;
 
 
@@ -43,7 +47,6 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	public ClienteRegistrado() 
 	{
 		createAndShowGUI();	
-	
 	}
 	
 	private void createAndShowGUI() 	
@@ -98,23 +101,46 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		switch(e.getActionCommand())
 		
 		 {
-		case CMD_BTN_ACEPTAR:
-			this.Cliente();
-			break;
+			case CMD_BTN_ACEPTAR:
+				//isEmpty()==trueif its not null
+				if(txtCorreo.getText().isEmpty()|| passwordField.getText().isEmpty())
+				{
+					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
+				}
+				else
+				{
+					this.Cliente();
+				}
+				break;
 			
-		case CMD_BTN_CANCELAR:
-			this.dispose();
-			break;
-			
+			case CMD_BTN_CANCELAR:
+				this.dispose();
+				break;
 		} 
 		
 	}
 	
 	private void Cliente() 
 	{
-		PrincipalCliente objCliente = new PrincipalCliente( );
-		objCliente.setVisible(true);
-		this.dispose();
+		String correo = txtCorreo.getText();
+		char[] passWord = passwordField.getPassword();
+		String contrasenya = String.valueOf(passWord);
+		GestorCliente gesCli = new GestorCliente(correo, contrasenya);
+		boolean existe;
+		Statement state = BasesDeDatos.getStatement();
+		
+		existe = gesCli.ValidarEntradaCli(state, correo, contrasenya);
+		if(existe == true)
+		{
+			PrincipalCliente objCliente = new PrincipalCliente( );
+			objCliente.setVisible(true);
+			this.dispose();
+		}
+		else
+		{
+			JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectas, vuelva a introducirlas");
+		}
+		
 	}
 	
 	

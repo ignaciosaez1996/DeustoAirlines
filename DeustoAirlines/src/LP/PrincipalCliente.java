@@ -24,7 +24,6 @@ import static COMUN.Definiciones.*;
 
 public class PrincipalCliente extends JFrame implements ActionListener
 {
-	LP.ComprarBillete objBillete= new ComprarBillete();
 	private JDesktopPane 	panel;
 	
 	private JMenuBar 		menuBar;
@@ -33,8 +32,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private JMenu 			mnHorario;
 	private JMenu 			mnHistorial;
 	private JMenu 			mnJustificante;
-	
-	
+
 	private JMenuItem 		mnitmComprBille;
 	private JMenuItem		mnitmCancBille;
 	private JMenuItem 		mnitmSalir;
@@ -60,21 +58,15 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private String 	usuario;
 	@SuppressWarnings("unused")
 	private int 	codigoUsuario;
-	
-	
 
 	
 	/**
-	 * Constructor sin parámetros.
+	 * Constructor sin parametros.
 	 * @param usuario Nombre del usuario que accede al menu.
 	 */
-	
-	
 	public PrincipalCliente() 
 	{
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
-		
-		
 		setTitle("Opciones del cliente - Menu Principal (" + usuario + ")");
 		
 		createAndShowGUI();
@@ -140,8 +132,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		mnitmConsHorario.setActionCommand(null);
 		mnitmConsHorario.addActionListener(this);
 		mnHorario.add(mnitmConsHorario);
-		
-		
+
 		mnHistorial = new JMenu("Historial");				
 		menuBar.add(mnHistorial);
 		
@@ -151,7 +142,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		mnitmHistorial.addActionListener(this);
 		mnHistorial.add(mnitmHistorial);
 		
-	
 		mnJustificante = new JMenu("Justificante");				
 		menuBar.add(mnJustificante);
 		
@@ -161,8 +151,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		mnitmJustifi.addActionListener(this);
 		mnJustificante.add(mnitmJustifi);
 		
-		getContentPane().setLayout(null);		
-		
+		getContentPane().setLayout(null);			
 	}
 	
 	@Override
@@ -171,7 +160,8 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		switch(arg0.getActionCommand())
 		{
 			case CMD_COMPRABILLETE:
-				this.ComprarBillete();objBillete.setVisible(true);
+				this.ComprarBillete();
+				//objBillete.setVisible(true);
 				break;
 				
 			case CMD_CANCELARBILLETE:
@@ -181,7 +171,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 			case CMD_SALIR:
 				String ObjButtons[] = {"Si","Cancelar"};
 		        int PromptResult = JOptionPane.showOptionDialog(null,"¿Seguro que deseas salir?","Inmo M&J - Aviso",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
-		        
 		        if(PromptResult==JOptionPane.YES_OPTION)
 		        {
 		            System.exit(0);
@@ -192,18 +181,13 @@ public class PrincipalCliente extends JFrame implements ActionListener
 				this.ConsultarHorarios();
 				break;
 				
-			
-				
 			case CMD_HISTORIAL:
 				this.Historial();
 				break;
-				
-				
+
 			case CMD_JUSTIFICANTE:
 				this.Justificante();
 				break;
-				
-	
 		}
 		
 		

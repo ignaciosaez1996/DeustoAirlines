@@ -21,8 +21,6 @@ import static COMUN.Definiciones.*;
 
 public class ClienteNoRegistrado extends JFrame implements ActionListener
 {
-
-
 	private static final long serialVersionUID = 1L;
 	private JLabel 	   		lblcorreo;
 	private JLabel 	   		lblContrasena;
@@ -125,7 +123,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;
-			
+
 		} 
 		
 	}
@@ -133,12 +131,12 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	private void Cliente() 
 	{
 		BasesDeDatos.crearTablaClienteBD();
-		GestorCliente gesCli = new GestorCliente();
 		
 		String correo = txtCorreo.getText();
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
 		String nombre = txtNombre.getText();
+		GestorCliente gesCli = new GestorCliente(correo, contrasenya);
 		
 		//Devuelve true si ya existe algun cliente con ese correo
 		boolean existe;
@@ -157,8 +155,9 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 			}
 			PrincipalCliente objCliente = new PrincipalCliente( );
 			objCliente.setVisible(true);
+			this.dispose();
 		}
-		this.dispose();
+		
 		
 	}
 }

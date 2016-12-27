@@ -208,7 +208,7 @@ public class BasesDeDatos
 			try 
 			{
 				statement.executeUpdate("insert into TRABAJADOR values('72545454B','Antonio', 'Piloto', '7254' )");
-				statement.executeUpdate("insert into TRABAJADOR values('7255555C','Laura', 'Azafata', '7255' )");
+				statement.executeUpdate("insert into TRABAJADOR values('72555555C','Laura', 'Azafata', '7255' )");
 				statement.executeUpdate("insert into TRABAJADOR values('34565758D','Belen', 'Recepcionista', '3456' )");
 				statement.executeUpdate("insert into TRABAJADOR values('56544323E','Mikel', 'Controlador Aéreo', '5654' )");
 				statement.executeUpdate("insert into TRABAJADOR values('72437891O','Arritxu', 'Azafata', '7243' )");
