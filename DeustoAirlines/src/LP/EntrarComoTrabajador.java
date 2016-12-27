@@ -130,6 +130,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;	
+				
 		} 
 	}
 	
