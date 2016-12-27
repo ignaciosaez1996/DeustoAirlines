@@ -95,8 +95,10 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		spinner.setBounds(420, 542, 69, 43);
 		contentPane.add(spinner);
 		
-		JButton btnNewButton = new JButton("COMPRAR\r\n");
+		JButton btnNewButton = new JButton("COMPRAR");
 		btnNewButton.setBounds(607, 543, 121, 41);
+		btnNewButton.setActionCommand("COMPRAR");
+		btnNewButton.addActionListener(this);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccione cuantos billetes desea comprar");
@@ -106,13 +108,17 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		JButton btnNewButton_1 = new JButton("CANCELAR");
 		btnNewButton_1.setBounds(777, 542, 121, 43);
+		btnNewButton_1.setActionCommand("CANCELAR");
+		btnNewButton_1.addActionListener(this);
 		contentPane.add(btnNewButton_1);
 		
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setTitle("Crear un vuelo");
-		this.setBounds(x, y, 802, 597);
-		this.getContentPane().setLayout(null);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Crear un vuelo");
+		setBounds(70, 10, 950, 650);
+		getContentPane().setLayout(null);
+		setIconifiable(true);
+		setResizable(true);
 	}
 	public void cargarDatosTabla(Statement state)
 	{
@@ -139,10 +145,17 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		}
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0)
+	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		switch(e.getActionCommand())
+		{
+			case "COMPRAR":
+				break;
+			
+			case "CANCELAR":
+				this.dispose();
+				break;
+		}
 	}
 
 
