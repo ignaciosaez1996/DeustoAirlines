@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
+
+import LN.clsVuelo;
 
 public class BasesDeDatos 
 {
@@ -221,5 +224,11 @@ public class BasesDeDatos
 			}
 		}		
 	}
+	
+	
+	
+	
+	
+	
 }
 

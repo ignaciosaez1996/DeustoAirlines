@@ -6,15 +6,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 import LD.BasesDeDatos;
 import LN.clsVuelo;
+
+import javax.swing.JList;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JSpinner;
 
 
 
 public class consultaVuelo extends JFrame 
 {
+	public consultaVuelo() {
+	}
+	
+	
 	
 	
 	/**
@@ -22,7 +34,7 @@ public class consultaVuelo extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static ArrayList<clsVuelo> getAllCustomer() throws ClassNotFoundException, SQLException {
+	/* public static ArrayList<clsVuelo> getAllCustomer() throws ClassNotFoundException, SQLException {
 	   
 		Connection conn = BasesDeDatos.getConnection();
 	    Statement stm;
@@ -36,6 +48,12 @@ public class consultaVuelo extends JFrame
 	    customerList.add(customer);
 	    }
 	    return customerList;
-	}
+	} */
+	
+	
+	
+	DefaultListModel lm = new DefaultListModel();
+		
+		
 	
 }
