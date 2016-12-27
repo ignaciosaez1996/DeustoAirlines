@@ -225,8 +225,8 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private void ConsultaVuelo() 
 	{
 		
-			consultaVuelo objVuelo = new consultaVuelo();	
-			objVuelo.setVisible(true);
+			//consultaVuelo objVuelo = new consultaVuelo();	
+			//objVuelo.setVisible(true);
 			//panel.add(objVuelo);	
 		
 		

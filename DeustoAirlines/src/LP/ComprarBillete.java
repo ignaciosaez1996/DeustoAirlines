@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,11 +21,15 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class ComprarBillete extends JFrame implements ActionListener {
-
+public class ComprarBillete extends JInternalFrame implements ActionListener
+{
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
+	
+	private final static int x = (1400) - ((int)465);
+	private final static int y = (680) - (480);	
 
 	/**
 	 * Launch the application.
@@ -32,16 +37,14 @@ public class ComprarBillete extends JFrame implements ActionListener {
 	
 	public ComprarBillete()
 	{
-		setVisible(true);
 		createAndShowGUI();
 	}
 	
 	/**
 	 * Create the frame.
 	 */
-	public  void createAndShowGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1045, 876);
+	public  void createAndShowGUI()
+	{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,15 +78,13 @@ public class ComprarBillete extends JFrame implements ActionListener {
 		comboBox_1.setBounds(607, 136, 89, 19);
 		contentPane.add(comboBox_1);
 		
-		DefaultTableModel modelo= new DefaultTableModel();
-		tabla = new JTable();
-		tabla.setBounds(10, 260, 1024, 246);
-		tabla.setModel(modelo);
-		JScrollPane scroll= new JScrollPane(tabla);
-		add(scroll);
-		contentPane.add(tabla);
-
-		
+		//DefaultTableModel modelo= new DefaultTableModel();
+		//tabla = new JTable();
+		//tabla.setBounds(10, 260, 1024, 246);
+		//tabla.setModel(modelo);
+		//JScrollPane scroll= new JScrollPane(tabla);
+		//add(scroll);
+		//contentPane.add(tabla);
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -106,6 +107,12 @@ public class ComprarBillete extends JFrame implements ActionListener {
 		JButton btnNewButton_1 = new JButton("CANCELAR");
 		btnNewButton_1.setBounds(777, 542, 121, 43);
 		contentPane.add(btnNewButton_1);
+		
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Crear un vuelo");
+		this.setBounds(x, y, 802, 597);
+		this.getContentPane().setLayout(null);
 	}
 	public void cargarDatosTabla(Statement state)
 	{
@@ -123,8 +130,6 @@ public class ComprarBillete extends JFrame implements ActionListener {
 			fecha= rs.getString("FECHA DE VUELO");
 			capacidad= rs.getInt("CAPACIDAD DEL VUELO");
 			modelo.addRow(new Object[]{vuelos,fecha,capacidad});
-			
-			
 		}
 		
 		}catch(Exception e)
@@ -134,7 +139,8 @@ public class ComprarBillete extends JFrame implements ActionListener {
 		}
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent arg0)
+	{
 		// TODO Auto-generated method stub
 		
 	}

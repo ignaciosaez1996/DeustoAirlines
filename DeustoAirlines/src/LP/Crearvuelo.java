@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -29,7 +30,7 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 
 
-public class Crearvuelo extends JFrame implements ActionListener
+public class Crearvuelo extends JInternalFrame implements ActionListener
 
 {
 	private static final long serialVersionUID = 1L;
@@ -128,11 +129,11 @@ public class Crearvuelo extends JFrame implements ActionListener
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
 		
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Crear un vuelo");
-		setBounds(x, y, 802, 597);
-		getContentPane().setLayout(null);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Crear un vuelo");
+		this.setBounds(x, y, 802, 597);
+		this.getContentPane().setLayout(null);
 		
 	}
 
