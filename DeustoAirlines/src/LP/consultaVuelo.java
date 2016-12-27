@@ -1,32 +1,19 @@
 package LP;
 
-import static COMUN.Definiciones.CMD_BTN_ACEPTAR;
+
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
-
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Vector;
-
-import javax.swing.JOptionPane;
-
-
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-
-
 import javax.swing.JScrollPane;
-
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -50,7 +37,7 @@ public class consultaVuelo extends JFrame  implements ActionListener
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
-		//setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 	}
 	
 	private void createAndShowGUI()
@@ -60,8 +47,6 @@ public class consultaVuelo extends JFrame  implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
-		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Consultar un vuelo");
@@ -69,7 +54,7 @@ public class consultaVuelo extends JFrame  implements ActionListener
 		this.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(101, 78, 573, 367);
+		scrollPane.setBounds(70, 78, 706, 367);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -98,11 +83,9 @@ public class consultaVuelo extends JFrame  implements ActionListener
 				{
 					e.printStackTrace();
 				}
-				
-				
 			}
 		});
-		btnNewButton.setBounds(173, 28, 225, 23);
+		btnNewButton.setBounds(223, 11, 247, 46);
 		contentPane.add(btnNewButton);
 		
 	}
