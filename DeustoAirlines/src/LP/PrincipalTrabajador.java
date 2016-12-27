@@ -105,7 +105,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmConsVuelo = new JMenuItem("Consultar vuelos");		
 		//mnitmConsVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
-		mnitmConsVuelo.setActionCommand(null);
+		mnitmConsVuelo.setActionCommand(CMD_CONSULTAVUELO);
 		mnitmConsVuelo.addActionListener(this);
 		mnInicio.add(mnitmConsVuelo);
 		
@@ -225,9 +225,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private void ConsultaVuelo() 
 	{
 		
-			//consultaVuelo objVuelo = new consultaVuelo();	
-			//objVuelo.setVisible(true);
-			//panel.add(objVuelo);	
+			consultaVuelo objVuelo = new consultaVuelo();	
+			objVuelo.setVisible(true);
+			panel.add(objVuelo);	
 		
 		
 	}
