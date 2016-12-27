@@ -30,7 +30,7 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 
 
-public class Crearvuelo extends JInternalFrame implements ActionListener
+public class Crearvuelo extends JFrame implements ActionListener
 
 {
 	private static final long serialVersionUID = 1L;
@@ -57,7 +57,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	public Crearvuelo()
 	{
 		createAndShowGUI();
-		//setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 	}
 	
 	private void createAndShowGUI()
