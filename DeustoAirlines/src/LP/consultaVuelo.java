@@ -7,16 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 
 import LD.BasesDeDatos;
 import LN.clsVuelo;
 
 
 
-public class consultaVuelo extends JFrame 
+public class consultaVuelo extends JInternalFrame 
 {
-	
-	
 	/**
 	 * 
 	 */

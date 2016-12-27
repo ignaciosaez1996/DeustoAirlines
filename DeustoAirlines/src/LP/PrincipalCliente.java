@@ -73,7 +73,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	}
 	
 	/**
-	 * Crear el frame Menu Principal para el administrador.
+	 * Crear el frame Menu Principal para el cliente.
 	 */
 	private void createAndShowGUI()
 	{
@@ -105,7 +105,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		menuBar.add(mnInicio);
 		
 		mnitmComprBille = new JMenuItem("Comprar Billete");		
-		mnitmComprBille.setActionCommand(null);
+		mnitmComprBille.setActionCommand(CMD_COMPRABILLETE);
 		mnitmComprBille.addActionListener(this);
 		mnInicio.add(mnitmComprBille);
 		
@@ -161,7 +161,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		{
 			case CMD_COMPRABILLETE:
 				this.ComprarBillete();
-				//objBillete.setVisible(true);
 				break;
 				
 			case CMD_CANCELARBILLETE:
@@ -195,12 +194,9 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void ComprarBillete() 
 	{
-		
-		//	CompraBillete objCompra = new CompraBillete();	
-		//	objCompra.setVisible(true);
-		//	panel.add(objCompra);	
-		
-		
+		ComprarBillete objCompra = new ComprarBillete();	
+		objCompra.setVisible(true);
+		panel.add(objCompra);	
 	}
 
 	private void CancelarBillete() 
