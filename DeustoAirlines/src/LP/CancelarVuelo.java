@@ -29,7 +29,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	
 	private JTable table;
 	private JButton btnCancelar;
-	private JButton btnEliminar;
+
 	
 	Connection connection = null;
 	private JButton btnEliminar_1;
@@ -39,6 +39,28 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
 	}
+	
+	
+	//para refrescar la tabla
+	public void RefrescarTabla()
+	{
+		try
+		{
+		String query = "select * from vuelo";
+		PreparedStatement pat = connection.prepareStatement(query);
+		ResultSet rs = pat.executeQuery();
+		System.out.println(rs);
+		table.setModel(DbUtils.resultSetToTableModel(rs));
+		
+		}
+		catch(Exception e)
+		{
+		e.printStackTrace();
+		}
+		
+	}
+	
+	
 	private void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -111,12 +133,14 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 					ex.printStackTrace();
 				}
 				
-				
+				RefrescarTabla();
 			}
 		});
 		btnEliminar_1.setActionCommand("CMD_BTN_CANCELAR");
 		btnEliminar_1.setBounds(277, 490, 102, 30);
 		contentPane.add(btnEliminar_1);
+		
+		RefrescarTabla();
 	}
 		
 	@Override
