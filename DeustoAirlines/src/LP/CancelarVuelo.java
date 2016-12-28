@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,6 +32,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	private JButton btnEliminar;
 	
 	Connection connection = null;
+	private JButton btnEliminar_1;
 	
 	public CancelarVuelo()
 	{
@@ -58,18 +60,13 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		scrollPane.setViewportView(table);
 		
 		btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(296, 492, 102, 30);
+		btnCancelar.setBounds(490, 490, 102, 30);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
 		
-		btnEliminar = new JButton("ELIMINAR");
-		btnEliminar.setBounds(190, 492, 102, 30);
-		btnEliminar.setActionCommand(CMD_BTN_ELIMINAR);
-		btnEliminar.addActionListener(this);
-		this.getRootPane().setDefaultButton(btnEliminar);
-		contentPane.add(btnEliminar);
+		
 		
 		JButton btnNewButton = new JButton("Cargar Tabla");
 		btnNewButton.addActionListener(new ActionListener()
@@ -92,6 +89,34 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		});
 		btnNewButton.setBounds(223, 11, 247, 46);
 		contentPane.add(btnNewButton);
+		
+		btnEliminar_1 = new JButton("ELIMINAR");
+		btnEliminar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) // BORRA TODOS LOS VUELOS.. tenemos que pensar alguna manera para que borre
+			{											//solo los seleccionados
+				try
+				{
+					String query = " delete from vuelo ";
+					PreparedStatement pst = connection.prepareStatement(query);
+					
+					pst.execute();
+					
+					JOptionPane.showMessageDialog(null, "Vuelo cancelado");
+					
+					pst.close();
+					
+				}
+				catch(Exception ex)
+				{
+					ex.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnEliminar_1.setActionCommand("CMD_BTN_CANCELAR");
+		btnEliminar_1.setBounds(277, 490, 102, 30);
+		contentPane.add(btnEliminar_1);
 	}
 		
 	@Override
