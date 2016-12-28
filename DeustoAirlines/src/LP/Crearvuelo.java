@@ -14,9 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
-import java.awt.Dimension;
+
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.sql.Statement;
 
 import javax.swing.JTextField;
@@ -132,7 +131,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Crear un vuelo");
-		this.setBounds(x, y, 802, 597);
+		this.setBounds(260, 30, 802, 597);
 		this.getContentPane().setLayout(null);
 		
 	}
@@ -164,6 +163,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	private void Vuelo()
 	{
 		BasesDeDatos.crearTablaVueloBD();
+		//Para llamar a GestorTrabajador se debería pasar el DNI y la contraseña del trabajador pero como no importa pasamos null
 		GestorTrabajador  gesTra = new GestorTrabajador(null,null);
 		
 		String CodVuelo = txtcodvuelo.getText();
@@ -190,8 +190,6 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 			{
 				JOptionPane.showMessageDialog(this, "Vuelo registrado");
 			}
-			PrincipalTrabajador objTrabajador = new PrincipalTrabajador( );
-			objTrabajador.setVisible(true);
 			this.dispose();
 		}
 		

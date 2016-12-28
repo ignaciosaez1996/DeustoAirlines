@@ -57,7 +57,6 @@ public class GestorTrabajador
 			}
 		}catch (SQLException e)
 		{
-			JOptionPane.showMessageDialog(null, this, "El vuelo introducido ya está registrado", 0);
 			e.printStackTrace();
 			return false;
 		}
@@ -66,7 +65,7 @@ public class GestorTrabajador
 	//Devolvera true en caso de que ya halla un vuelo con ese codigo
 	public boolean ExisteVuelo(Statement state, String codigo)
 	{
-		String SelectBD = "select * from VUELO where (codigo = '" + codigo + "')";
+		String SelectBD = "select * from VUELO where (cod_vuelo = '" + codigo + "')";
 		try 
 		{
 			ResultSet rs = state.executeQuery( SelectBD );

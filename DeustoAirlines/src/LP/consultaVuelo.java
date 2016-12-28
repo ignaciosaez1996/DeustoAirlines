@@ -57,7 +57,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Consultar un vuelo");
-		this.setBounds(x, y, 802, 597);
+		this.setBounds(260, 30, 802, 597);
 		this.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -75,7 +75,8 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		contentPane.add(btnCancelar);
 		
 		JButton btnNewButton = new JButton("Cargar Tabla");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnNewButton.addActionListener(new ActionListener()
+		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				try
@@ -85,7 +86,6 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 					ResultSet rs = pat.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
 					
-	
 				}catch(Exception e)
 				{
 					e.printStackTrace();
@@ -94,16 +94,13 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		});
 		btnNewButton.setBounds(223, 11, 247, 46);
 		contentPane.add(btnNewButton);
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		switch(arg0.getActionCommand())
-		 {
-			
-				
+		 {	
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;

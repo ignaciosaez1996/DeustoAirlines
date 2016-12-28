@@ -51,7 +51,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(20, 152, 255, 25);
+		txtCorreo.setBounds(20, 152, 257, 32);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
@@ -62,7 +62,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(20, 250, 255, 25);
+		passwordField.setBounds(20, 250, 257, 32);
 		getContentPane().add(passwordField);
 		
 		JLabel lblIntroduzcaSuNombre = new JLabel("Introduzca su nombre y apellido: ");
@@ -73,7 +73,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(20, 66, 212, 25);
+		txtNombre.setBounds(20, 66, 257, 32);
 		getContentPane().add(txtNombre);
 
 		

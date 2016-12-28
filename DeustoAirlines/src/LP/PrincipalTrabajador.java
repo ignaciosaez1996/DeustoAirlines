@@ -154,8 +154,6 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnIngreso.add(mnitmConsIngresos);
 		
 		
-		
-		
 		getContentPane().setLayout(null);		
 		
 	}

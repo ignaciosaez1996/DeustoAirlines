@@ -58,7 +58,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(33, 79, 257, 25);
+		txtCorreo.setBounds(33, 79, 257, 32);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
@@ -69,12 +69,12 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(33, 185, 257, 25);
+		passwordField.setBounds(33, 185, 257, 32);
 		getContentPane().add(passwordField);
 
 		
 		btnAceptar = new JButton("ACEPTAR");
-		btnAceptar.setBounds(102, 326, 100, 23);
+		btnAceptar.setBounds(96, 249, 100, 23);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
 		btnAceptar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnAceptar);
@@ -82,7 +82,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		
 		
 		btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(239, 326, 100, 23);
+		btnCancelar.setBounds(237, 249, 100, 23);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
@@ -91,7 +91,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setTitle("Acceso para los clientes registrados");
-		setBounds(x, y, 455, 402);
+		setBounds(x, y, 418, 330);
 		getContentPane().setLayout(null);
 
 	}
@@ -126,7 +126,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
 		GestorCliente gesCli = new GestorCliente(correo, contrasenya);
-		boolean existe;
+		boolean existe; 
 		Statement state = BasesDeDatos.getStatement();
 		
 		existe = gesCli.ValidarEntradaCli(state, correo, contrasenya);
@@ -140,10 +140,8 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		{
 			JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectas, vuelva a introducirlas");
 		}
-		
 	}
-	
-	
-	
-	
 }
+	
+	
+
