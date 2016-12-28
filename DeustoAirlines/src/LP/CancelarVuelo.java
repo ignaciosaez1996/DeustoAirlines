@@ -88,30 +88,6 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
 		
-		
-		
-		JButton btnNewButton = new JButton("Cargar Tabla");
-		btnNewButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					System.out.println(rs);
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(223, 11, 247, 46);
-		contentPane.add(btnNewButton);
-		
 		btnEliminar_1 = new JButton("ELIMINAR");
 		btnEliminar_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) // BORRA TODOS LOS VUELOS.. tenemos que pensar alguna manera para que borre

@@ -40,6 +40,24 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		createAndShowGUI();
 	}
 	
+	public void llenarComboBox()
+	{
+		
+		try
+		{
+			
+		}
+		
+		catch ( Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
 	/**
 	 * Create the frame.
 	 */
