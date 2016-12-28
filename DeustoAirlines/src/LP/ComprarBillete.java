@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -21,16 +23,22 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import LD.BasesDeDatos;
+
 public class ComprarBillete extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
 	
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 
+	Connection connection = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +46,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	public ComprarBillete()
 	{
 		createAndShowGUI();
+		connection = BasesDeDatos.getConnection();
 	}
 	
 	public void llenarComboBox()
@@ -45,7 +54,15 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		try
 		{
+			String query = "select cod_postal_o from vuelo "; 
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
 			
+			while(rs.next())
+				{
+					comboBox.addItem(rs.getString("cod_postal_o"));
+				}
+		
 		}
 		
 		catch ( Exception e)
@@ -73,7 +90,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblBilletes.setBounds(10, 126, 327, 33);
 		contentPane.add(lblBilletes);
 		
-		JComboBox comboBox = new JComboBox();
+		 comboBox = new JComboBox();
 		comboBox.setBounds(420, 136, 94, 20);
 		contentPane.add(comboBox);
 		
@@ -92,7 +109,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblA.setBounds(575, 139, 22, 16);
 		contentPane.add(lblA);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		 comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(607, 136, 89, 19);
 		contentPane.add(comboBox_1);
 		
@@ -137,6 +154,8 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		getContentPane().setLayout(null);
 		setIconifiable(true);
 		setResizable(true);
+		
+		llenarComboBox();
 	}
 	public void cargarDatosTabla(Statement state)
 	{
