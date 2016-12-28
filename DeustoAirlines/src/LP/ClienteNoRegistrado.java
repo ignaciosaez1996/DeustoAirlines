@@ -144,13 +144,15 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		existe=gesCli.ExisteCliente(state, correo);
 		if(existe==true)
 		{
-			JOptionPane.showMessageDialog(this, "El correo introducido ya está registrado");
+			JOptionPane.showMessageDialog(null, "El correo introducido ya está registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+			
 		}
 		else
 		{
 			existe=gesCli.ClienteNuevo(state, correo, nombre, contrasenya);
 			if(existe==true)
 			{
+				
 				JOptionPane.showMessageDialog(this, "Cliente registrado");
 			}
 			PrincipalCliente objCliente = new PrincipalCliente( );

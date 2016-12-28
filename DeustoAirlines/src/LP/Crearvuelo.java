@@ -181,7 +181,8 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		if(existe==true)
 		{
-			JOptionPane.showMessageDialog(this, "El codigo introducido ya está registrado");
+			JOptionPane.showMessageDialog(null, " El codigo introducido ya está registrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+			
 		}
 		else
 		{

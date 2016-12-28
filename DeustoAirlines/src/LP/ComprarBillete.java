@@ -31,8 +31,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JComboBox<String> comboBox;
+	private JComboBox<String> comboBox_1 ;
+	
 	
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
@@ -80,6 +81,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	 */
 	public  void createAndShowGUI()
 	{
+		llenarComboBox();
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,10 +91,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblBilletes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblBilletes.setBounds(10, 126, 327, 33);
 		contentPane.add(lblBilletes);
-		
-		 comboBox = new JComboBox();
-		comboBox.setBounds(420, 136, 94, 20);
-		contentPane.add(comboBox);
 		
 		JLabel lblNewLabel = new JLabel("\u00BF A DONDE LE LLEVAMOS?\r\n");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -108,10 +106,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblA.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblA.setBounds(575, 139, 22, 16);
 		contentPane.add(lblA);
-		
-		 comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(607, 136, 89, 19);
-		contentPane.add(comboBox_1);
 		
 		//DefaultTableModel modelo= new DefaultTableModel();
 		//tabla = new JTable();
@@ -152,10 +146,18 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		setTitle("Crear un vuelo");
 		setBounds(70, 10, 950, 650);
 		getContentPane().setLayout(null);
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(432, 136, 87, 20);
+		contentPane.add(comboBox);
+		
+		comboBox_1 = new JComboBox<String>();
+		comboBox_1.setBounds(607, 136, 87, 20);
+		contentPane.add(comboBox_1);
 		setIconifiable(true);
 		setResizable(true);
 		
-		llenarComboBox();
+		
 	}
 	public void cargarDatosTabla(Statement state)
 	{
@@ -194,7 +196,4 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 				break;
 		}
 	}
-
-
-
 }
