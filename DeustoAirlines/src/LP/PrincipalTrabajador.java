@@ -117,10 +117,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmCancVuelo = new JMenuItem("Cancelar vuelos");		
 		//mnitmCancVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
-		mnitmCancVuelo.setActionCommand(null);
+		mnitmCancVuelo.setActionCommand(CMD_CANCELARVUELO);
 		mnitmCancVuelo.addActionListener(this);
 		mnInicio.add(mnitmCancVuelo);
-		
 		
 		
 		separator_4 = new JSeparator();
@@ -212,22 +211,17 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	}
 
 	private void CancelarVuelo() 
-	{
-			//CancelarVuelo objCancel = new CancelarVuelo();	
-			//objCancel.setVisible(true);
-			//panel.add(objCancel);	
-		
-		
+	{		
+		CancelarVuelo objCancelar = new CancelarVuelo();	
+		objCancelar.setVisible(true);
+		panel.add(objCancelar);	
 	}
 
 	private void ConsultaVuelo() 
 	{
-		
-			consultaVuelo objVuelo = new consultaVuelo();	
-			objVuelo.setVisible(true);
-			panel.add(objVuelo);	
-		
-		
+		consultaVuelo objVuelo = new consultaVuelo();	
+		objVuelo.setVisible(true);
+		panel.add(objVuelo);	
 	}
 
 

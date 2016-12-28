@@ -143,7 +143,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		String DNI = txtDNI.getText();
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
-		GestorTrabajador gesTra = new GestorTrabajador(DNI, contrasenya);
+		GestorTrabajador gesTra = new GestorTrabajador();
 		boolean existe;
 	
 		

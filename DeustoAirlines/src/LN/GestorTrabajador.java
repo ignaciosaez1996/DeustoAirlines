@@ -8,14 +8,6 @@ import javax.swing.JOptionPane;
 
 public class GestorTrabajador 
 {
-	String contrasenya;
-	String DNI;
-	
-	public GestorTrabajador(String DNI, String contrasenya)
-	{
-		this.DNI = DNI;
-		this.contrasenya = contrasenya;
-	}
 	
 	//Devolvera la true si existe algún trabajador con el DNI y contraseña introducidos
 	public boolean ValidarEntradaTra(Statement state, String DNI, String contrasenya)
@@ -84,11 +76,7 @@ public class GestorTrabajador
 			return false;
 		}
 	}
-	
-	public void ConsultarVuelos()
-	{
-		
-	}
+
 	public void CancelarVuelos()
 	{
 		

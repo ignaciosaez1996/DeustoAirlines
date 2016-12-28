@@ -83,6 +83,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		spinner = new JSpinner();
 		spinner.setBounds(467, 305, 53, 42);
+		spinner.setValue(150);
 		contentPane.add(spinner);
 		
 		lblFecha = new JLabel("Fecha");
@@ -163,8 +164,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	private void Vuelo()
 	{
 		BasesDeDatos.crearTablaVueloBD();
-		//Para llamar a GestorTrabajador se debería pasar el DNI y la contraseña del trabajador pero como no importa pasamos null
-		GestorTrabajador  gesTra = new GestorTrabajador(null,null);
+		GestorTrabajador  gesTra = new GestorTrabajador();
 		
 		String CodVuelo = txtcodvuelo.getText();
 		String capacidad = spinner.getValue().toString();
