@@ -55,13 +55,41 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		try
 		{
-			String query = "select cod_postal_o from vuelo "; 
+		    String query = "select cod_postal_o from vuelo "; 
+			
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
+		
 			
 			while(rs.next())
 				{
-					comboBox.addItem(rs.getString("cod_postal_o"));
+					comboBox.addItem(rs.getString(" cod_postal_o "));
+				}
+		
+		}
+		
+		catch ( Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void llenarComboBox_1()
+	{
+		
+		try
+		{
+		    String query = "select cod_postal_d from vuelo "; 
+			
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+		
+			
+			while(rs.next())
+				{
+					comboBox.addItem(rs.getString(" cod_postal_d "));
 				}
 		
 		}
@@ -81,7 +109,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	 */
 	public  void createAndShowGUI()
 	{
-		llenarComboBox();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -150,10 +178,13 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(432, 136, 87, 20);
 		contentPane.add(comboBox);
+		llenarComboBox();
+		
 		
 		comboBox_1 = new JComboBox<String>();
 		comboBox_1.setBounds(607, 136, 87, 20);
 		contentPane.add(comboBox_1);
+		llenarComboBox_1();
 		setIconifiable(true);
 		setResizable(true);
 		

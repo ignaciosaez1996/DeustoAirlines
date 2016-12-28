@@ -58,7 +58,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(33, 79, 257, 32);
+		txtCorreo.setBounds(33, 79, 257, 40);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
@@ -69,7 +69,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(33, 185, 257, 32);
+		passwordField.setBounds(33, 177, 257, 40);
 		getContentPane().add(passwordField);
 
 		
