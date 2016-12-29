@@ -154,7 +154,8 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 					{
 						if(i==table.getSelectedRow())
 						{
-							
+						
+		
 							//Hay que conseguir sacar el codigo del resultset
 						}
 					}

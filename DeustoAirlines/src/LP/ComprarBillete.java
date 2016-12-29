@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,22 +26,22 @@ import javax.swing.table.DefaultTableModel;
 
 import LD.BasesDeDatos;
 
+import javax.swing.JList;
+
 public class ComprarBillete extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
-	
-	private JComboBox<String> comboBox;
-
-	private JComboBox<String> comboBox_1 ;
+	private JList list;
+	private JList list_1;
 	
 	
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 
-	Connection connection = null;
+	Connection connection =  BasesDeDatos.getConnection();
 	
 	/**
 	 * Launch the application.
@@ -49,64 +50,11 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	public ComprarBillete()
 	{
 		createAndShowGUI();
-		connection = BasesDeDatos.getConnection();
+		llenarLista();
+		llenarLista_1();
 	}
 	
 
-	public void llenarComboBox()
-	{
-		
-		try
-		{
-		    String query = "SELECT cod_postal_o FROM VUELO "; 
-			
-			PreparedStatement pst = connection.prepareStatement(query);
-			ResultSet rs = pst.executeQuery();
-		
-			
-			while(rs.next())
-				{
-					String infor = rs.getString(" cod_postal_o ");
-					comboBox.addItem(infor);
-					
-				}
-		
-		}
-		
-		catch ( Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	public void llenarComboBox_1()
-	{
-		
-		try
-		{
-		    String query = "select cod_postal_d from vuelo "; 
-			
-			PreparedStatement pst = connection.prepareStatement(query);
-			ResultSet rs = pst.executeQuery();
-		
-			
-			while(rs.next())
-				{
-					comboBox.addItem(rs.getString(" cod_postal_d "));
-				}
-		
-		}
-		
-		catch ( Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
 	
 	
 	/**
@@ -122,7 +70,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		JLabel lblBilletes = new JLabel("Escoga el viaje que quiere realizar");
 		lblBilletes.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblBilletes.setBounds(10, 126, 327, 33);
+		lblBilletes.setBounds(10, 90, 327, 33);
 		contentPane.add(lblBilletes);
 		
 		JLabel lblNewLabel = new JLabel("\u00BF A DONDE LE LLEVAMOS?\r\n");
@@ -132,12 +80,12 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		JLabel lblDe = new JLabel("DE");
 		lblDe.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDe.setBounds(388, 140, 22, 14);
+		lblDe.setBounds(409, 90, 22, 14);
 		contentPane.add(lblDe);
 		
 		JLabel lblA = new JLabel("A");
 		lblA.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblA.setBounds(575, 139, 22, 16);
+		lblA.setBounds(604, 90, 22, 16);
 		contentPane.add(lblA);
 		
 		//DefaultTableModel modelo= new DefaultTableModel();
@@ -150,7 +98,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblVuelosOfrecids.setBounds(10, 199, 371, 33);
+		lblVuelosOfrecids.setBounds(10, 287, 371, 33);
 		contentPane.add(lblVuelosOfrecids);
 		
 		JSpinner spinner = new JSpinner();
@@ -180,16 +128,14 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		setBounds(70, 10, 950, 650);
 		getContentPane().setLayout(null);
 		
-		comboBox = new JComboBox<String>();
-		comboBox.setBounds(432, 136, 87, 20);
-		contentPane.add(comboBox);
-		llenarComboBox();
+		list = new JList();
+		list.setBounds(412, 114, 126, 158);
+		contentPane.add(list);
 		
+		list_1 = new JList();
+		list_1.setBounds(602, 114, 126, 158);
+		contentPane.add(list_1);
 		
-		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(607, 136, 87, 20);
-		contentPane.add(comboBox_1);
-		llenarComboBox_1();
 		setIconifiable(true);
 		setResizable(true);
 		
@@ -219,6 +165,85 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			
 		}
 	}
+	
+	
+	public void llenarLista()
+	{
+		
+		try
+		
+		{
+			
+			String query = "select cod_postal_o from vuelo "; 
+			
+			PreparedStatement pst = connection.prepareStatement(query);
+					
+			ResultSet rs = pst.executeQuery();
+		
+			
+			DefaultListModel DL = new DefaultListModel();
+			
+			while(rs.next())
+				{
+				
+					DL.addElement(rs.getString("cod_postal_o"));
+				
+				}
+			
+			list.setModel(DL);
+			
+			pst.close();
+			rs.close();
+		
+		}
+		
+		catch ( Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+
+	
+	public void llenarLista_1()
+	{
+		
+		try
+		{
+		    String query = "select cod_postal_d from vuelo "; 
+			
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+		
+			
+			DefaultListModel DLM = new DefaultListModel();
+			
+			while(rs.next())
+				{
+				
+					DLM.addElement(rs.getString("cod_postal_d"));
+				
+					//list.add(list, rs.getString("cod_vuelo_o"));
+				}
+			
+			list_1.setModel(DLM);
+			
+			pst.close();
+			rs.close();
+		}
+		
+		catch ( Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{

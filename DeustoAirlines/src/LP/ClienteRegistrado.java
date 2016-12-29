@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Statement;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,8 +34,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	private JPasswordField passwordField;
 
 	
-	
-	
+
 	@SuppressWarnings("unused")
 
 	private int DNI;
@@ -91,8 +91,10 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setTitle("Acceso para los clientes registrados");
-		setBounds(x, y, 418, 330);
+		setBounds(x, y, 517, 330);
 		getContentPane().setLayout(null);
+		
+
 
 	}
 	@Override
