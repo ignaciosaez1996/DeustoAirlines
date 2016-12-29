@@ -206,8 +206,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	}
 	
 	
-
-	
 	public void llenarLista_1()
 	{
 		
