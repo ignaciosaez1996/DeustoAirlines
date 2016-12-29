@@ -77,8 +77,32 @@ public class GestorTrabajador
 		}
 	}
 
-	public void CancelarVuelos()
+	//Devolvera true si se ha logrado eliminar 1 fila
+	public boolean CancelarVuelo(Statement state, String cod_vuelo)
 	{
+		String SelectBD1 = "select * from vuelo";
+		String SelectBD2 = "delete * from VUELO where (cod_vuelo = '" + cod_vuelo + "')";
+		
+		try 
+		{
+			ResultSet rs1 = state.executeQuery( SelectBD1 );
+			ResultSet rs2 = state.executeQuery( SelectBD2 );
+			
+			if(rs1==rs2)
+			{
+				return false;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Se ha eliminado el vuelo", "Correcto",JOptionPane.INFORMATION_MESSAGE);
+				return true;
+			}
+			
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 	public void AsignarAgendaDeTrabajo()//Calendario

@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
+import LN.GestorTrabajador;
 
 public class CancelarVuelo extends JInternalFrame implements ActionListener
 {
@@ -37,25 +40,28 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	public CancelarVuelo()
 	{
 		createAndShowGUI();
-		connection = BasesDeDatos.getConnection();
+		
 	}
 	
 	
-	//para refrescar la tabla
+	//Para refrescar la tabla
 	public void RefrescarTabla()
 	{
 		try
 		{
-		String query = "select * from vuelo";
-		PreparedStatement pat = connection.prepareStatement(query);
-		ResultSet rs = pat.executeQuery();
-		System.out.println(rs);
-		table.setModel(DbUtils.resultSetToTableModel(rs));
-		
+			connection = BasesDeDatos.getConnection();
+			String query = "select * from vuelo";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			while(rs.next())
+			{
+				System.out.println(rs.getString("cod_vuelo"));
+			}
+			table.setModel(DbUtils.resultSetToTableModel(rs));
 		}
 		catch(Exception e)
 		{
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 	}
@@ -110,30 +116,11 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		contentPane.add(btnNewButton);
 		
 		btnEliminar_1 = new JButton("ELIMINAR");
-		btnEliminar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) // BORRA TODOS LOS VUELOS.. tenemos que pensar alguna manera para que borre
-			{											//solo los seleccionados
-				try
-				{
-					String query = " delete from vuelo ";
-					PreparedStatement pst = connection.prepareStatement(query);
-					
-					pst.execute();
-					
-					JOptionPane.showMessageDialog(null, "Vuelo cancelado");
-					
-					pst.close();
-					
-				}
-				catch(Exception ex)
-				{
-					ex.printStackTrace();
-				}
-				
-				RefrescarTabla();
-			}
-		});
-		btnEliminar_1.setActionCommand("CMD_BTN_CANCELAR");
+		btnEliminar_1.addActionListener(this);
+			// BORRA TODOS LOS VUELOS.. tenemos que pensar alguna manera para que borre		
+			//solo los seleccionados
+
+		btnEliminar_1.setActionCommand(CMD_BTN_ELIMINAR);
 		btnEliminar_1.setBounds(277, 490, 102, 30);
 		contentPane.add(btnEliminar_1);
 		
@@ -150,7 +137,39 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 				break;
 				
 			case CMD_BTN_ELIMINAR:
-				System.out.println(table.getSelectedRow());
+				Statement state = BasesDeDatos.getStatement();
+				GestorTrabajador gesTra = new GestorTrabajador();
+				
+				connection = BasesDeDatos.getConnection();
+				String query = "select * from vuelo";
+			PreparedStatement pat;
+			try
+			{
+				pat = connection.prepareStatement(query);
+				ResultSet rs = pat.executeQuery();
+				if(table.getSelectedRow()>-1)
+				{
+					for(int i = 0; i<=table.getRowCount(); i++)
+					{
+						if(i==table.getSelectedRow())
+						{
+							//Hay que conseguir sacar el codigo del resultset
+						}
+					}
+					this.dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "No ha seleccionado ningún vuelo", "Correcto",JOptionPane.INFORMATION_MESSAGE);
+				}	
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+				
+				
+				
+				
 				break;
 		} 
 		

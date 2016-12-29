@@ -41,11 +41,8 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private JPasswordField passwordField;
 	
 	
-	
-	@SuppressWarnings("unused")
 
-	private int DNI;
-	private String contrasena;
+
 	
 	private final static int x = (1400/2) - ((int)465/2);
 	private final static int y = (680/2) - (480/2);	
