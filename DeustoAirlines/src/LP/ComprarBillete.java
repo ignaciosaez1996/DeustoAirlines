@@ -31,7 +31,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
+	
 	private JComboBox<String> comboBox;
+
 	private JComboBox<String> comboBox_1 ;
 	
 	
@@ -50,12 +52,13 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		connection = BasesDeDatos.getConnection();
 	}
 	
+
 	public void llenarComboBox()
 	{
 		
 		try
 		{
-		    String query = "select cod_postal_o from vuelo "; 
+		    String query = "SELECT cod_postal_o FROM VUELO "; 
 			
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
@@ -63,7 +66,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			
 			while(rs.next())
 				{
-					comboBox.addItem(rs.getString(" cod_postal_o "));
+					String infor = rs.getString(" cod_postal_o ");
+					comboBox.addItem(infor);
+					
 				}
 		
 		}

@@ -1,6 +1,6 @@
 package LP;
 
-
+import javax.swing.JInternalFrame;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 
 import javax.swing.JFrame;
@@ -24,11 +24,13 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class consultaVuelo extends JInternalFrame  implements ActionListener
+public class ConsultaHorario extends JInternalFrame implements ActionListener
 {
-
 	private static final long serialVersionUID = 1L;
-	
+
+
+
+
 	JPanel contentPane;
 
 	private JTable table;
@@ -37,7 +39,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	Connection connection = null;
 
 	
-	public consultaVuelo()
+	public ConsultaHorario()
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
@@ -53,7 +55,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setTitle("Consultar un vuelo");
+		this.setTitle("Consultar horario");
 		this.setBounds(260, 30, 802, 597);
 		this.getContentPane().setLayout(null);
 		
@@ -93,7 +95,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		contentPane.add(btnNewButton);
 	}
 
-	@Override
+
 	public void actionPerformed(ActionEvent arg0)
 	{
 		switch(arg0.getActionCommand())
@@ -107,4 +109,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	
 }
 
+	
+	
+	
 

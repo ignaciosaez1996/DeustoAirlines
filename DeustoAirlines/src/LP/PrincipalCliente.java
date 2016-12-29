@@ -129,7 +129,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		
 		mnitmConsHorario = new JMenuItem("Consultar horarios");		
 		mnitmConsHorario.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
-		mnitmConsHorario.setActionCommand(null);
+		mnitmConsHorario.setActionCommand(CMD_CONSULTAHORARIO);
 		mnitmConsHorario.addActionListener(this);
 		mnHorario.add(mnitmConsHorario);
 
@@ -211,9 +211,9 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private void ConsultarHorarios() 
 	{
 		
-			//ConsultaHorarios objHorario = new ConsultaHorarios();	
-			//objHorario.setVisible(true);
-			//panel.add(objHorario);	
+			ConsultaHorario objHorario = new ConsultaHorario();	
+			objHorario.setVisible(true);
+			panel.add(objHorario);	
 		
 		
 	}

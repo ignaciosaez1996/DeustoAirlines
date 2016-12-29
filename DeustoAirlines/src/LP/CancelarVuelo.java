@@ -106,6 +106,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 					PreparedStatement pat = connection.prepareStatement(query);
 					ResultSet rs = pat.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+				
 				}catch(Exception e)
 				{
 					e.printStackTrace();
@@ -153,6 +154,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 					{
 						if(i==table.getSelectedRow())
 						{
+							
 							//Hay que conseguir sacar el codigo del resultset
 						}
 					}
