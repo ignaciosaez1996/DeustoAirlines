@@ -118,7 +118,7 @@ public class GestorTrabajador
 			rs = state.executeQuery(SelectBD);
 			while(rs.next())
 			{
-				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha")));
+				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d")));
 			}
 		} catch (SQLException e)
 		{

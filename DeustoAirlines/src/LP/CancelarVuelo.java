@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ import javax.swing.table.AbstractTableModel;
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorTrabajador;
+
 import LN.clsVuelo;
 
 public class CancelarVuelo extends JInternalFrame implements ActionListener
@@ -147,7 +149,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	private void CrearTabla()
 	{
 		table=null;
-		TablaVuelosModel tablaModel = new TablaVuelosModel(ListaVuelos);
+		TablaVuelosModel tablaModel = new TablaVuelosModel((Map<String, clsVuelo>) ListaVuelos);
 		
 		table = new JTable(tablaModel);
 		table.setBounds(25, 33, 378, 86);
@@ -161,29 +163,81 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	
 class TablaVuelosModel extends AbstractTableModel
 {
-	private String[] columNames = {"cod_vuelo", "capacidad", "fecha"};
+	
+	private static final long serialVersionUID = 1L;
+	private String[] columNames = {"cod_vuelo", "capacidad", "fecha" , "cod_psotal_o", "cod_postal_d"};
 	Object [][] data;
 	
-	public TablaVuelosModel(ArrayList <clsVuelo> MapVuelos)
+	
+	 public TablaVuelosModel(Map<String,clsVuelo> map)
+    {        
+    	super();   
+    	
+		int filas = map.size();
+		int cont;
+		data = new Object[filas][];
+		cont=0;    		
+		
+		//Nos recorremos el map para cargar la variable data[][]
+		for (Map.Entry<String,clsVuelo> entry : map.entrySet())
+		{
+		    //System.out.println(entry.getKey() + "/" + entry.getValue());
+			Object[]a = {new String(entry.getValue().getCod_vuelo()),
+					   	 new Integer(entry.getValue().getCapacidad()),
+					   	 new String(entry.getValue().getFecha()),
+					   	 new String(entry.getValue().getCod_postal_o()),
+					   	 new String(entry.getValue().getCod_postal_d()) };
+			data[cont] = a;
+			cont++;
+		}
+		
+    }
+	 public void setData(Map<String,clsVuelo> map) 
+     {
+     	int filas = map.size();
+ 		int cont;
+ 		data=new Object[filas][];
+ 		cont=0;
+ 		
+ 		for (Map.Entry<String,clsVuelo> entry : map.entrySet())
+ 		{
+ 		    //System.out.println(entry.getKey() + "/" + entry.getValue());
+ 			Object[]a = {new String(entry.getValue().getCod_vuelo()),
+				   	 new Integer(entry.getValue().getCapacidad()),
+				   	 new String(entry.getValue().getFecha()),
+				   	 new String(entry.getValue().getCod_postal_o()),
+				   	 new String(entry.getValue().getCod_postal_d()) };
+ 			data[cont] = a;
+ 			cont++;
+ 		}
+     }
+/*	public TablaVuelosModel(ArrayList <clsVuelo> MapVuelos)
 	{
 		super();
 		int filas = MapVuelos.size();
 		data = new Object [filas][];
 		int cont = 0;
 		
-		for (int i=0; i<MapVuelos.size();i++)
+	/*	for (int i=0; i<MapVuelos.size();i++)
 		{
 			//No se porqué el int me da error, debería de ser Integer pero no me deja
-//			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
-//								  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
-//								  new String(((clsVuelo)MapVuelos.get(i).getFecha())};
-//			data[cont]=vueloNuevo;
-//			cont ++;
-//			}
+			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
+								  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
+								new String(((clsVuelo)MapVuelos.get(i).getFecha()),
+								new String(((clsVuelo)MapVuelos.get(i).getCod_postal_o()),
+								new String(((clsVuelo)MapVuelos.get(i).getCod_postal_d()))))))};
+		data[cont]=vueloNuevo;
+			cont ++;
+			}
 		}
-	}
+		
+		
+	} */
 	
-	public void setData(ArrayList<clsVuelo>MapVuelos)
+	
+
+	
+	/*public void setData(ArrayList<clsVuelo>MapVuelos)
 	{
 		int filas = MapVuelos.size();
 		int cont=0;
@@ -198,7 +252,7 @@ class TablaVuelosModel extends AbstractTableModel
 //			  cont ++;
 //}
 		}
-	}
+	}*/
 
 	@Override
 	public int getColumnCount() 
