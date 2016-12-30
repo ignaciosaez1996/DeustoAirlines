@@ -85,7 +85,7 @@ public class GestorCliente
 			return false;
 		}
 	}
-	
+
 	public void ComprarBillete()
 	{
 		

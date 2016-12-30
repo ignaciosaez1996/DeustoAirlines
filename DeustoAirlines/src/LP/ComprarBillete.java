@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,11 +24,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import LD.BasesDeDatos;
 
 import javax.swing.JList;
+
+import net.proteanit.sql.DbUtils;
 
 public class ComprarBillete extends JInternalFrame implements ActionListener
 {
@@ -36,8 +42,10 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private DefaultTableModel modelo;
 	private JList list;
 	private JList list_1;
-	
-	
+	private String seleccionado1;
+	private String seleccionado2;
+	private JScrollPane scrollLista;
+	private JScrollPane scrollLista2;
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 
@@ -49,9 +57,11 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 	public ComprarBillete()
 	{
+		
 		createAndShowGUI();
 		llenarLista();
 		llenarLista_1();
+		
 	}
 	
 
@@ -88,17 +98,16 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblA.setBounds(604, 90, 22, 16);
 		contentPane.add(lblA);
 		
-		//DefaultTableModel modelo= new DefaultTableModel();
-		//tabla = new JTable();
-		//tabla.setBounds(10, 260, 1024, 246);
-		//tabla.setModel(modelo);
-		//JScrollPane scroll= new JScrollPane(tabla);
-		//add(scroll);
-		//contentPane.add(tabla);
+		DefaultTableModel modelo= new DefaultTableModel();
+		tabla = new JTable();
+		tabla.setModel(modelo);
+		JScrollPane scroll= new JScrollPane(tabla);
+		scroll.setBounds(10, 235, 900, 246);
+		contentPane.add(scroll);
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblVuelosOfrecids.setBounds(10, 287, 371, 33);
+		lblVuelosOfrecids.setBounds(10, 187, 371, 33);
 		contentPane.add(lblVuelosOfrecids);
 		
 		JSpinner spinner = new JSpinner();
@@ -122,6 +131,20 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		btnNewButton_1.addActionListener(this);
 		contentPane.add(btnNewButton_1);
 		
+		JButton btnNewButton_2 = new JButton("FILTRAR");
+		btnNewButton_2.setBounds(777, 90, 121, 43);
+		btnNewButton_2.setActionCommand("FILTRAR");
+		btnNewButton_2.addActionListener(this);
+		contentPane.add(btnNewButton_2);
+		
+		btnNewButton_2.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0)
+			{
+				Statement state = BasesDeDatos.getStatement();
+				cargarDatosTabla(state, seleccionado1, seleccionado2);
+			}
+		});
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Crear un vuelo");
@@ -129,41 +152,58 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		getContentPane().setLayout(null);
 		
 		list = new JList();
-		list.setBounds(412, 114, 126, 158);
-		contentPane.add(list);
+		scrollLista = new JScrollPane();
+		scrollLista.setBounds(412, 114, 126, 50);
+		scrollLista.setViewportView(list);
+		contentPane.add(scrollLista);
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				seleccionado1=list.getSelectedValue().toString();
+				
+			}
+		});
+	
 		
 		list_1 = new JList();
-		list_1.setBounds(602, 114, 126, 158);
 		contentPane.add(list_1);
-		
+		scrollLista2 = new JScrollPane();
+		scrollLista2.setViewportView(list_1);
+		scrollLista2.setBounds(602, 114, 126, 50);
+		contentPane.add(scrollLista2);
+		list_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				seleccionado2=list_1.getSelectedValue().toString();
+				
+			}
+		});
+	
 		setIconifiable(true);
 		setResizable(true);
 		
 		
 	}
-	public void cargarDatosTabla(Statement state)
+	public void cargarDatosTabla(Statement state,String seleccionado1,String seleccionado2)
 	{
-		try{
-		String vuelos;
-		String fecha;
-		int capacidad;
-		String SelectBD = "select * from VUELO";
-		ResultSet rs = state.executeQuery( SelectBD );
-		String [] columnas ={"VUELOS DISPONIBLES (De__A__)", "FECHA DE VUELO","CAPACIDAD DEL VUELO"};
-		modelo.setColumnIdentifiers(columnas);
-		while (rs.next())
+		if(list_1.isSelectionEmpty()==false || list_1.isSelectionEmpty())
 		{
-			vuelos= rs.getString("VUELOS DISPONIBLES (De__A__)");
-			fecha= rs.getString("FECHA DE VUELO");
-			capacidad= rs.getInt("CAPACIDAD DEL VUELO");
-			modelo.addRow(new Object[]{vuelos,fecha,capacidad});
-		}
-		
-		}catch(Exception e)
-		{
-			JOptionPane.showInternalMessageDialog(null,"No ha vuelos disponibles");
+			try
+			{
+				String query = "select * from vuelo where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
+				PreparedStatement pat = connection.prepareStatement(query);
+				ResultSet rs = pat.executeQuery();
+				tabla.setModel(DbUtils.resultSetToTableModel(rs));
+				
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 			
 		}
+		
 	}
 	
 	
@@ -199,7 +239,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		catch ( Exception e)
 		{
-			e.printStackTrace();
+			JOptionPane.showInputDialog("No hay vuelos disponibles");
 		}
 		
 		
@@ -235,7 +275,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		catch ( Exception e)
 		{
-			e.printStackTrace();
+			JOptionPane.showInputDialog("No hay vuelos disponibles");
 		}
 		
 		
@@ -253,6 +293,14 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			case "CANCELAR":
 				this.dispose();
 				break;
+			case "FILTRAR":
+				this.dispose();
+				break;	
 		}
 	}
+
+
+
+
+	
 }
