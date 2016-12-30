@@ -15,6 +15,7 @@ public class Definiciones extends Exception
 	public final static String CMD_BTN_ACEPTAR = "CMD_BTN_ACEPTAR";
 	public final static String CMD_BTN_CANCELAR = "CMD_BTN_CANCELAR";
 	public final static String CMD_BTN_ELIMINAR = "CMD_BTN_ELIMINAR";
+	public final static String CMD_BTN_CARGARTABLA = "CMD_BTN_CARGARTABLA";
 	
 	public final static String CMD_BTN_REGISTRADO = "CMD_BTN_REGISTRADO";
 	public final static String CMD_BTN_NOREGISTRADO = "CMD_BTN_NOREGISTRADO";

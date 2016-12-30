@@ -2,6 +2,7 @@ package LP;
 
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 import static COMUN.Definiciones.CMD_BTN_ELIMINAR;
+import static COMUN.Definiciones.CMD_BTN_CARGARTABLA;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,14 +21,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.AbstractTableModel;
 
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorTrabajador;
+import LN.clsVuelo;
 
 public class CancelarVuelo extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
+	
+	ArrayList<clsVuelo>ListaVuelos;
 
 	JPanel contentPane; 
 	
@@ -40,31 +46,31 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	public CancelarVuelo()
 	{
 		createAndShowGUI();
-		
+		connection = BasesDeDatos.getConnection();
 	}
 	
 	
-	//Para refrescar la tabla
-	public void RefrescarTabla()
-	{
-		try
-		{
-			connection = BasesDeDatos.getConnection();
-			String query = "select * from vuelo";
-			PreparedStatement pat = connection.prepareStatement(query);
-			ResultSet rs = pat.executeQuery();
-			while(rs.next())
-			{
-				System.out.println(rs.getString("cod_vuelo"));
-			}
-			table.setModel(DbUtils.resultSetToTableModel(rs));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-	}
+//	//Para refrescar la tabla
+//	public void RefrescarTabla()
+//	{
+//		try
+//		{
+//			
+//			String query = "select * from vuelo";
+//			PreparedStatement pat = connection.prepareStatement(query);
+//			ResultSet rs = pat.executeQuery();
+//			while(rs.next())
+//			{
+//				System.out.println(rs.getString("cod_vuelo"));
+//			}
+//			table.setModel(DbUtils.resultSetToTableModel(rs));
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
 	
 	private void createAndShowGUI()
@@ -95,26 +101,11 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		contentPane.add(btnCancelar);
 		
 		
-		JButton btnNewButton = new JButton("Cargar Tabla");
-		btnNewButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(223, 11, 247, 46);
-		contentPane.add(btnNewButton);
+		JButton btnCargarTabla = new JButton("Cargar Tabla");
+		btnCargarTabla.setBounds(223, 11, 247, 46);
+		btnCargarTabla.setActionCommand(CMD_BTN_CARGARTABLA);
+		btnCargarTabla.addActionListener(this);
+		contentPane.add(btnCargarTabla);
 		
 		btnEliminar_1 = new JButton("ELIMINAR");
 		btnEliminar_1.addActionListener(this);
@@ -124,8 +115,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		btnEliminar_1.setActionCommand(CMD_BTN_ELIMINAR);
 		btnEliminar_1.setBounds(277, 490, 102, 30);
 		contentPane.add(btnEliminar_1);
-		
-		RefrescarTabla();
+	
 	}
 		
 	@Override
@@ -137,45 +127,117 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 				this.dispose();
 				break;
 				
-			case CMD_BTN_ELIMINAR:
-				Statement state = BasesDeDatos.getStatement();
-				GestorTrabajador gesTra = new GestorTrabajador();
-				
-				connection = BasesDeDatos.getConnection();
-				String query = "select * from vuelo";
-			PreparedStatement pat;
-			try
-			{
-				pat = connection.prepareStatement(query);
-				ResultSet rs = pat.executeQuery();
-				if(table.getSelectedRow()>-1)
-				{
-					for(int i = 0; i<=table.getRowCount(); i++)
-					{
-						if(i==table.getSelectedRow())
-						{
-						
-		
-							//Hay que conseguir sacar el codigo del resultset
-						}
-					}
-					this.dispose();
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(null, "No ha seleccionado ningún vuelo", "Correcto",JOptionPane.INFORMATION_MESSAGE);
-				}	
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-				
-				
-				
-				
+			case CMD_BTN_CARGARTABLA:
+				CargarTabla();
 				break;
-		} 
+				
+			case CMD_BTN_ELIMINAR:
+				break;
+		 }
+
+	}
+	
+	public void CargarTabla()
+	{
+		Statement state = BasesDeDatos.getStatement();
+		GestorTrabajador GesTra = new GestorTrabajador();
+		ListaVuelos = GesTra.DevolverVuelos(state);
+	}
+	
+	private void CrearTabla()
+	{
+		table=null;
+		TablaVuelosModel tablaModel = new TablaVuelosModel(ListaVuelos);
 		
+		table = new JTable(tablaModel);
+		table.setBounds(25, 33, 378, 86);
+		table.setFillsViewportHeight(true);
+		table.setEnabled(true);
+		table.setRowSelectionAllowed(true);
+		tablaModel.fireTableDataChanged();
+		
+		table.setVisible(true);
+	}
+	
+class TablaVuelosModel extends AbstractTableModel
+{
+	private String[] columNames = {"cod_vuelo", "capacidad", "fecha"};
+	Object [][] data;
+	
+	public TablaVuelosModel(ArrayList <clsVuelo> MapVuelos)
+	{
+		super();
+		int filas = MapVuelos.size();
+		data = new Object [filas][];
+		int cont = 0;
+		
+		for (int i=0; i<MapVuelos.size();i++)
+		{
+			//No se porqué el int me da error, debería de ser Integer pero no me deja
+//			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
+//								  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
+//								  new String(((clsVuelo)MapVuelos.get(i).getFecha())};
+//			data[cont]=vueloNuevo;
+//			cont ++;
+//			}
+		}
+	}
+	
+	public void setData(ArrayList<clsVuelo>MapVuelos)
+	{
+		int filas = MapVuelos.size();
+		int cont=0;
+		data = new Object[filas][];
+		
+		for (int i=0; i<MapVuelos.size();i++)
+		{
+//			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
+//			  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
+//			  new String(((clsVuelo)MapVuelos.get(i).getFecha())};
+//			  data[cont]=vueloNuevo;
+//			  cont ++;
+//}
+		}
 	}
 
+	@Override
+	public int getColumnCount() 
+	{
+		return columNames.length;
+	}
+
+	@Override
+	public int getRowCount() 
+	{
+		return data.length;
+	}
+	
+	public String getColumName (int col)
+	{
+		return columNames[col];
+	}
+
+	@Override
+	public Object getValueAt(int row, int col) 
+	{
+		return data[row][col];
+	}
+	
+	public Class getColumnClass(int c)
+	{
+		return getValueAt(0, c).getClass();
+	}
+	
+	public boolean isCellEditable(int row, int col)
+	{
+		return false;
+	}
+	
+	public void setValueAt(Object value, int row, int col)
+	{
+		data[row][col]=value;
+		fireTableCellUpdated(row, col);
+	}
+	}
 }
+

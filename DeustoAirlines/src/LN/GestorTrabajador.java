@@ -3,6 +3,7 @@ package LN;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -103,6 +104,30 @@ public class GestorTrabajador
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	//Devuelve los vuelos existentes en un ArrayList
+	public ArrayList<clsVuelo> DevolverVuelos (Statement state)
+	{
+		ArrayList<clsVuelo> ArrayVuelos = new ArrayList<clsVuelo>();
+		
+		String SelectBD = "select * from vuelo";
+		ResultSet rs;
+		try
+		{
+			rs = state.executeQuery(SelectBD);
+			while(rs.next())
+			{
+				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha")));
+			}
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return ArrayVuelos;
+		
 		
 	}
 	public void AsignarAgendaDeTrabajo()//Calendario

@@ -5,16 +5,21 @@ import java.io.Serializable;
 public class clsVuelo implements Serializable
 {
 	
-	int capacidad;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	String cod_vuelo;
+	int capacidad;
 	String fecha;
 	
 	
-	public clsVuelo(int capacidad, String cod_vuelo, String fecha) 
+	public clsVuelo(String cod_vuelo, int capacidad, String fecha) 
 	{
 		super();
-		this.capacidad = capacidad;
 		this.cod_vuelo = cod_vuelo;
+		this.capacidad = capacidad;
 		this.fecha = fecha;
 	}
 	

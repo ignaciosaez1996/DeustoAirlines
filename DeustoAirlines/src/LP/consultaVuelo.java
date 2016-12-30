@@ -41,7 +41,6 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
-		//setLocationRelativeTo(null);
 	}
 	
 	private void createAndShowGUI()
@@ -81,8 +80,8 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 					String query = "select * from vuelo";
 					PreparedStatement pat = connection.prepareStatement(query);
 					ResultSet rs = pat.executeQuery();
-					
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
 				}catch(Exception e)
 				{
 					e.printStackTrace();
