@@ -34,6 +34,7 @@ import LN.GestorCliente;
 import javax.swing.JList;
 
 import net.proteanit.sql.DbUtils;
+import javax.swing.JTextField;
 
 public class ComprarBillete extends JInternalFrame implements ActionListener
 {
@@ -47,6 +48,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private String seleccionado2;
 	private JScrollPane scrollLista;
 	private JScrollPane scrollLista2;
+	
+	private JList list_2 ;
+
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 
@@ -58,11 +62,10 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 	public ComprarBillete()
 	{
-		
 		createAndShowGUI();
 		llenarLista();
 		llenarLista_1();
-		
+		llenarLista_2();
 	}
 	
 
@@ -99,10 +102,13 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblA.setBounds(580, 100, 22, 16);
 		contentPane.add(lblA);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 235, 900, 168);
+		contentPane.add(scrollPane);
+		
 		tabla = new JTable();
 		JScrollPane scroll= new JScrollPane(tabla);
-		scroll.setBounds(10, 235, 900, 246);
-		contentPane.add(scroll);
+		scrollPane.setViewportView(scroll);
 		
 		JLabel lblVuelosOfrecids = new JLabel("VUELOS DISPONIBLES DESTINO-ORIGEN SELECCIONADOS");
 		lblVuelosOfrecids.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -110,7 +116,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		contentPane.add(lblVuelosOfrecids);
 		
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(420, 542, 69, 43);
+		spinner.setBounds(420, 566, 69, 43);
 		contentPane.add(spinner);
 		
 		JButton btnNewButton = new JButton("COMPRAR");
@@ -153,7 +159,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 						tabla.setModel(DbUtils.resultSetToTableModel(rs));
 					if(existe==false)
 					{
-						JOptionPane.showMessageDialog(null,"No hay vuelos disponibles origen-destino!");
+						JOptionPane.showMessageDialog(null,"¡No hay vuelos disponibles origen-destino!");
 						
 					}				
 					}catch(Exception e)
@@ -193,6 +199,16 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		scrollLista2.setViewportView(list_1);
 		scrollLista2.setBounds(610, 90, 146, 65);
 		contentPane.add(scrollLista2);
+		
+		list_2 = new JList();
+		list_2.setBounds(95, 448, 146, 100);
+		contentPane.add(list_2);
+		
+		JLabel lblEligaElOrigen = new JLabel("Eliga el origen y destino del vuelo");
+		lblEligaElOrigen.setBounds(95, 414, 242, 33);
+		contentPane.add(lblEligaElOrigen);
+	
+		
 		list_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
@@ -283,6 +299,54 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 	}
 	
+
+	public void llenarLista_2()
+	{
+		
+		try
+		
+		{
+			
+			String query = "select cod_postal_o from vuelo "; 
+			
+			PreparedStatement pst = connection.prepareStatement(query);
+					
+			ResultSet rs = pst.executeQuery();
+		
+			
+			DefaultListModel DLc = new DefaultListModel();
+			
+			while(rs.next())
+				
+				{
+				
+					DLc.addElement(rs.getString("cod_postal_o"));
+					//DLc.addElement(rs.getString("cod_postal_d"));
+				
+				}
+			
+			list.setModel(DLc);
+			
+			pst.close();
+			rs.close();
+		
+		}
+		
+		catch ( Exception e)
+		{
+			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
+		}
+		
+		
+	}
+	
+	
+	
+	public void RealizarCompra()
+	{
+		
+	}
+	
 	
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -300,9 +364,4 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 //				break;	
 		}
 	}
-
-
-
-
-	
 }
