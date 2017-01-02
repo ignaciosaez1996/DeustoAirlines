@@ -143,7 +143,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 				Statement state = BasesDeDatos.getStatement();
 				boolean existe;
 				existe = objGC.EncontrarVueloOrigenDestino(state, seleccionado1, seleccionado2);
-				if(list_1.hasFocus()==true || list_1.hasFocus()==true)
+				if(list.hasFocus()==true || list_1.hasFocus()==true)
 				{
 					try
 					{
