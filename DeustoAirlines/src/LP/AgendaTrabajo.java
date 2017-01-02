@@ -76,13 +76,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		scrollTrabajadores.setViewportView(listaTrabajadores);
 		contentPane.add(scrollTrabajadores);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(40, 361, 696, 130);
-		contentPane.add(scrollPane_1);
-		
-		table = new JTable();
-		scrollPane_1.setViewportView(table);
-		
 		JLabel lblVuelosDisponibles = new JLabel("Vuelos disponibles");
 		lblVuelosDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblVuelosDisponibles.setBounds(40, 315, 207, 33);
@@ -106,6 +99,10 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		
 		JList list = new JList();
 		scrollPane.setViewportView(list);
+		
+		table = new JTable();
+		table.setBounds(40, 371, 677, 129);
+		contentPane.add(table);
 		listaTrabajadores.addMouseListener(new MouseAdapter() 
 		{
 			public void mouseClicked(MouseEvent e)
