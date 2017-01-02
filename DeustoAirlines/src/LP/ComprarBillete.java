@@ -50,7 +50,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private final static int y = (680) - (480);	
 
 	Connection connection =  BasesDeDatos.getConnection();
-	
+	ComprarBillete objComprar= new ComprarBillete();
 	/**
 	 * Launch the application.
 	 */
@@ -90,17 +90,15 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		JLabel lblDe = new JLabel("DE");
 		lblDe.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDe.setBounds(409, 90, 22, 14);
+		lblDe.setBounds(365, 100, 22, 14);
 		contentPane.add(lblDe);
 		
 		JLabel lblA = new JLabel("A");
 		lblA.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblA.setBounds(604, 90, 22, 16);
+		lblA.setBounds(580, 100, 22, 16);
 		contentPane.add(lblA);
 		
-		DefaultTableModel modelo= new DefaultTableModel();
 		tabla = new JTable();
-		tabla.setModel(modelo);
 		JScrollPane scroll= new JScrollPane(tabla);
 		scroll.setBounds(10, 235, 900, 246);
 		contentPane.add(scroll);
@@ -136,15 +134,31 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		btnNewButton_2.setActionCommand("FILTRAR");
 		btnNewButton_2.addActionListener(this);
 		contentPane.add(btnNewButton_2);
-		
 		btnNewButton_2.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				Statement state = BasesDeDatos.getStatement();
-				cargarDatosTabla(state, seleccionado1, seleccionado2);
-			}
+//				
+				if(list_1.hasFocus()==true || list_1.hasFocus()==false)
+				{
+					try
+					{
+						String query = "select * from VUELO where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
+						PreparedStatement pat = connection.prepareStatement(query);
+						ResultSet rs = pat.executeQuery();
+						tabla.setModel(DbUtils.resultSetToTableModel(rs));
+					
+//					
+					}catch(Exception e)
+					{
+						JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles con el origen y destino seleccionados");
+					}
+					}
+				}
+//				
+			
 		});
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Crear un vuelo");
@@ -153,7 +167,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		list = new JList();
 		scrollLista = new JScrollPane();
-		scrollLista.setBounds(412, 114, 126, 50);
+		scrollLista.setBounds(415, 90, 146, 65);
 		scrollLista.setViewportView(list);
 		contentPane.add(scrollLista);
 		list.addMouseListener(new MouseAdapter() {
@@ -170,7 +184,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		contentPane.add(list_1);
 		scrollLista2 = new JScrollPane();
 		scrollLista2.setViewportView(list_1);
-		scrollLista2.setBounds(602, 114, 126, 50);
+		scrollLista2.setBounds(610, 90, 146, 65);
 		contentPane.add(scrollLista2);
 		list_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -186,26 +200,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		
 	}
-	public void cargarDatosTabla(Statement state,String seleccionado1,String seleccionado2)
-	{
-		if(list_1.isSelectionEmpty()==false || list_1.isSelectionEmpty())
-		{
-			try
-			{
-				String query = "select * from vuelo where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
-				PreparedStatement pat = connection.prepareStatement(query);
-				ResultSet rs = pat.executeQuery();
-				tabla.setModel(DbUtils.resultSetToTableModel(rs));
-				
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-		}
-		
-	}
-	
+
 	
 	public void llenarLista()
 	{
@@ -239,7 +234,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		catch ( Exception e)
 		{
-			JOptionPane.showInputDialog("No hay vuelos disponibles");
+			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
 		
 		
@@ -288,14 +283,14 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		switch(e.getActionCommand())
 		{
 			case "COMPRAR":
-				break;
+			break;
 			
 			case "CANCELAR":
 				this.dispose();
 				break;
-			case "FILTRAR":
-				this.dispose();
-				break;	
+//			case "FILTRAR":
+//				this.dispose();
+//				break;	
 		}
 	}
 
