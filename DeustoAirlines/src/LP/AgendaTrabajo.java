@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import LD.BasesDeDatos;
+import javax.swing.JTable;
+import javax.swing.JButton;
 
 public class AgendaTrabajo extends JInternalFrame implements ActionListener
 {
@@ -29,6 +31,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 	private String trabajadorSeleccionado;
 	
 	Connection connection = BasesDeDatos.getConnection();
+	private JTable table;
 	
 	public AgendaTrabajo()
 	{
@@ -72,6 +75,37 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		scrollTrabajadores.setLocation(40, 72);
 		scrollTrabajadores.setViewportView(listaTrabajadores);
 		contentPane.add(scrollTrabajadores);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(40, 361, 696, 130);
+		contentPane.add(scrollPane_1);
+		
+		table = new JTable();
+		scrollPane_1.setViewportView(table);
+		
+		JLabel lblVuelosDisponibles = new JLabel("Vuelos disponibles");
+		lblVuelosDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblVuelosDisponibles.setBounds(40, 315, 207, 33);
+		contentPane.add(lblVuelosDisponibles);
+		
+		JButton btnNewButton = new JButton("ACEPTAR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(255, 552, 117, 33);
+		contentPane.add(btnNewButton);
+		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setBounds(410, 552, 117, 33);
+		contentPane.add(btnCancelar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(482, 77, 237, 200);
+		contentPane.add(scrollPane);
+		
+		JList list = new JList();
+		scrollPane.setViewportView(list);
 		listaTrabajadores.addMouseListener(new MouseAdapter() 
 		{
 			public void mouseClicked(MouseEvent e)
@@ -90,6 +124,4 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 	{
 		
 	}
-	
-	
 }
