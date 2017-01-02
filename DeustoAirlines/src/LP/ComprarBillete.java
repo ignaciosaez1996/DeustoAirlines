@@ -44,12 +44,11 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private DefaultTableModel modelo;
 	private JList list;
 	private JList list_1;
+	private JList list_2 ;
 	private String seleccionado1;
 	private String seleccionado2;
 	private JScrollPane scrollLista;
 	private JScrollPane scrollLista2;
-	
-	private JList list_2 ;
 
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
@@ -194,19 +193,21 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 		
 		list_1 = new JList();
-		contentPane.add(list_1);
+		//contentPane.add(list_1);
 		scrollLista2 = new JScrollPane();
 		scrollLista2.setViewportView(list_1);
 		scrollLista2.setBounds(610, 90, 146, 65);
 		contentPane.add(scrollLista2);
-		
-		list_2 = new JList();
-		list_2.setBounds(95, 448, 146, 100);
-		contentPane.add(list_2);
+	
 		
 		JLabel lblEligaElOrigen = new JLabel("Eliga el origen y destino del vuelo");
 		lblEligaElOrigen.setBounds(95, 414, 242, 33);
 		contentPane.add(lblEligaElOrigen);
+		
+		list_2 = new JList();
+		list_2.setBounds(95, 441, 203, 98);
+		contentPane.add(list_2);
+	
 	
 		
 		list_1.addMouseListener(new MouseAdapter() {
