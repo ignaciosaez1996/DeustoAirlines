@@ -86,7 +86,27 @@ public class GestorCliente
 			return false;
 		}
 	}
-
+	public boolean EncontrarVueloOrigenDestino(Statement state, String seleccionado1, String seleccionado2)
+	{
+		String query = "select * from VUELO where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
+		try 
+		{
+			ResultSet rs = state.executeQuery(query );
+			if(rs.next())
+			{
+				rs.close();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public void ComprarBillete()
 	{
 		

@@ -29,6 +29,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import LD.BasesDeDatos;
+import LN.GestorCliente;
 
 import javax.swing.JList;
 
@@ -50,7 +51,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private final static int y = (680) - (480);	
 
 	Connection connection =  BasesDeDatos.getConnection();
-	ComprarBillete objComprar= new ComprarBillete();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -138,8 +139,11 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-//				
-				if(list_1.hasFocus()==true || list_1.hasFocus()==false)
+				GestorCliente objGC = new GestorCliente(null, null);
+				Statement state = BasesDeDatos.getStatement();
+				boolean existe;
+				existe = objGC.EncontrarVueloOrigenDestino(state, seleccionado1, seleccionado2);
+				if(list_1.hasFocus()==true || list_1.hasFocus()==true)
 				{
 					try
 					{
@@ -147,15 +151,18 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 						PreparedStatement pat = connection.prepareStatement(query);
 						ResultSet rs = pat.executeQuery();
 						tabla.setModel(DbUtils.resultSetToTableModel(rs));
-					
-//					
+					if(existe==false)
+					{
+						JOptionPane.showMessageDialog(null,"No hay vuelos disponibles origen-destino!");
+						
+					}				
 					}catch(Exception e)
 					{
 						JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles con el origen y destino seleccionados");
 					}
 					}
 				}
-//				
+				
 			
 		});
 		
