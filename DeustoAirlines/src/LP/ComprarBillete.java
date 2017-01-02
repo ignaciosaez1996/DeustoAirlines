@@ -79,7 +79,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBilletes = new JLabel("Escoga el viaje que quiere realizar");
+		JLabel lblBilletes = new JLabel("Escoja el viaje que quiere realizar");
 		lblBilletes.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblBilletes.setBounds(10, 90, 327, 33);
 		contentPane.add(lblBilletes);
@@ -168,7 +168,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Crear un vuelo");
+		setTitle("Compra de billete");
 		setBounds(70, 10, 950, 650);
 		getContentPane().setLayout(null);
 		
