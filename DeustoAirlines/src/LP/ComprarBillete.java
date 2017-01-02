@@ -273,7 +273,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
 		
-			
 			DefaultListModel DLM = new DefaultListModel();
 			
 			while(rs.next())
