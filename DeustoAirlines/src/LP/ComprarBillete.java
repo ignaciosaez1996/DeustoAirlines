@@ -68,8 +68,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	}
 	
 
-	
-	
 	/**
 	 * Create the frame.
 	 */
@@ -193,7 +191,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 		
 		list_1 = new JList();
-		//contentPane.add(list_1);
+		contentPane.add(list_1);
 		scrollLista2 = new JScrollPane();
 		scrollLista2.setViewportView(list_1);
 		scrollLista2.setBounds(610, 90, 146, 65);
@@ -204,9 +202,12 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblEligaElOrigen.setBounds(95, 414, 242, 33);
 		contentPane.add(lblEligaElOrigen);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(95, 441, 334, 98);
+		contentPane.add(scrollPane_1);
+		
 		list_2 = new JList();
-		list_2.setBounds(95, 441, 203, 98);
-		contentPane.add(list_2);
+		scrollPane_1.setViewportView(list_2);
 	
 	
 		
@@ -230,7 +231,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	{
 		
 		try
-		
 		{
 			
 			String query = "select cod_postal_o from vuelo "; 
@@ -244,9 +244,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			
 			while(rs.next())
 				{
-				
 					DL.addElement(rs.getString("cod_postal_o"));
-				
 				}
 			
 			list.setModel(DL);
@@ -280,7 +278,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			
 			while(rs.next())
 				{
-				
 					DLM.addElement(rs.getString("cod_postal_d"));
 				
 					//list.add(list, rs.getString("cod_vuelo_o"));
@@ -303,18 +300,15 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 
 	public void llenarLista_2()
 	{
-		
 		try
-		
 		{
 			
-			String query = "select cod_postal_o from vuelo "; 
+			String query = "select cod_postal_o, cod_postal_d from vuelo "; 
 			
 			PreparedStatement pst = connection.prepareStatement(query);
 					
 			ResultSet rs = pst.executeQuery();
 		
-			
 			DefaultListModel DLc = new DefaultListModel();
 			
 			while(rs.next())
@@ -322,11 +316,11 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 				{
 				
 					DLc.addElement(rs.getString("cod_postal_o"));
-					//DLc.addElement(rs.getString("cod_postal_d"));
+					DLc.addElement(rs.getString("cod_postal_d"));
 				
 				}
 			
-			list.setModel(DLc);
+			list_2.setModel(DLc);
 			
 			pst.close();
 			rs.close();
