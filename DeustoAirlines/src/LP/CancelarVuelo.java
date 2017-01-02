@@ -74,9 +74,18 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 //		
 //	}
 	
-	
-	private void createAndShowGUI()
+	public void Demostracion()
 	{
+		Statement state = BasesDeDatos.getStatement();
+		GestorTrabajador GesTra = new GestorTrabajador();
+		ListaVuelos = GesTra.DevolverVuelos(state);
+		System.out.println(ListaVuelos.toString());
+	}
+	private void createAndShowGUI()
+	{		
+		Demostracion();
+		CrearTabla();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,13 +120,10 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		
 		btnEliminar_1 = new JButton("ELIMINAR");
 		btnEliminar_1.addActionListener(this);
-			// BORRA TODOS LOS VUELOS.. tenemos que pensar alguna manera para que borre		
-			//solo los seleccionados
-
 		btnEliminar_1.setActionCommand(CMD_BTN_ELIMINAR);
 		btnEliminar_1.setBounds(277, 490, 102, 30);
 		contentPane.add(btnEliminar_1);
-	
+		
 	}
 		
 	@Override
@@ -149,7 +155,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	private void CrearTabla()
 	{
 		table=null;
-		TablaVuelosModel tablaModel = new TablaVuelosModel((Map<String, clsVuelo>) ListaVuelos);
+		TablaVuelosModel tablaModel = new TablaVuelosModel(ListaVuelos);
 		
 		table = new JTable(tablaModel);
 		table.setBounds(25, 33, 378, 86);
@@ -165,94 +171,55 @@ class TablaVuelosModel extends AbstractTableModel
 {
 	
 	private static final long serialVersionUID = 1L;
-	private String[] columNames = {"cod_vuelo", "capacidad", "fecha" , "cod_psotal_o", "cod_postal_d"};
+	private String[] columNames = {"cod_vuelo", "capacidad", "fecha" , "Codigo postal origen", "Codigo postal destino"};
 	Object [][] data;
 	
 	
-	 public TablaVuelosModel(Map<String,clsVuelo> map)
-    {        
+	 public TablaVuelosModel(ArrayList<clsVuelo> map)
+    {   
     	super();   
     	
+    	System.out.println(map.toString());
 		int filas = map.size();
 		int cont;
 		data = new Object[filas][];
 		cont=0;    		
 		
 		//Nos recorremos el map para cargar la variable data[][]
-		for (Map.Entry<String,clsVuelo> entry : map.entrySet())
+		for (int i=0; i<map.size();i++)
 		{
 		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-			Object[]a = {new String(entry.getValue().getCod_vuelo()),
-					   	 new Integer(entry.getValue().getCapacidad()),
-					   	 new String(entry.getValue().getFecha()),
-					   	 new String(entry.getValue().getCod_postal_o()),
-					   	 new String(entry.getValue().getCod_postal_d()) };
+			Object[]a = {new String(((clsVuelo)map.get(i)).getCod_vuelo()),
+					   	 new Integer(((clsVuelo)map.get(i)).getCapacidad()),
+					   	 new String(((clsVuelo)map.get(i)).getFecha()),
+					   	 new String(((clsVuelo)map.get(i)).getCod_postal_o()),
+					   	 new String(((clsVuelo)map.get(i)).getCod_postal_d()) };
 			data[cont] = a;
 			cont++;
 		}
 		
     }
-	 public void setData(Map<String,clsVuelo> map) 
-     {
-     	int filas = map.size();
- 		int cont;
- 		data=new Object[filas][];
- 		cont=0;
- 		
- 		for (Map.Entry<String,clsVuelo> entry : map.entrySet())
- 		{
- 		    //System.out.println(entry.getKey() + "/" + entry.getValue());
- 			Object[]a = {new String(entry.getValue().getCod_vuelo()),
-				   	 new Integer(entry.getValue().getCapacidad()),
-				   	 new String(entry.getValue().getFecha()),
-				   	 new String(entry.getValue().getCod_postal_o()),
-				   	 new String(entry.getValue().getCod_postal_d()) };
- 			data[cont] = a;
- 			cont++;
- 		}
-     }
-/*	public TablaVuelosModel(ArrayList <clsVuelo> MapVuelos)
-	{
-		super();
-		int filas = MapVuelos.size();
-		data = new Object [filas][];
-		int cont = 0;
-		
-	/*	for (int i=0; i<MapVuelos.size();i++)
-		{
-			//No se porqué el int me da error, debería de ser Integer pero no me deja
-			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
-								  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
-								new String(((clsVuelo)MapVuelos.get(i).getFecha()),
-								new String(((clsVuelo)MapVuelos.get(i).getCod_postal_o()),
-								new String(((clsVuelo)MapVuelos.get(i).getCod_postal_d()))))))};
-		data[cont]=vueloNuevo;
-			cont ++;
+	 public void setData(ArrayList<clsVuelo> map)
+	    {        
+			int filas = map.size();
+			int cont;
+			data = new Object[filas][];
+			cont=0;    		
+			
+			//Nos recorremos el map para cargar la variable data[][]
+			for (int i=0; i<map.size();i++)
+			{
+			    //System.out.println(entry.getKey() + "/" + entry.getValue());
+				Object[]a = {new String(((clsVuelo)map.get(i)).getCod_vuelo()),
+						   	 new Integer(((clsVuelo)map.get(i)).getCapacidad()),
+						   	 new String(((clsVuelo)map.get(i)).getFecha()),
+						   	 new String(((clsVuelo)map.get(i)).getCod_postal_o()),
+						   	 new String(((clsVuelo)map.get(i)).getCod_postal_d()) };
+				data[cont] = a;
+				cont++;
 			}
-		}
-		
-		
-	} */
-	
-	
-
-	
-	/*public void setData(ArrayList<clsVuelo>MapVuelos)
-	{
-		int filas = MapVuelos.size();
-		int cont=0;
-		data = new Object[filas][];
-		
-		for (int i=0; i<MapVuelos.size();i++)
-		{
-//			Object[]vueloNuevo = {new String(((clsVuelo)MapVuelos.get(i).getCod_vuelo()),
-//			  new int(((clsVuelo)MapVuelos.get(i).getCapacidad()),
-//			  new String(((clsVuelo)MapVuelos.get(i).getFecha())};
-//			  data[cont]=vueloNuevo;
-//			  cont ++;
-//}
-		}
-	}*/
+			
+	    }
 
 	@Override
 	public int getColumnCount() 
