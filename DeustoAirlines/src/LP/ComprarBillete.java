@@ -192,7 +192,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 		
 		list_1 = new JList();
-		contentPane.add(list_1);
+		//contentPane.add(list_1);
 		scrollLista2 = new JScrollPane();
 		scrollLista2.setViewportView(list_1);
 		scrollLista2.setBounds(610, 90, 146, 65);

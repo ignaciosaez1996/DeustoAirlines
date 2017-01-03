@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 
 // testear si añade bien un nuevo vuelo
-public class JUnitTesting extends TestCase
+public class JUnitTestIntroducirVuelo extends TestCase
 {
 
 	GestorTrabajador gc;
@@ -26,7 +26,8 @@ public class JUnitTesting extends TestCase
 
 		gc = new GestorTrabajador();
 		vuelo = new ArrayList<clsVuelo>();
-		BasesDeDatos.initBD("test.bd");
+		//BasesDeDatos.initBD("test.bd");
+		BasesDeDatos.initBD("DeustoAirlinesBD");
 		BasesDeDatos.crearTablaVueloBD();
 	}
 	
