@@ -25,7 +25,8 @@ public class GestorTrabajador
 			if(rs.next())
 			{
 				rs.close();			
-				JOptionPane.showMessageDialog(null, "DNI y contraseña correctas", "Correcto",JOptionPane.INFORMATION_MESSAGE);					return true;
+				JOptionPane.showMessageDialog(null, "DNI y contraseña correctas", "Correcto",JOptionPane.INFORMATION_MESSAGE);
+				return true;
 			}
 			else
 			{
@@ -149,7 +150,6 @@ public class GestorTrabajador
 				return false;  
 			}else
 			{
-				JOptionPane.showMessageDialog(null, "Tarea registrada", "Correcto",JOptionPane.INFORMATION_MESSAGE);
 				return true;
 			}
 		}catch (SQLException e)
@@ -207,7 +207,29 @@ public class GestorTrabajador
 			return null;
 		}
 		return array;
-		
-		
+	}
+	
+	//Devolverá true si la tarea ya está registrada
+	public boolean TareaRepetida (Statement state, String cod_vuelo, String dni_tra)
+	{
+		String SelectBD = "select * from tarea where (dni_tra = '" + dni_tra + "' and cod_vuelo = '" + cod_vuelo + "')";
+		try
+		{
+			ResultSet rs = state.executeQuery( SelectBD );
+			if(rs.next())
+			{
+				rs.close();			
+				JOptionPane.showMessageDialog(null, "Tarea anteriormente registrada");
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
