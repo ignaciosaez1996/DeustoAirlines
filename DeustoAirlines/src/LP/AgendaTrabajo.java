@@ -29,6 +29,7 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 
 import net.proteanit.sql.DbUtils;
+import javax.swing.SwingConstants;
 
 public class AgendaTrabajo extends JInternalFrame implements ActionListener
 {
@@ -59,11 +60,13 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.setLayout(null);
 		
 		JLabel lblVuelo = new JLabel("Escoja el vuelo al que quiera asignar el trabajador");
+		lblVuelo.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		lblVuelo.setBounds(34, 39, 428, 27);
 		lblVuelo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblVuelo);
 		
 		JLabel lblTrabajador = new JLabel("Escoja el trabajador que quiera asignar al puesto");
+		lblTrabajador.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		lblTrabajador.setBounds(472, 39, 462, 27);
 		lblTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblTrabajador);
@@ -74,6 +77,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(lblVuelosDisponibles);
 		
 		JButton btnAceptar = new JButton("ASIGNAR");
+		btnAceptar.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		btnAceptar.setBounds(255, 552, 117, 33);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
 		btnAceptar.addActionListener(this);
@@ -86,6 +90,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(btnCancelar);
 		
 		listaVuelos = new JList();
+		listaVuelos.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		scrollVuelos = new JScrollPane();		
 		scrollVuelos.setSize(250, 200);
 		scrollVuelos.setLocation(40, 72);
@@ -96,11 +101,11 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 			public void mouseClicked(MouseEvent e)
 			{
 				vueloSeleccionado = listaVuelos.getSelectedValue().toString();
-				System.out.println(vueloSeleccionado);
 			}
 		});
 		
 		listaTrabajadores= new JList();
+		listaTrabajadores.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		scrollTrabajadores = new JScrollPane();
 		scrollTrabajadores.setBounds(482, 77, 237, 200);
 		scrollTrabajadores.setViewportView(listaTrabajadores);
@@ -110,7 +115,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 			public void mouseClicked(MouseEvent e)
 			{
 				trabajadorSeleccionado = listaTrabajadores.getSelectedValue().toString();
-				System.out.println(trabajadorSeleccionado);
 			}
 		});
 		
@@ -174,12 +178,16 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		BasesDeDatos.crearTablaTareaBD();
 		GestorTrabajador  gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
+		boolean registrado;
 		
 		String cod_vuelo = vueloSeleccionado;
 		String dni_tra = trabajadorSeleccionado.substring(0, 9);
-		System.out.println(dni_tra);
+		do
+		{
+			registrado = gesTra.CrearTarea(state, cod_vuelo, dni_tra);
+		}while(registrado==false);
+		this.dispose();
 		
-		gesTra.CrearTarea(state, cod_vuelo, dni_tra);
 	}
 	
 	public void llenarListaVuelos()

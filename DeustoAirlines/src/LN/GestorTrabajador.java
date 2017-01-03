@@ -37,7 +37,8 @@ public class GestorTrabajador
 			return false;
 		}
 	}
-		
+	
+	//Devuelve true si crea un vuelo
 	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d) //Ciudad de origen y destino distintas // maitane
 	{
 		try 
@@ -134,6 +135,7 @@ public class GestorTrabajador
 		return ArrayVuelos;
 	}
 	
+	//Devuelve true si crea la tarea
 	public boolean CrearTarea(Statement state, String cod_vuelo, String dni_tra)
 	{
 		try 
@@ -147,6 +149,7 @@ public class GestorTrabajador
 				return false;  
 			}else
 			{
+				JOptionPane.showMessageDialog(null, "Tarea registrada", "Correcto",JOptionPane.INFORMATION_MESSAGE);
 				return true;
 			}
 		}catch (SQLException e)
