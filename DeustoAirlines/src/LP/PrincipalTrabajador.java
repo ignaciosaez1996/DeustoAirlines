@@ -138,7 +138,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmAgenda = new JMenuItem("Agenda de trabajo");
 		//mnitmCancBille.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
-		mnitmAgenda.setActionCommand(null);
+		mnitmAgenda.setActionCommand(CMD_AGENDA);
 		mnitmAgenda.addActionListener(this);
 		mnAgenda.add(mnitmAgenda);
 		
@@ -239,9 +239,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private void Agenda() 
 	{
 		
-			//Agenda objAgenda = new Agenda();	
-			//objAgenda.setVisible(true);
-			//panel.add(objAgenda);	
+			AgendaTrabajo objAgenda = new AgendaTrabajo();	
+			objAgenda.setVisible(true);
+			panel.add(objAgenda);	
 		
 		
 	}

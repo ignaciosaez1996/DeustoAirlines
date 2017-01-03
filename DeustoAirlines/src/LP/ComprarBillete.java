@@ -180,7 +180,8 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		scrollLista.setBounds(415, 90, 146, 65);
 		scrollLista.setViewportView(list);
 		contentPane.add(scrollLista);
-		list.addMouseListener(new MouseAdapter() {
+		list.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
@@ -211,7 +212,8 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 	
 		
-		list_1.addMouseListener(new MouseAdapter() {
+		list_1.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{

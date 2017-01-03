@@ -186,7 +186,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table if not exists TAREA ( cod_vuelo string, dni_trabajador string )");
+			statement.executeUpdate("create table if not exists TAREA ( cod_vuelo string, dni_tra string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla TAREA ha fallado");   

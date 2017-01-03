@@ -56,7 +56,6 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	public Crearvuelo()
 	{
 		createAndShowGUI();
-		//setLocationRelativeTo(null);
 	}
 	
 	private void createAndShowGUI()

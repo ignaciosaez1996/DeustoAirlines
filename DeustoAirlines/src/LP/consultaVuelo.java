@@ -57,7 +57,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		this.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(70, 78, 706, 367);
+		scrollPane.setBounds(10, 70, 766, 367);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -88,7 +88,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 				}
 			}
 		});
-		btnNewButton.setBounds(223, 11, 247, 46);
+		btnNewButton.setBounds(296, 11, 247, 46);
 		contentPane.add(btnNewButton);
 	}
 

@@ -1,10 +1,15 @@
 package LN;
 
+import java.awt.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class GestorTrabajador 
@@ -127,19 +132,27 @@ public class GestorTrabajador
 		}
 		
 		return ArrayVuelos;
-		
-		
 	}
-	public void AsignarAgendaDeTrabajo()//Calendario
+	
+	public boolean CrearTarea(Statement state, String cod_vuelo, String dni_tra)
 	{
-		
-	}
-	public void VerAgendaDeTrabajo()
-	{
-		
-	}
-	public void ConsultarIngresos()
-	{
-		
+		try 
+		{
+			String SelectBD = "insert into TAREA values(" + "'" + cod_vuelo + "', " + "'" + dni_tra + "')";
+			int val;
+			val = state.executeUpdate( SelectBD );
+			
+			if (val!= 1)
+			{
+				return false;  
+			}else
+			{
+				return true;
+			}
+		}catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
