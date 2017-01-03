@@ -44,6 +44,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 	
 	Connection connection = BasesDeDatos.getConnection();
 	private JTable table;
+	private JScrollPane scrollPane;
 	
 	public AgendaTrabajo()
 	{
@@ -118,9 +119,12 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 			}
 		});
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 371, 677, 158);
+		contentPane.add(scrollPane);
+		
 		table = new JTable();
-		table.setBounds(40, 371, 677, 129);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
 		
 		JButton btnCargarTabla = new JButton("Cargar tabla");
 		btnCargarTabla.setFont(new Font("Tahoma", Font.PLAIN, 12));

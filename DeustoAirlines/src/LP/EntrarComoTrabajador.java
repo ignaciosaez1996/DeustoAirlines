@@ -28,6 +28,7 @@ import LD.BasesDeDatos;
 import LN.GestorCliente;
 import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
+import javax.swing.JScrollPane;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
 {
@@ -52,6 +53,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 	private JTable table_1;
+	private JScrollPane scrollPane;
 
 	
 	public EntrarComoTrabajador() 
@@ -135,9 +137,12 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		btnVerLosTrabajadores.setBounds(456, 40, 244, 41);
 		getContentPane().add(btnVerLosTrabajadores);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(373, 92, 501, 199);
+		getContentPane().add(scrollPane);
+		
 		table_1 = new JTable();
-		table_1.setBounds(373, 92, 501, 145);
-		getContentPane().add(table_1);
+		scrollPane.setViewportView(table_1);
 	}
 
 	@Override
