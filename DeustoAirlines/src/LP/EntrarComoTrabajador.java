@@ -177,14 +177,21 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	}
 	private void Trabajador() 
 	{
+		GestorTrabajador gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
 		BasesDeDatos.crearTablaTrabajadorBD();
-		BasesDeDatos.InsertarTrabajadores(state);
+		boolean existe2;
+		existe2 = gesTra.ExistenTrabajadores(state);
+		System.out.println(existe2);
+		if(existe2==false)
+		{
+			BasesDeDatos.InsertarTrabajadores(state);
+		}
+		
 		
 		String DNI = txtDNI.getText();
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
-		GestorTrabajador gesTra = new GestorTrabajador();
 		boolean existe;
 	
 		

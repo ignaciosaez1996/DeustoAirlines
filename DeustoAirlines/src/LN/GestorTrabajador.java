@@ -158,4 +158,28 @@ public class GestorTrabajador
 			return false;
 		}
 	}
+	
+	//Devolverá true si ya estan guardados los trabajadores
+	public boolean ExistenTrabajadores(Statement state)
+	{		
+		try
+		{
+			String SelectBD = "select * from trabajador";
+			ResultSet rs;
+			rs = state.executeQuery(SelectBD);
+			if(rs.next())
+			{
+				rs.close();
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
