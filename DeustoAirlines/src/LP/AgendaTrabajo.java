@@ -61,13 +61,11 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.setLayout(null);
 		
 		JLabel lblVuelo = new JLabel("Escoja el vuelo al que quiera asignar el trabajador");
-		lblVuelo.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		lblVuelo.setBounds(34, 39, 428, 27);
 		lblVuelo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblVuelo);
 		
 		JLabel lblTrabajador = new JLabel("Escoja el trabajador que quiera asignar al puesto");
-		lblTrabajador.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		lblTrabajador.setBounds(472, 39, 462, 27);
 		lblTrabajador.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		contentPane.add(lblTrabajador);
@@ -78,7 +76,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(lblVuelosDisponibles);
 		
 		JButton btnAceptar = new JButton("ASIGNAR");
-		btnAceptar.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		btnAceptar.setBounds(255, 552, 117, 33);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
 		btnAceptar.addActionListener(this);
@@ -91,7 +88,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(btnCancelar);
 		
 		listaVuelos = new JList();
-		listaVuelos.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		scrollVuelos = new JScrollPane();		
 		scrollVuelos.setSize(250, 200);
 		scrollVuelos.setLocation(40, 72);
@@ -106,7 +102,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		});
 		
 		listaTrabajadores= new JList();
-		listaTrabajadores.setToolTipText("Clicke 2 veces sobre el trabajador y el vuelo para seleccionarlos");
 		scrollTrabajadores = new JScrollPane();
 		scrollTrabajadores.setBounds(482, 77, 237, 200);
 		scrollTrabajadores.setViewportView(listaTrabajadores);
@@ -148,12 +143,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		btnCargarTabla.setBounds(335, 323, 127, 23);
 		contentPane.add(btnCargarTabla);
 		
-		JButton btnCalendario = new JButton("CALENDARIO");
-		btnCalendario.setActionCommand(CMD_CALENDARIO);
-		btnCalendario.addActionListener(this);
-		btnCalendario.setBounds(565, 552, 117, 33);
-		contentPane.add(btnCalendario);
-		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Agenda de Trabajo");
@@ -179,10 +168,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 					JOptionPane.showMessageDialog(this, "Elija un vuelo y un trabajador");
 				}
 				break;
-				
-			case CMD_CALENDARIO:
-				Calendario();
-				break;
 		}
 	}
 	
@@ -204,11 +189,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		
 	}
 	
-	public void Calendario()
-	{
-		CalendarioTrabajo objCalendario = new CalendarioTrabajo();
-		objCalendario.setVisible(true);
-	}
 	public void llenarListaVuelos()
 	{
 		try

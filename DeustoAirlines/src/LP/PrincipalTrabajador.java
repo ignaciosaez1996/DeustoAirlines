@@ -1,7 +1,6 @@
 package LP;
 
 import java.awt.Frame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -17,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
+
 import static COMUN.Definiciones.*;
 
 
@@ -33,6 +33,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 
 	private JMenuItem 		mnitmConsVuelo;
 	private JMenuItem		mnitmAgenda;
+	private JMenuItem		mnitmCalendario;
 	private JMenuItem 		mnitmSalir;
 	private JMenuItem 		mnitmConsIngresos;
 	private JMenuItem 		mnitmCreaerVuelo;
@@ -142,6 +143,12 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnitmAgenda.addActionListener(this);
 		mnAgenda.add(mnitmAgenda);
 		
+		mnitmCalendario = new JMenuItem("Calendario de trabajo");
+		//mnitmCancBille.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
+		mnitmCalendario.setActionCommand(CMD_CALENDARIO);
+		mnitmCalendario.addActionListener(this);
+		mnAgenda.add(mnitmCalendario);
+		
 		mnIngreso = new JMenu("Ingresos");
 		menuBar.add(mnIngreso);
 		
@@ -183,31 +190,25 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 				this.ConsultaVuelo();
 				break;
 				
-			
-				
 			case CMD_INGRESOS:
 				this.Ingresos();
 				break;
-				
-				
+
 			case CMD_AGENDA:
 				this.Agenda();
 				break;
 				
-	
+			case CMD_CALENDARIO:
+				this.Calendario();
+				break;
 		}
-		
-		
 	}
 
 	private void CrearVuelo() 
 	{
-		
-			Crearvuelo objCrea = new Crearvuelo();	
-			objCrea.setVisible(true);
-			panel.add(objCrea);	
-		
-		
+		Crearvuelo objCrea = new Crearvuelo();	
+		objCrea.setVisible(true);
+		panel.add(objCrea);	
 	}
 
 	private void CancelarVuelo() 
@@ -224,26 +225,25 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		panel.add(objVuelo);	
 	}
 
-
-
 	private void Ingresos() 
 	{
-		
-			//Ingresos objIngreso = new Ingresos();	
-			//objIngreso.setVisible(true);
-			//panel.add(objIngreso);	
-		
-		
+		//Ingresos objIngreso = new Ingresos();	
+		//objIngreso.setVisible(true);
+		//panel.add(objIngreso);	
 	}
 
 	private void Agenda() 
 	{
-		
-			AgendaTrabajo objAgenda = new AgendaTrabajo();	
-			objAgenda.setVisible(true);
-			panel.add(objAgenda);	
-		
-		
+		AgendaTrabajo objAgenda = new AgendaTrabajo();	
+		objAgenda.setVisible(true);
+		panel.add(objAgenda);		
+	}
+	
+	public void Calendario()
+	{
+		CalendarioTrabajo objCalendario = new CalendarioTrabajo();
+		objCalendario.setVisible(true);
+		panel.add(objCalendario);
 	}
 	
 }

@@ -2,6 +2,8 @@ package LP;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -31,11 +33,13 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 	private JTable table;
 	private JList list;
 	Connection connection = BasesDeDatos.getConnection();
+	String trabajadorSeleccionado;
 	
 	public CalendarioTrabajo()
 	{
-		CargarLista();
+		
 		createAndShowGUI();
+		CargarLista();
 	}
 	
 	public void createAndShowGUI()
@@ -55,6 +59,13 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(scrollPane);
 		
 		list = new JList();
+		list.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent e)
+			{
+				trabajadorSeleccionado = list.getSelectedValue().toString();
+			}
+		});
 		scrollPane.setViewportView(list);
 		
 		JButton btnElegirTrabajador = new JButton("ELEGIR TRABAJADOR");
@@ -115,15 +126,15 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 	{
 		try
 		{
-			String query = "select dni_tra, nombre_tra, categoria from trabajador"; 
+			String query = "select dni_tra, categoria from trabajador"; 
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
 		
 			DefaultListModel DL = new DefaultListModel();
 			while(rs.next())
 				{
-					DL.addElement(rs.getString("dni_tra").concat("--").concat(rs.getString("nombre_tra")).concat("--").concat(rs.getString("categoria")));
-					DL.addElement("");
+					DL.addElement(rs.getString("dni_tra").concat("--").concat(rs.getString("categoria")));
+					DL.addElement("------------");
 				}
 			
 			list.setModel(DL);
