@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 
 
-// testear si añade bien un nuevo cliente
+// testear si añade bien un nuevo vuelo
 public class JUnitTesting extends TestCase
 {
 
@@ -43,8 +43,6 @@ public class JUnitTesting extends TestCase
 		gc.CrearVuelos(BasesDeDatos.getStatement(), "787656", "213", "2017/19/23", "89790", "345345");
 		
 		gc.CrearVuelos(BasesDeDatos.getStatement(), "65454", "120", "2018/23/23", "7876867", "234242");
-		
-	
 		
 		int num1 = gc.DevolverVuelos(BasesDeDatos.getStatement(), "234244").size() + 1;
 		
