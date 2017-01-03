@@ -182,4 +182,32 @@ public class GestorTrabajador
 			return false;
 		}
 	}
+	
+	public ArrayList<String> CodTarea(Statement state, String dni_tra)
+	{
+		ArrayList<String> array = new ArrayList<String>();
+		try
+		{
+			String query = "select cod_vuelo from TAREA where (dni_tra = '" + dni_tra + "')";
+			ResultSet rs;
+			rs = state.executeQuery(query);
+			if(rs.next())
+			{
+				array.add(rs.getString("cod_vuelo"));
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "El trabajador seleccionado no tiene tareas asignadas");
+				return null;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "El trabajador seleccionado no tiene tareas asignadas");
+			return null;
+		}
+		return array;
+		
+		
+	}
 }

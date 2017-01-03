@@ -20,10 +20,15 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
+import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
 public class CalendarioTrabajo extends JInternalFrame implements ActionListener
@@ -118,7 +123,43 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 				break;
 				
 			case CMD_ELEGIRTRABAJADOR:
+				if(trabajadorSeleccionado!=null && trabajadorSeleccionado!="")
+				{
+					ElegirTrabajador();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Seleccione un trabajador");
+				}
+				
 				break;
+		}
+	}
+	
+	public void ElegirTrabajador()
+	{
+		GestorTrabajador  gesTra = new GestorTrabajador();
+		Statement state = BasesDeDatos.getStatement();
+		String dni_tra = trabajadorSeleccionado.substring(0, 9);
+		ArrayList<String> rs = gesTra.CodTarea(state, dni_tra);
+		
+		if(rs!=null)
+		{
+			for(int i=0; i<=rs.size();i++)
+			{
+				try 
+				{
+					String query = "select * from VUELO where (cod_vuelo = '" + rs.get(i) + "' )";
+					PreparedStatement pat;
+					pat = connection.prepareStatement(query);
+					ResultSet rs1 = pat.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs1));
+				} catch (SQLException e)
+				{
+					JOptionPane.showMessageDialog(null, "La creación de tabla ha fallado");
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
@@ -126,15 +167,15 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 	{
 		try
 		{
-			String query = "select dni_tra, categoria from trabajador"; 
+			String query = "select dni_tra, nombre_tra, categoria from trabajador"; 
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
 		
 			DefaultListModel DL = new DefaultListModel();
 			while(rs.next())
 				{
-					DL.addElement(rs.getString("dni_tra").concat("--").concat(rs.getString("categoria")));
-					DL.addElement("------------");
+					DL.addElement(rs.getString("dni_tra").concat(" -- ").concat(rs.getString("nombre_tra")).concat(" -- ").concat(rs.getString("categoria")));
+					DL.addElement("");
 				}
 			
 			list.setModel(DL);

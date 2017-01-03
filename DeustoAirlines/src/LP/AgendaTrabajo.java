@@ -173,7 +173,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 	
 	public void Asignar()
 	{
-		JOptionPane.showMessageDialog(this, "Listo");
 		BasesDeDatos.crearTablaTareaBD();
 		GestorTrabajador  gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
@@ -184,6 +183,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		do
 		{
 			registrado = gesTra.CrearTarea(state, cod_vuelo, dni_tra);
+			JOptionPane.showMessageDialog(this, "Tarea registrada");
 		}while(registrado==false);
 		this.dispose();
 		
