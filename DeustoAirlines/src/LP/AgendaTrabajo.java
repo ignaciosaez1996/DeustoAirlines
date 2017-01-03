@@ -148,6 +148,12 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		btnCargarTabla.setBounds(335, 323, 127, 23);
 		contentPane.add(btnCargarTabla);
 		
+		JButton btnCalendario = new JButton("CALENDARIO");
+		btnCalendario.setActionCommand(CMD_CALENDARIO);
+		btnCalendario.addActionListener(this);
+		btnCalendario.setBounds(565, 552, 117, 33);
+		contentPane.add(btnCalendario);
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Agenda de Trabajo");
@@ -173,6 +179,10 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 					JOptionPane.showMessageDialog(this, "Elija un vuelo y un trabajador");
 				}
 				break;
+				
+			case CMD_CALENDARIO:
+				Calendario();
+				break;
 		}
 	}
 	
@@ -194,6 +204,11 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		
 	}
 	
+	public void Calendario()
+	{
+		CalendarioTrabajo objCalendario = new CalendarioTrabajo();
+		objCalendario.setVisible(true);
+	}
 	public void llenarListaVuelos()
 	{
 		try

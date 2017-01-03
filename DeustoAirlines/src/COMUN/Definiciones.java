@@ -33,6 +33,7 @@ public class Definiciones extends Exception
 	public final static String CMD_CONSULTAVUELO = "CMD_CONSULTAVUELO";
 	public final static String CMD_INGRESOS = "CMD_INGRESOS";
 	public final static String CMD_AGENDA = "CMD_AGENDA";
+	public final static String CMD_CALENDARIO = "CMD_CALENDARIO";
 	
 	
 	
