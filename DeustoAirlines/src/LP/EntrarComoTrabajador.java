@@ -1,9 +1,5 @@
 package LP;
 
-/*
- * Hay que poner en algun sitio lo siguiente para que se cree la tabla de trabajadores:
- * BasesDeDatos.crearTablaTrabajadorBD();
- */
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -64,9 +60,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	
 	private void createAndShowGUI() 	
 	{	
-		/*Por mi (Ianire) si se puede ponemos que salte un mensaje y no deje seguir si tiene más de 9 caracteres, o menos
-		 * y quitamos el aviso que hay entre paréntesis
-		*/
 		lblDNI = new JLabel("Introduzca el DNI (debe contener 9 caracteres): ");
 		lblDNI.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblDNI.setHorizontalAlignment(SwingConstants.LEFT);
@@ -118,22 +111,8 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		
 		JButton btnVerLosTrabajadores = new JButton("VER LOS TRABAJADORES");
 		btnVerLosTrabajadores.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerLosTrabajadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				try
-				{
-					String query = "select * from trabajador";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					
-					table_1.setModel(DbUtils.resultSetToTableModel(rs));
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
+		btnVerLosTrabajadores.setActionCommand(CMD_VERTRABAJADORES);
+		btnVerLosTrabajadores.addActionListener(this);
 		btnVerLosTrabajadores.setBounds(456, 40, 244, 41);
 		getContentPane().add(btnVerLosTrabajadores);
 		
@@ -166,6 +145,10 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 				Cancelar();
 				break;	
 				
+			case CMD_VERTRABAJADORES:
+				VerTrabajadores();
+				break;
+				
 		} 
 	}
 	
@@ -175,20 +158,26 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		objPrincipal.setVisible(true);
 		this.dispose();
 	}
+	
+	private void VerTrabajadores()
+	{
+		try
+		{
+			String query = "select * from trabajador";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();	
+			
+			table_1.setModel(DbUtils.resultSetToTableModel(rs));
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	private void Trabajador() 
 	{
 		GestorTrabajador gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
-		BasesDeDatos.crearTablaTrabajadorBD();
-		boolean existe2;
-		existe2 = gesTra.ExistenTrabajadores(state);
-		System.out.println(existe2);
-		if(existe2==false)
-		{
-			BasesDeDatos.InsertarTrabajadores(state);
-		}
-		
-		
 		String DNI = txtDNI.getText();
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);

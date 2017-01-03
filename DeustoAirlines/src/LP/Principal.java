@@ -9,10 +9,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Statement;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
+import LD.BasesDeDatos;
+import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
 public class Principal extends JFrame implements ActionListener
@@ -29,10 +32,8 @@ public class Principal extends JFrame implements ActionListener
 	 * Constructor sin parámetros.
 	 */
 	public Principal() 
-	{
-		
+	{	
 		createAndShowGUI();
-	
 	}
 	
 	
@@ -117,6 +118,16 @@ private void Cliente()
 
 private void Trabajador() 
 {
+	GestorTrabajador gesTra = new GestorTrabajador();
+	Statement state = BasesDeDatos.getStatement();
+	BasesDeDatos.crearTablaTrabajadorBD();
+	boolean existe2;
+	existe2 = gesTra.ExistenTrabajadores(state);
+	if(existe2==false)
+	{
+		BasesDeDatos.InsertarTrabajadores(state);
+	}
+	
 	EntrarComoTrabajador objTrabajador = new EntrarComoTrabajador();
 	objTrabajador.setVisible(true);
 	this.dispose();
