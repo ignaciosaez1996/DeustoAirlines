@@ -164,7 +164,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		} 
 	}
 
-	private void Vuelo()
+	public void Vuelo()
 	{
 		BasesDeDatos.crearTablaVueloBD();
 		GestorTrabajador  gesTra = new GestorTrabajador();
