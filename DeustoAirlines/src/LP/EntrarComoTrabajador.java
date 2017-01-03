@@ -125,12 +125,18 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 				break;
 				
 			case CMD_BTN_CANCELAR:
-				this.dispose();
+				Cancelar();
 				break;	
 				
 		} 
 	}
 	
+	private void Cancelar()
+	{
+		Principal objPrincipal = new Principal();
+		objPrincipal.setVisible(true);
+		this.dispose();
+	}
 	private void Trabajador() 
 	{
 		Statement state = BasesDeDatos.getStatement();

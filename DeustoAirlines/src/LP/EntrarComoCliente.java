@@ -78,36 +78,35 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 	}
 
 
-@Override
-public void actionPerformed(ActionEvent e)
-{switch(e.getActionCommand())
-	
-	 {
-	case CMD_BTN_REGISTRADO:
-		this.Registrado();
-		break;
+	@Override
+	public void actionPerformed(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+	 		case CMD_BTN_REGISTRADO:
+	 			this.Registrado();
+	 			break;
 		
-	case CMD_BTN_NOREGISTRADO:
-		this.NoRegistrado();
-		break;
-		
-	} 
-}
+	 		case CMD_BTN_NOREGISTRADO:
+	 			this.NoRegistrado();
+	 			break;
+		} 
+	}
 
 
-private void Registrado() 
-{
-	ClienteRegistrado objCliente = new ClienteRegistrado();
-	objCliente.setVisible(true);
-	this.dispose();
-}
+	private void Registrado() 
+	{
+		ClienteRegistrado objCliente = new ClienteRegistrado();
+		objCliente.setVisible(true);
+		this.dispose();
+	}
 
-private void NoRegistrado() 
-{
-	ClienteNoRegistrado objClienteNo = new ClienteNoRegistrado();
-	objClienteNo.setVisible(true);
-	this.dispose();
-}
+	private void NoRegistrado() 
+	{
+		ClienteNoRegistrado objClienteNo = new ClienteNoRegistrado();
+		objClienteNo.setVisible(true);
+		this.dispose();
+	}
 
 
 

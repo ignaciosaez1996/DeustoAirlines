@@ -3,15 +3,18 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.sql.Statement;
 
 import javax.swing.ImageIcon;
+import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import LD.BasesDeDatos;
@@ -116,10 +119,17 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 				break;
 			
 			case CMD_BTN_CANCELAR:
-				this.dispose();
+				Cancelar();
 				break;
 		} 
 		
+	}
+	
+	private void Cancelar()
+	{
+		EntrarComoCliente objCliente = new EntrarComoCliente();
+		objCliente.setVisible(true);
+		this.dispose();
 	}
 	
 	private void Cliente() 

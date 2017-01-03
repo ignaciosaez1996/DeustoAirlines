@@ -126,7 +126,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnInicio.add(separator_4);
 		
 		mnitmSalir = new JMenuItem("Salir");			
-		mnitmSalir.setActionCommand(null);
+		mnitmSalir.setActionCommand(CMD_SALIR);
 		//mnitmSalir.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/exit_icon.png")));
 		mnitmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
 		mnitmSalir.addActionListener(this);

@@ -93,11 +93,8 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		
 		
 		setVisible(true);
-		//setMaximizable(true);
-		//setClosable(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setIconifiable(true);		
-		setTitle("Acceder como cliente no registrado");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
+		setTitle("Acceso para los clientes no registrados");
 		setBounds(x, y, 455, 402);
 		getContentPane().setLayout(null);
 		
@@ -121,11 +118,18 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 				break;
 				
 			case CMD_BTN_CANCELAR:
-				this.dispose();
+				Cancelar();
 				break;
 
 		} 
 		
+	}
+	
+	private void Cancelar()
+	{
+		EntrarComoCliente objCliente = new EntrarComoCliente();
+		objCliente.setVisible(true);
+		this.dispose();
 	}
 	
 	private void Cliente() 
