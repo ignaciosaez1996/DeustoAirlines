@@ -113,7 +113,7 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve los vuelos existentes en un ArrayList
-	public ArrayList<clsVuelo> DevolverVuelos (Statement state)
+	public ArrayList<clsVuelo> DevolverVuelos (Statement state, String codigo)
 	{
 		ArrayList<clsVuelo> ArrayVuelos = new ArrayList<clsVuelo>();
 		

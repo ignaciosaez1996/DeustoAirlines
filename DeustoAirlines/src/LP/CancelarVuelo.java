@@ -78,7 +78,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	{
 		Statement state = BasesDeDatos.getStatement();
 		GestorTrabajador GesTra = new GestorTrabajador();
-		ListaVuelos = GesTra.DevolverVuelos(state);
+	//	ListaVuelos = GesTra.DevolverVuelos(state);
 		System.out.println(ListaVuelos.toString());
 	}
 	private void createAndShowGUI()
@@ -149,7 +149,7 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 	{
 		Statement state = BasesDeDatos.getStatement();
 		GestorTrabajador GesTra = new GestorTrabajador();
-		ListaVuelos = GesTra.DevolverVuelos(state);
+		//ListaVuelos = GesTra.DevolverVuelos(state);
 	}
 	
 	private void CrearTabla()
