@@ -8,6 +8,9 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.ImageIcon;
@@ -16,9 +19,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorCliente;
 import LN.GestorTrabajador;
@@ -40,17 +45,19 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private JTextField 		txtDNI;
 	private JPasswordField passwordField;
 	
-	
 
+	Connection connection = null;
 
 	
-	private final static int x = (1400/2) - ((int)465/2);
-	private final static int y = (680/2) - (480/2);	
+	private final static int x = (1400) - ((int)465);
+	private final static int y = (680) - (480);	
+	private JTable table_1;
 
 	
 	public EntrarComoTrabajador() 
 	{
 		createAndShowGUI();	
+		connection = BasesDeDatos.getConnection();
 	}
 	
 	private void createAndShowGUI() 	
@@ -81,14 +88,14 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		
 		
 		btnAceptar = new JButton("ACEPTAR");
-		btnAceptar.setBounds(102, 326, 100, 23);
+		btnAceptar.setBounds(307, 326, 100, 23);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
 		btnAceptar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnAceptar);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(239, 326, 100, 23);
+		btnCancelar.setBounds(459, 326, 100, 23);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
@@ -96,15 +103,41 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		
 		lblSingUpIcon = new JLabel("");
 		lblSingUpIcon.setIcon(new ImageIcon(EntrarComoTrabajador.class.getResource("/imagenes/Sign-up-icon.png")));
-		lblSingUpIcon.setBounds(310, 30, 106, 100);
+		lblSingUpIcon.setBounds(-15, 244, 106, 100);
 		getContentPane().add(lblSingUpIcon);
 				
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Acceder como trabajador");
-		setBounds(x, y, 455, 402);
+		//setBounds(x, y, 737, 400);
+		setBounds(70, 10, 900, 400);
 		getContentPane().setLayout(null);
+		
+		JButton btnVerLosTrabajadores = new JButton("VER LOS TRABAJADORES");
+		btnVerLosTrabajadores.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnVerLosTrabajadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				try
+				{
+					String query = "select * from trabajador";
+					PreparedStatement pat = connection.prepareStatement(query);
+					ResultSet rs = pat.executeQuery();
+					
+					table_1.setModel(DbUtils.resultSetToTableModel(rs));
+				}catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		btnVerLosTrabajadores.setBounds(456, 40, 244, 41);
+		getContentPane().add(btnVerLosTrabajadores);
+		
+		table_1 = new JTable();
+		table_1.setBounds(373, 92, 501, 145);
+		getContentPane().add(table_1);
 	}
 
 	@Override

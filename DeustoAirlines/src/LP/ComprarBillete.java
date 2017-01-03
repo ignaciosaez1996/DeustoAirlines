@@ -199,7 +199,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		contentPane.add(scrollLista2);
 	
 		
-		JLabel lblEligaElOrigen = new JLabel("Eliga el origen y destino del vuelo");
+		JLabel lblEligaElOrigen = new JLabel("Elige el codigo del vuelo");
 		lblEligaElOrigen.setBounds(95, 414, 242, 33);
 		contentPane.add(lblEligaElOrigen);
 		
@@ -304,7 +304,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		try
 		{
 			
-			String query = "select cod_postal_o, cod_postal_d from vuelo "; 
+			String query = "select cod_vuelo from vuelo "; 
 			
 			PreparedStatement pst = connection.prepareStatement(query);
 					
@@ -316,8 +316,8 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 				
 				{
 				
-					DLc.addElement(rs.getString("cod_postal_o"));
-					DLc.addElement(rs.getString("cod_postal_d"));
+					DLc.addElement(rs.getString("cod_vuelo"));
+					
 				
 				}
 			
