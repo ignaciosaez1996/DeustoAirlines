@@ -142,7 +142,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
-				GestorCliente objGC = new GestorCliente(null, null);
+				GestorCliente objGC = new GestorCliente();
 				Statement state = BasesDeDatos.getStatement();
 				boolean existe;
 				existe = objGC.EncontrarVueloOrigenDestino(state, seleccionado1, seleccionado2);

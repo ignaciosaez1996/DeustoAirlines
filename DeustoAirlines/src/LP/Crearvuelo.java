@@ -183,7 +183,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		String CodVuelo = txtcodvuelo.getText();
 		String capacidad = spinner.getValue().toString();
-		double precio = (double) spinner.getValue();
+		String precio = spinner.getValue().toString();
 		String fecha = calendar.getDate().toString();
 		String codpost_o = txtcodpost_o.getText();
 		String codpost_d = txtcodpost_d.getText();

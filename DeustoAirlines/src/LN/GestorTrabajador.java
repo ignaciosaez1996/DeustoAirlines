@@ -40,7 +40,7 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve true si crea un vuelo
-	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, double precio)
+	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, String precio)
 	{
 		try 
 		{
@@ -125,7 +125,7 @@ public class GestorTrabajador
 			rs = state.executeQuery(SelectBD);
 			while(rs.next())
 			{
-				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d"), rs.getDouble("precio")));
+				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d"), rs.getInt("precio")));
 			}
 		} catch (SQLException e)
 		{

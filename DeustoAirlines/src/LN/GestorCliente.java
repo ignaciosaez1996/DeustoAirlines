@@ -1,6 +1,5 @@
 package LN;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,14 +8,6 @@ import javax.swing.JOptionPane;
 
 public class GestorCliente
 {
-	String contrasenya;
-	String correo;
-	
-	public GestorCliente(String correo, String contrasenya)
-	{
-		this.correo = correo;
-		this.contrasenya = contrasenya;
-	}
 	//Devolvera false en caso de que no se halla podido introducir el cliente
 	public boolean ClienteNuevo(Statement state, String correo, String nombre, String contrasenya) 
 	{

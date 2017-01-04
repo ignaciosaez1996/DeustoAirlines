@@ -137,14 +137,14 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		String correo = txtCorreo.getText();
 		char[] passWord = passwordField.getPassword();
 		String contrasenya = String.valueOf(passWord);
-		GestorCliente gesCli = new GestorCliente(correo, contrasenya);
+		GestorCliente gesCli = new GestorCliente();
 		boolean existe; 
 		Statement state = BasesDeDatos.getStatement();
 		
 		existe = gesCli.ValidarEntradaCli(state, correo, contrasenya);
 		if(existe == true)
 		{
-			PrincipalCliente objCliente = new PrincipalCliente( );
+			PrincipalCliente objCliente = new PrincipalCliente(correo);
 			objCliente.setVisible(true);
 			this.dispose();
 		}

@@ -1,13 +1,13 @@
 package LP;
 
 import java.awt.Frame;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 
 
 import javax.swing.JDesktopPane;
@@ -20,7 +20,13 @@ import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 
 
+
 import static COMUN.Definiciones.*;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import java.awt.Color;
 
 public class PrincipalCliente extends JFrame implements ActionListener
 {
@@ -58,6 +64,18 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private String 	usuario;
 	@SuppressWarnings("unused")
 	private int 	codigoUsuario;
+	private JLabel label;
+	private JTextField textField;
+	private JLabel lblBienvenid;
+	private JLabel lblCorreo;
+	
+	String contrasenya;
+	String correo;
+	
+	public PrincipalCliente(String correo)
+	{
+		this.correo = correo;
+	}
 
 	
 	/**
@@ -80,7 +98,18 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		panel = new JDesktopPane();		
 		panel.setSize(panelWidth,panelHeight);
 		getContentPane().add(panel);	
-				
+		
+		lblBienvenid = new JLabel("Bienvenid@");
+		lblBienvenid.setForeground(Color.WHITE);
+		lblBienvenid.setBounds(1086, 38, 77, 14);
+		panel.add(lblBienvenid);
+		
+		lblCorreo = new JLabel("");
+		lblCorreo.setForeground(Color.WHITE);
+		lblCorreo.setText(correo);
+		lblCorreo.setBounds(1151, 38, 200, 14);
+		panel.add(lblCorreo);
+		
 		setExtendedState(Frame.MAXIMIZED_BOTH);				
 		setBounds(100, 100, 450, 301);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -210,34 +239,24 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void ConsultarHorarios() 
 	{
-		
-			ConsultaHorario objHorario = new ConsultaHorario();	
-			objHorario.setVisible(true);
-			panel.add(objHorario);	
-		
-		
+		ConsultaHorario objHorario = new ConsultaHorario();	
+		objHorario.setVisible(true);
+		panel.add(objHorario);	
 	}
 
 
 
 	private void Historial() 
 	{
-		
-			//Historial objHistorial = new Historial();	
-			//objHistorial.setVisible(true);
-			//panel.add(objHistorial);	
-		
-		
+		//Historial objHistorial = new Historial();	
+		//objHistorial.setVisible(true);
+		//panel.add(objHistorial);	
 	}
 
 	private void Justificante() 
 	{
-		
-			//Justificante objHistorial = new Justificante();	
-			//objHistorial.setVisible(true);
+		//Justificante objHistorial = new Justificante();	
+		//objHistorial.setVisible(true);
 		//	panel.add(objHistorial);	
-		
-		
 	}
-	
 }
