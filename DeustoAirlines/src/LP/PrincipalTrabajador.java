@@ -154,8 +154,8 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmConsIngresos = new JMenuItem("Consultar ingresos");		
 		//mnitmConsIngresos.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
-		mnitmConsIngresos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
-		mnitmConsIngresos.setActionCommand(null);
+		//mnitmConsIngresos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
+		mnitmConsIngresos.setActionCommand(CMD_INGRESOS);
 		mnitmConsIngresos.addActionListener(this);
 		mnIngreso.add(mnitmConsIngresos);
 		
@@ -227,9 +227,9 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 
 	private void Ingresos() 
 	{
-		//Ingresos objIngreso = new Ingresos();	
-		//objIngreso.setVisible(true);
-		//panel.add(objIngreso);	
+		ConsultaIngresos objIngreso = new ConsultaIngresos();	
+		objIngreso.setVisible(true);
+		panel.add(objIngreso);	
 	}
 
 	private void Agenda() 
