@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/junit-4.6.jar"/>
 	<classpathentry kind="lib" path="lib/rs2xml.jar"/>
 	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.14.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

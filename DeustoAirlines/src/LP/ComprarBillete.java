@@ -322,7 +322,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		{
 			Random rnd = new Random();
 			int cod_billete = rnd.nextInt(10000);
-			comprado = gesCli.Comprar(state, cod_billete, precio, codVueloSelec, precio);
+			comprado = gesCli.Comprar(state, cod_billete, precio, codVueloSelec, correo);
 			if(comprado == true)
 			{
 				JOptionPane.showMessageDialog(null, "Billete comprado");
