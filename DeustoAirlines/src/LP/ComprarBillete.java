@@ -34,6 +34,7 @@ import LN.GestorCliente;
 import javax.swing.JList;
 
 import net.proteanit.sql.DbUtils;
+
 import javax.swing.JTextField;
 
 public class ComprarBillete extends JInternalFrame implements ActionListener
@@ -42,13 +43,15 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private JPanel contentPane;
 	private JTable tabla;
 	private DefaultTableModel modelo;
-	private JList list;
-	private JList list_1;
-	private JList list_2 ;
+	private JList listCodPostalO;
+	private JList listCodPostalD;
+	private JList listCodVuelo ;
 	private String seleccionado1;
 	private String seleccionado2;
+	private String seleccionado3;
 	private JScrollPane scrollLista;
 	private JScrollPane scrollLista2;
+	private JScrollPane scrollLista3;
 
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
@@ -58,15 +61,16 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	/**
 	 * Launch the application.
 	 */
+	String correo;
 	
-	public ComprarBillete()
+	public ComprarBillete(String correo)
 	{
+		this.correo = correo;
 		createAndShowGUI();
 		llenarLista();
 		llenarLista_1();
 		llenarLista_2();
 	}
-	
 
 	/**
 	 * Create the frame.
@@ -146,7 +150,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 				Statement state = BasesDeDatos.getStatement();
 				boolean existe;
 				existe = objGC.EncontrarVueloOrigenDestino(state, seleccionado1, seleccionado2);
-				if(list.hasFocus()==false || list_1.hasFocus()==false)
+				if(listCodPostalO.hasFocus()==false || listCodPostalD.hasFocus()==false)
 				{
 					try
 					{
@@ -175,171 +179,134 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		setBounds(70, 10, 950, 650);
 		getContentPane().setLayout(null);
 		
-		list = new JList();
+		listCodPostalO = new JList();
 		scrollLista = new JScrollPane();
 		scrollLista.setBounds(415, 90, 146, 65);
-		scrollLista.setViewportView(list);
+		scrollLista.setViewportView(listCodPostalO);
 		contentPane.add(scrollLista);
-		list.addMouseListener(new MouseAdapter()
+		listCodPostalO.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				seleccionado1=list.getSelectedValue().toString();
+				seleccionado1=listCodPostalO.getSelectedValue().toString();
 				
 			}
 		});
 	
 		
-		list_1 = new JList();
+		listCodPostalD = new JList();
 		//contentPane.add(list_1);
 		scrollLista2 = new JScrollPane();
-		scrollLista2.setViewportView(list_1);
+		scrollLista2.setViewportView(listCodPostalD);
 		scrollLista2.setBounds(610, 90, 146, 65);
 		contentPane.add(scrollLista2);
+		listCodPostalD.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				seleccionado2=listCodPostalD.getSelectedValue().toString();
+			}
+		});
 	
 		
 		JLabel lblEligaElOrigen = new JLabel("Elige el codigo del vuelo");
 		lblEligaElOrigen.setBounds(95, 414, 242, 33);
 		contentPane.add(lblEligaElOrigen);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(95, 441, 334, 98);
-		contentPane.add(scrollPane_1);
-		
-		list_2 = new JList();
-		scrollPane_1.setViewportView(list_2);
-	
-	
-		
-		list_1.addMouseListener(new MouseAdapter()
+		listCodVuelo = new JList();
+		scrollLista3 = new JScrollPane();
+		scrollLista3.setViewportView(listCodVuelo);
+		scrollLista3.setBounds(95, 441, 334, 98);
+		contentPane.add(scrollLista3);
+		listCodVuelo.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				seleccionado2=list_1.getSelectedValue().toString();
-				
+				seleccionado3=listCodVuelo.getSelectedValue().toString();
 			}
 		});
-	
+		
 		setIconifiable(true);
 		setResizable(true);
-		
-		
 	}
 
 	
 	public void llenarLista()
 	{
-		
 		try
 		{
-			
 			String query = "select cod_postal_o from vuelo "; 
-			
-			PreparedStatement pst = connection.prepareStatement(query);
-					
+			PreparedStatement pst = connection.prepareStatement(query);	
 			ResultSet rs = pst.executeQuery();
-		
-			
 			DefaultListModel DL = new DefaultListModel();
-			
 			while(rs.next())
 				{
 					DL.addElement(rs.getString("cod_postal_o"));
 				}
-			
-			list.setModel(DL);
-			
+			listCodPostalO.setModel(DL);
 			pst.close();
 			rs.close();
-		
 		}
-		
 		catch ( Exception e)
 		{
 			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
-		
-		
 	}
-	
 	
 	public void llenarLista_1()
 	{
-		
 		try
 		{
 		    String query = "select cod_postal_d from vuelo "; 
 			
 			PreparedStatement pst = connection.prepareStatement(query);
 			ResultSet rs = pst.executeQuery();
-		
 			DefaultListModel DLM = new DefaultListModel();
-			
 			while(rs.next())
 				{
 					DLM.addElement(rs.getString("cod_postal_d"));
-				
-					//list.add(list, rs.getString("cod_vuelo_o"));
 				}
-			
-			list_1.setModel(DLM);
-			
+			listCodPostalD.setModel(DLM);
 			pst.close();
 			rs.close();
 		}
-		
 		catch ( Exception e)
 		{
 			JOptionPane.showInputDialog("No hay vuelos disponibles");
 		}
-		
-		
 	}
-	
 
 	public void llenarLista_2()
 	{
 		try
 		{
-			
 			String query = "select cod_vuelo from vuelo "; 
-			
-			PreparedStatement pst = connection.prepareStatement(query);
-					
+			PreparedStatement pst = connection.prepareStatement(query);		
 			ResultSet rs = pst.executeQuery();
-		
 			DefaultListModel DLc = new DefaultListModel();
-			
 			while(rs.next())
-				
-				{
-				
-					DLc.addElement(rs.getString("cod_vuelo"));
-					
-				
-				}
-			
-			list_2.setModel(DLc);
-			
+			{
+				DLc.addElement(rs.getString("cod_vuelo"));
+			}
+			listCodVuelo.setModel(DLc);
 			pst.close();
 			rs.close();
-		
 		}
-		
 		catch ( Exception e)
 		{
 			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
-		
-		
 	}
-	
-	
 	
 	public void RealizarCompra()
 	{
+		BasesDeDatos.crearTablaBilleteBD();
+		GestorCliente gesCli = new GestorCliente();
+		
+		//Correo, el de la clase no lo necesito
 		
 	}
 	
@@ -350,14 +317,12 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		switch(e.getActionCommand())
 		{
 			case "COMPRAR":
+				RealizarCompra();
 			break;
 			
 			case "CANCELAR":
 				this.dispose();
 				break;
-//			case "FILTRAR":
-//				this.dispose();
-//				break;	
 		}
 	}
 }

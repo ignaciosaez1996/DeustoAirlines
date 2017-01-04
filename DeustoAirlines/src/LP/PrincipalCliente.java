@@ -1,5 +1,6 @@
 package LP;
 
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +8,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 
 
 
@@ -18,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
+
 
 
 
@@ -59,33 +62,24 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	 */
 	public final static int panelWidth = 1400;
 	public final static int panelHeight = 680;
-	
-	@SuppressWarnings("unused")
-	private String 	usuario;
-	@SuppressWarnings("unused")
-	private int 	codigoUsuario;
+
 	private JLabel label;
 	private JTextField textField;
 	private JLabel lblBienvenid;
 	private JLabel lblCorreo;
 	
-	String contrasenya;
 	String correo;
-	
-	public PrincipalCliente(String correo)
-	{
-		this.correo = correo;
-	}
 
 	
 	/**
-	 * Constructor sin parametros.
+	 * Constructor con el parámetro del correo del cliente para que se pueda identificar.
 	 * @param usuario Nombre del usuario que accede al menu.
 	 */
-	public PrincipalCliente() 
+	public PrincipalCliente(String correo) 
 	{
+		this.correo = correo;
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
-		setTitle("Opciones del cliente - Menu Principal (" + usuario + ")");
+		setTitle("Opciones del cliente - Menu Principal (" + correo + ")");
 		
 		createAndShowGUI();
 	}
@@ -101,13 +95,15 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		
 		lblBienvenid = new JLabel("Bienvenid@");
 		lblBienvenid.setForeground(Color.WHITE);
-		lblBienvenid.setBounds(1086, 38, 77, 14);
+		lblBienvenid.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblBienvenid.setBounds(1050, 38, 77, 14);
 		panel.add(lblBienvenid);
 		
 		lblCorreo = new JLabel("");
 		lblCorreo.setForeground(Color.WHITE);
+		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCorreo.setText(correo);
-		lblCorreo.setBounds(1151, 38, 200, 14);
+		lblCorreo.setBounds(1120, 38, 200, 14);
 		panel.add(lblCorreo);
 		
 		setExtendedState(Frame.MAXIMIZED_BOTH);				
@@ -223,7 +219,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void ComprarBillete() 
 	{
-		ComprarBillete objCompra = new ComprarBillete();	
+		ComprarBillete objCompra = new ComprarBillete(correo);	
 		objCompra.setVisible(true);
 		panel.add(objCompra);	
 	}
@@ -231,10 +227,8 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private void CancelarBillete() 
 	{
 		//	CancelarBillete objCancel = new CancelarBillete();	
-			//objCancel.setVisible(true);
-			//panel.add(objCancel);	
-		
-		
+		//objCancel.setVisible(true);
+		//panel.add(objCancel);	
 	}
 
 	private void ConsultarHorarios() 

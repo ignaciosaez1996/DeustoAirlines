@@ -77,6 +77,7 @@ public class GestorCliente
 			return false;
 		}
 	}
+	
 	public boolean EncontrarVueloOrigenDestino(Statement state, String seleccionado1, String seleccionado2)
 	{
 		String query = "select * from VUELO where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
@@ -98,6 +99,7 @@ public class GestorCliente
 			return false;
 		}
 	}
+	
 	public void ComprarBillete()
 	{
 		
