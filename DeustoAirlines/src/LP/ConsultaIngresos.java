@@ -302,7 +302,21 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	button_14.setBounds(840, 407, 54, 50);
 	contentPane.add(button_14);
 	
-	button_15 = new JButton("<");
+	button_15 = new JButton("<-");
+	button_15.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) 
+		{
+			String backspace = null;
+			
+			if ( textField.getText().length()> 0)
+			{
+				StringBuilder strB = new StringBuilder(textField.getText());
+				strB.deleteCharAt(textField.getText().length() - 1);
+				backspace = strB.toString();
+				textField.setText(backspace);
+			}
+		}
+	});
 	button_15.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	button_15.setBounds(634, 163, 54, 50);
 	contentPane.add(button_15);

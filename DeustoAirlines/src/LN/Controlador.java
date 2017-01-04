@@ -4,8 +4,10 @@ import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -30,10 +32,21 @@ public class Controlador
 			p.setProperty("mail.smtp.user", c.getUsuarioCorreo());
 			p.setProperty("mail.smtp.auth", "true");
 			
-			Session s = Session.getDefaultInstance(p, null);
+			
+			//Session s = Session.getDefaultInstance(p, null); --> lo que puso ianire
+			
+			Session s = Session.getDefaultInstance(p, new javax.mail.Authenticator() // lo que creo que hay que poner yo (maitane)
+			{
+			protected PasswordAuthentication getPasswordAuthentication() 
+				{
+			      return new PasswordAuthentication("usuarioCorreo", "contrasenya");}
+			    });
+			
+			
 			BodyPart texto = new MimeBodyPart();
 			texto.setText(c.getMensaje());
 			BodyPart adjunto = new MimeBodyPart();
+			
 			
 			if(!c.getRutaArchivo().equals(""))
 			{
