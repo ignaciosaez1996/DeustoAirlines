@@ -100,22 +100,56 @@ public class GestorCliente
 		}
 	}
 	
-	public void ComprarBillete()
+	public String DevolverPrecio(Statement state, String cod_vuelo)
+	{
+		try
+		{
+			String resultado;
+			String query = "select precio from VUELO where(cod_vuelo = '" + cod_vuelo + "')";
+			ResultSet rs;
+			rs = state.executeQuery(query);
+			if(rs.next())
+			{
+				resultado = rs.getString("precio");
+				return resultado;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Nunca debería aparecer este mensaje");
+				return null;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//Devolverá false en caso de que no se halla podido comprar el billete
+	public boolean Comprar(Statement state, int cod_billete, String precio, String cod_vuelo, String correo)
 	{
 		
+		try 
+		{
+			String query = "insert into BILLETE values(" + "'" + cod_billete + "'," + "'" + precio + "'," + "'" + cod_vuelo + "'," + "'" + correo + "')";
+			int val;
+			val = state.executeUpdate( query );
+			if (val!= 1)
+			{
+				JOptionPane.showMessageDialog(null, "No se ha podido comprar el billete");
+				return false;  
+			}else
+			{
+				return true;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "No se ha podido comprar el billete");
+			return false;
+		}
 	}
-	public void CancelarBillete()
-	{
-		
-	}
-	public void ConsultarHorarios()
-	{
-		
-	}
-	public void HistorialCompras()
-	{
-		
-	}
+	
 	public void JustificanteCompra()//Properties
 	{
 		

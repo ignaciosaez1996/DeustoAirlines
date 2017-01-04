@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -48,7 +49,8 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private JList listCodVuelo ;
 	private String seleccionado1;
 	private String seleccionado2;
-	private String seleccionado3;
+	private String codVueloSelec;
+	private JSpinner spinner;
 	private JScrollPane scrollLista;
 	private JScrollPane scrollLista2;
 	private JScrollPane scrollLista3;
@@ -116,7 +118,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		lblVuelosOfrecids.setBounds(10, 187, 371, 33);
 		contentPane.add(lblVuelosOfrecids);
 		
-		JSpinner spinner = new JSpinner();
+		spinner = new JSpinner();
 		spinner.setBounds(420, 566, 69, 43);
 		contentPane.add(spinner);
 		
@@ -225,7 +227,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				seleccionado3=listCodVuelo.getSelectedValue().toString();
+				codVueloSelec=listCodVuelo.getSelectedValue().toString();
 			}
 		});
 		
@@ -305,8 +307,23 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	{
 		BasesDeDatos.crearTablaBilleteBD();
 		GestorCliente gesCli = new GestorCliente();
+		Statement state = BasesDeDatos.getStatement();
+		String precio = gesCli.DevolverPrecio(state, codVueloSelec);
+		int cantidad = (int) spinner.getValue();
+		boolean comprado; //Si es false es que no se ha podido comprar
 		
-		//Correo, el de la clase no lo necesito
+		for(int i=0; i<cantidad; i++)
+		{
+			Random rnd = new Random();
+			int cod_billete = rnd.nextInt(10000);
+			comprado = gesCli.Comprar(state, cod_billete, precio, codVueloSelec, precio);
+			if(comprado == true)
+			{
+				JOptionPane.showMessageDialog(null, "Billete comprado");
+				this.dispose();
+			}
+		}
+		
 		
 	}
 	
@@ -317,8 +334,15 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		switch(e.getActionCommand())
 		{
 			case "COMPRAR":
-				RealizarCompra();
-			break;
+				int cantidad = (int) spinner.getValue();
+				if(cantidad >0)
+				{
+					RealizarCompra();
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Seleccione cuantos billetes desea comprar");
+				}
+				break;
 			
 			case "CANCELAR":
 				this.dispose();

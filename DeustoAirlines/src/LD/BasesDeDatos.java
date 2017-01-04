@@ -138,7 +138,7 @@ public class BasesDeDatos
 		if (statement==null) return; 
 		try 
 		{
-			statement.executeUpdate("create table if not exists BILLETE ( cod_billete string, precio int, cod_vuelo string, correo string )");
+			statement.executeUpdate("create table if not exists BILLETE ( cod_billete int, precio int, cod_vuelo string, correo string )");
 		} catch (SQLException e) 
 		{
 			JOptionPane.showMessageDialog(null, "La creación de tabla BILLETE ha fallado");
