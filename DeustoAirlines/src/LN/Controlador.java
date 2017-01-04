@@ -17,10 +17,9 @@ import LP.Correo;
 
 public class Controlador
 {
-	Correo c = new Correo();
 	
 	//Devolverá false si el correo no se ha enviado
-	public boolean enviarCorreo()
+	public boolean enviarCorreo(Correo c)
 	{
 		try
 		{
