@@ -96,14 +96,14 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		lblBienvenid = new JLabel("Bienvenid@");
 		lblBienvenid.setForeground(Color.WHITE);
 		lblBienvenid.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblBienvenid.setBounds(1050, 38, 77, 14);
+		lblBienvenid.setBounds(817, 26, 189, 39);
 		panel.add(lblBienvenid);
 		
 		lblCorreo = new JLabel("");
 		lblCorreo.setForeground(Color.WHITE);
 		lblCorreo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblCorreo.setText(correo);
-		lblCorreo.setBounds(1120, 38, 200, 14);
+		lblCorreo.setBounds(967, 23, 380, 45);
 		panel.add(lblCorreo);
 		
 		setExtendedState(Frame.MAXIMIZED_BOTH);				

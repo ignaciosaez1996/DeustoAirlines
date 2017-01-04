@@ -35,6 +35,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	private JButton btnCancelar;
 	
 	Connection connection = null;
+	private JScrollPane scrollPane_1;
 
 	
 	public consultaVuelo()
@@ -56,9 +57,12 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		this.setBounds(260, 30, 802, 597);
 		this.getContentPane().setLayout(null);
 		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 70, 766, 367);
+		contentPane.add(scrollPane_1);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 70, 766, 367);
-		contentPane.add(scrollPane);
+		scrollPane_1.setViewportView(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);

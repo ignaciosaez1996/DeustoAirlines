@@ -4,7 +4,7 @@ public class Definiciones extends Exception
 {
 
 	/**
-	 * 
+	 * Constantes para los ActionCommand de los elementos del interfaz de usuario.
 	 */
 	private static final long serialVersionUID = 1L;
 	
