@@ -152,6 +152,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		{
 			JOptionPane.showMessageDialog(this, "Correo o contraseña incorrectas, vuelva a introducirlas");
 		}
+		this.dispose();
 	}
 }
 	
