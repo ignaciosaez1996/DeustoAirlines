@@ -15,12 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
-
+import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
 
 import LD.BasesDeDatos;
+import javax.swing.JLabel;
 
 public class ConsultaIngresos extends JInternalFrame implements ActionListener
 {
@@ -77,7 +78,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	
 	
 	textField = new JTextField();
-	textField.setBounds(57, 29, 260, 50);
+	textField.setBounds(634, 102, 260, 50);
 	contentPane.add(textField);
 	textField.setColumns(10);
 	
@@ -90,7 +91,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	btnNewButton.setBounds(59, 160, 54, 50);
+	btnNewButton.setBounds(635, 221, 54, 50);
 	contentPane.add(btnNewButton);
 	
 	button = new JButton("8");
@@ -104,7 +105,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button.setBounds(123, 160, 54, 50);
+	button.setBounds(699, 221, 54, 50);
 	contentPane.add(button);
 	
 	button_1 = new JButton("9");
@@ -116,7 +117,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_1.setBounds(188, 160, 54, 50);
+	button_1.setBounds(763, 221, 54, 50);
 	contentPane.add(button_1);
 	
 	button_2 = new JButton("+");
@@ -130,7 +131,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_2.setBounds(263, 160, 54, 50);
+	button_2.setBounds(840, 163, 54, 50);
 	contentPane.add(button_2);
 	
 	button_3 = new JButton("4");
@@ -143,7 +144,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_3.setBounds(59, 221, 54, 50);
+	button_3.setBounds(635, 282, 54, 50);
 	contentPane.add(button_3);
 	
 	button_4 = new JButton("5");
@@ -155,7 +156,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_4.setBounds(123, 221, 54, 50);
+	button_4.setBounds(699, 282, 54, 50);
 	contentPane.add(button_4);
 	
 	button_5 = new JButton("6");
@@ -167,7 +168,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_5.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_5.setBounds(188, 221, 54, 50);
+	button_5.setBounds(763, 282, 54, 50);
 	contentPane.add(button_5);
 	
 	button_6 = new JButton("-");
@@ -180,7 +181,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_6.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_6.setBounds(263, 221, 54, 50);
+	button_6.setBounds(840, 282, 54, 50);
 	contentPane.add(button_6);
 	
 	button_7 = new JButton("1");
@@ -192,7 +193,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_7.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_7.setBounds(59, 282, 54, 50);
+	button_7.setBounds(634, 343, 54, 50);
 	contentPane.add(button_7);
 	
 	button_8 = new JButton("2");
@@ -204,7 +205,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_8.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_8.setBounds(123, 282, 54, 50);
+	button_8.setBounds(699, 343, 54, 50);
 	contentPane.add(button_8);
 	
 	button_9 = new JButton("3");
@@ -216,7 +217,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_9.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_9.setBounds(188, 282, 54, 50);
+	button_9.setBounds(763, 343, 54, 50);
 	contentPane.add(button_9);
 	
 	button_10 = new JButton("*");
@@ -229,7 +230,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_10.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_10.setBounds(263, 282, 54, 50);
+	button_10.setBounds(840, 343, 54, 50);
 	contentPane.add(button_10);
 	
 	button_11 = new JButton("0");
@@ -241,17 +242,17 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_11.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_11.setBounds(59, 343, 54, 50);
+	button_11.setBounds(634, 407, 54, 50);
 	contentPane.add(button_11);
 	
 	button_12 = new JButton(".");
 	button_12.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_12.setBounds(123, 343, 54, 50);
+	button_12.setBounds(699, 407, 54, 50);
 	contentPane.add(button_12);
 	
 	button_13 = new JButton("...");
 	button_13.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_13.setBounds(188, 343, 54, 50);
+	button_13.setBounds(763, 407, 54, 50);
 	contentPane.add(button_13);
 	
 	button_14 = new JButton("=");
@@ -298,12 +299,12 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_14.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_14.setBounds(263, 343, 54, 50);
+	button_14.setBounds(840, 407, 54, 50);
 	contentPane.add(button_14);
 	
 	button_15 = new JButton("<");
 	button_15.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_15.setBounds(59, 99, 54, 50);
+	button_15.setBounds(634, 163, 54, 50);
 	contentPane.add(button_15);
 	
 	btnC = new JButton("C");
@@ -316,7 +317,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	btnC.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	btnC.setBounds(123, 99, 54, 50);
+	btnC.setBounds(699, 163, 54, 50);
 	contentPane.add(btnC);
 	
 	button_17 = new JButton("%");
@@ -329,7 +330,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_17.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_17.setBounds(188, 99, 54, 50);
+	button_17.setBounds(763, 163, 54, 50);
 	contentPane.add(button_17);
 	
 	button_18 = new JButton("/");
@@ -342,7 +343,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	});
 	button_18.setFont(new Font("Tahoma", Font.PLAIN, 18));
-	button_18.setBounds(263, 99, 54, 50);
+	button_18.setBounds(840, 224, 54, 50);
 	contentPane.add(button_18);
 
 	
@@ -354,7 +355,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	
 	
 	scrollPane = new JScrollPane();
-	scrollPane.setBounds(382, 99, 529, 263);
+	scrollPane.setBounds(39, 119, 529, 263);
 	contentPane.add(scrollPane);
 	
 	table = new JTable()
@@ -366,7 +367,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	};
 	scrollPane.setViewportView(table);
 	
-	JButton btnNewButton = new JButton("Cargar Tabla");
+	JButton btnNewButton = new JButton("Cargar tabla de los billetes");
 	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	btnNewButton.addActionListener(new ActionListener()
 	{
@@ -386,12 +387,20 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 			}
 		}
 	});
-	btnNewButton.setBounds(513, 31, 247, 46);
+	btnNewButton.setBounds(147, 62, 323, 46);
 	contentPane.add(btnNewButton);
 	
 	btnNewButton_1 = new JButton("CANCELAR");
-	btnNewButton_1.setBounds(368, 552, 121, 35);
+	btnNewButton_1.setActionCommand(CMD_BTN_CANCELAR);
+	btnNewButton_1.addActionListener(this);
+	this.getRootPane().setDefaultButton(btnNewButton_1);
+	btnNewButton_1.setBounds(412, 550, 121, 35);
 	contentPane.add(btnNewButton_1);
+	
+	JLabel lblUtiliceLaCalculadora = new JLabel("Utilice la calculadora para calcular los ingresos");
+	lblUtiliceLaCalculadora.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	lblUtiliceLaCalculadora.setBounds(616, 32, 290, 58);
+	contentPane.add(lblUtiliceLaCalculadora);
 	
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -401,8 +410,9 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
