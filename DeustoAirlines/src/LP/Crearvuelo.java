@@ -27,6 +27,7 @@ import LN.GestorTrabajador;
 import com.toedter.calendar.JCalendar;
 
 import javax.swing.JButton;
+import javax.swing.SpinnerNumberModel;
 
 
 public class Crearvuelo extends JInternalFrame implements ActionListener
@@ -77,11 +78,12 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCapacidad.setBounds(466, 250, 163, 22);
+		lblCapacidad.setBounds(466, 250, 93, 22);
 		contentPane.add(lblCapacidad);
 		
 		spinner = new JSpinner();
-		spinner.setBounds(467, 305, 53, 42);
+		spinner.setModel(new SpinnerNumberModel(150, 20, 250, 1));
+		spinner.setBounds(476, 283, 53, 42);
 		spinner.setValue(150);
 		contentPane.add(spinner);
 		
@@ -138,6 +140,16 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		this.setBounds(260, 30, 802, 597);
 		this.getContentPane().setLayout(null);
 		
+		JLabel lblPrecioPorAsiento = new JLabel("Precio por asiento");
+		lblPrecioPorAsiento.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblPrecioPorAsiento.setBounds(599, 250, 130, 19);
+		contentPane.add(lblPrecioPorAsiento);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setModel(new SpinnerNumberModel(30, 15, 3000, 1));
+		spinner_1.setBounds(626, 283, 53, 42);
+		contentPane.add(spinner_1);
+		
 	}
 
 	@Override
@@ -147,7 +159,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		 {
 			case CMD_BTN_ACEPTAR:
 				
-				if(txtcodvuelo.getText().isEmpty()|| txtcodpost_o.getText().isEmpty() ||txtcodpost_d.getText().isEmpty() || spinner.getValue().toString().isEmpty() || calendar.getDate().toString().isEmpty() )
+				if(txtcodvuelo.getText().isEmpty()|| txtcodpost_o.getText().isEmpty() ||txtcodpost_d.getText().isEmpty() || calendar.getDate().toString().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
 				}
@@ -171,6 +183,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		String CodVuelo = txtcodvuelo.getText();
 		String capacidad = spinner.getValue().toString();
+		double precio = (double) spinner.getValue();
 		String fecha = calendar.getDate().toString();
 		String codpost_o = txtcodpost_o.getText();
 		String codpost_d = txtcodpost_d.getText();
@@ -189,7 +202,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		}
 		else
 		{
-			existe = gesTra.CrearVuelos(state, CodVuelo , capacidad, fecha , codpost_o, codpost_d );
+			existe = gesTra.CrearVuelos(state, CodVuelo , capacidad, fecha , codpost_o, codpost_d, precio );
 			if(existe==true)
 			{
 				JOptionPane.showMessageDialog(this, "Vuelo registrado");
@@ -200,5 +213,4 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		
 	}
-	
 }

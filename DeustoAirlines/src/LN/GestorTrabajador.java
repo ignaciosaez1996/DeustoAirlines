@@ -40,11 +40,11 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve true si crea un vuelo
-	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d) //Ciudad de origen y destino distintas // maitane
+	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, double precio)
 	{
 		try 
 		{
-			String SelectBD = "insert into VUELO values(" + "'" + CodVuelo + "', " + "'" + capacidad + "', "+ "'" + fecha +  "', "+ "'" + codpost_o + "', "+ "'" + codpost_d  +   "')";
+			String SelectBD = "insert into VUELO values(" + "'" + CodVuelo + "', " + "'" + capacidad + "', "+ "'" + fecha +  "', "+ "'" + codpost_o + "', "+ "'" + codpost_d  + "'," +  "'" + precio  + "')";
 			int val;
 			val = state.executeUpdate( SelectBD );
 			
@@ -125,7 +125,7 @@ public class GestorTrabajador
 			rs = state.executeQuery(SelectBD);
 			while(rs.next())
 			{
-				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d")));
+				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d"), rs.getDouble("precio")));
 			}
 		} catch (SQLException e)
 		{

@@ -15,9 +15,10 @@ public class clsVuelo implements Serializable
 	String fecha;
 	String cod_postal_o;
 	String cod_postal_d;
+	double precio;
 	
 	
-	public clsVuelo(String cod_vuelo, int capacidad, String fecha, String cod_postal_o, String cod_postal_d) 
+	public clsVuelo(String cod_vuelo, int capacidad, String fecha, String cod_postal_o, String cod_postal_d, double precio) 
 	{
 		super();
 		this.cod_vuelo = cod_vuelo;
@@ -25,8 +26,17 @@ public class clsVuelo implements Serializable
 		this.fecha = fecha;
 		this.cod_postal_o = cod_postal_o;
 		this.cod_postal_d = cod_postal_d;
+		this.precio = precio;
 	}
 	
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
 	public int getCapacidad() {
 		return capacidad;
 	}
@@ -80,6 +90,8 @@ public class clsVuelo implements Serializable
 		salida.append(this.getCod_postal_o());
 		salida.append("Codigo postal destino:");
 		salida.append(this.getCod_postal_d());
+		salida.append("Precio por asiento:");
+		salida.append(this.precio);
 	
 		return salida.toString();
 	}
