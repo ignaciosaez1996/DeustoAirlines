@@ -88,7 +88,13 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		scrollPaneTable.setBounds(85, 401, 574, 142);
 		contentPane.add(scrollPaneTable);
 		
-		table = new JTable();
+		table = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+		};
 		scrollPaneTable.setViewportView(table);
 		
 		JButton btnAceptar = new JButton("ACEPTAR");

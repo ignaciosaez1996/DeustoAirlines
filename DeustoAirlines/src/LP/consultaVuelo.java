@@ -64,7 +64,16 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane_1.setViewportView(scrollPane);
 		
-		table = new JTable();
+		table = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+			
+			
+			
+		};
 		scrollPane.setViewportView(table);
 		
 		btnCancelar = new JButton("CANCELAR");
@@ -73,6 +82,9 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
+		
+		
+	
 		
 		JButton btnNewButton = new JButton("Cargar Tabla");
 		btnNewButton.addActionListener(new ActionListener()
@@ -85,6 +97,10 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 					PreparedStatement pat = connection.prepareStatement(query);
 					ResultSet rs = pat.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+					
+					
+				
 					
 				}catch(Exception e)
 				{

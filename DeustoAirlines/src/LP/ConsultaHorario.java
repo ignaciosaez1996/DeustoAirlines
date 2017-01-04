@@ -63,7 +63,13 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 		scrollPane.setBounds(70, 78, 706, 367);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable(){
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+			
+		};
 		scrollPane.setViewportView(table);
 		
 		btnCancelar = new JButton("CANCELAR");

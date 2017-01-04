@@ -118,7 +118,14 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		scrollPane.setBounds(40, 371, 677, 158);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+				
+		};
 		scrollPane.setViewportView(table);
 		
 		JButton btnCargarTabla = new JButton("Cargar tabla");

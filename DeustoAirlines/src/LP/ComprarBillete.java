@@ -109,7 +109,13 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		scrollPane.setBounds(10, 235, 900, 168);
 		contentPane.add(scrollPane);
 		
-		tabla = new JTable();
+		tabla = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+		};
 		JScrollPane scroll= new JScrollPane(tabla);
 		scrollPane.setViewportView(scroll);
 		
