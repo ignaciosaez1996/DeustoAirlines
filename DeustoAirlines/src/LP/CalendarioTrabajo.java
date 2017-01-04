@@ -116,6 +116,7 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		switch(e.getActionCommand())
 		{
 			case CMD_BTN_ACEPTAR:
+				this.dispose();
 				break;
 				
 			case CMD_BTN_CANCELAR:

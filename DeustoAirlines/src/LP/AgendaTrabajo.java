@@ -181,15 +181,12 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		String cod_vuelo = vueloSeleccionado;
 		String dni_tra = trabajadorSeleccionado.substring(0, 9);
 		registrado = gesTra.TareaRepetida(state, cod_vuelo, dni_tra);
-		System.out.println(registrado);
 		if(registrado != true)
 		{
 			gesTra.CrearTarea(state, cod_vuelo, dni_tra);
 			JOptionPane.showMessageDialog(this, "Tarea registrada");
+			this.dispose();
 		}
-		
-		this.dispose();
-		
 	}
 	
 	public void llenarListaVuelos()
