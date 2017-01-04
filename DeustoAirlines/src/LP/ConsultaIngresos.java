@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
@@ -26,12 +28,10 @@ public class ConsultaIngresos extends JInternalFrame
 	public ConsultaIngresos()
 	{
 		createAndShowGUI();
-		
 	}
 
 	public void createAndShowGUI()
 	{
-	
 	contentPane = new JPanel();
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	setContentPane(contentPane);
@@ -65,6 +65,10 @@ public class ConsultaIngresos extends JInternalFrame
 	btnNewButton.setBounds(296, 11, 247, 46);
 	contentPane.add(btnNewButton);
 	
+	setVisible(true);
+	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	setTitle("Consulta de ingresos");
+	setBounds(70, 10, 950, 650);
 	
 	}
 }
