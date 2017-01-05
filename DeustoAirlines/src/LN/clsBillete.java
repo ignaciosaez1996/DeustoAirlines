@@ -6,8 +6,14 @@ public class clsBillete implements Serializable
 {
 	double precio;
 	String codigo_billete;
+	String Cod_vuelo;
 	
-	
+	public String getCod_vuelo() {
+		return Cod_vuelo;
+	}
+	public void setCod_vuelo(String cod_vuelo) {
+		Cod_vuelo = cod_vuelo;
+	}
 	public double getPrecio() 
 	{
 		return precio;
