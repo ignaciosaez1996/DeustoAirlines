@@ -266,11 +266,11 @@ public class GestorTrabajador
 		}
 	}
 	
-	public ArrayList<String> TotalIngresos(Statement state, Connection connection)
+	public ArrayList<Integer> TotalIngresos(Statement state, Connection connection)
 	{
 		try 
 		{
-			ArrayList<String> array = new ArrayList<String>();
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			String query = "select * from billete";
 			PreparedStatement pat = connection.prepareStatement(query);
 			ResultSet rs = pat.executeQuery();
@@ -278,7 +278,7 @@ public class GestorTrabajador
 			//Recorremos el cursor hasta que no haya más registros
 			do
 			{
-				String precio= rs.getString("precio");
+				int precio= rs.getInt("precio");
 			    array.add(precio);
 			} while(rs.next() == true);
 		     return array;

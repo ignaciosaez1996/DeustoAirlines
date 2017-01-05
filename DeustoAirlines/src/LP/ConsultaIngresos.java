@@ -457,16 +457,15 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	public void TotalIngresos()
 	{
 		gesTra = new GestorTrabajador();
-		ArrayList<String> totalIngresos = new ArrayList<String>();
+		ArrayList<Integer> totalIngresos = new ArrayList<Integer>();
 		totalIngresos = gesTra.TotalIngresos(state, connection);
 		System.out.println("Total Ingresos = "  + totalIngresos.toString());
-		String total=null;
+		int total=0;
 		if(totalIngresos.size()>=1)
 		{
-			for(int i=0; i<totalIngresos.size(); i++)
+			for(int i=0; i<totalIngresos.size()-1; i++)
 			{
 				total = total + totalIngresos.get(i);
-				i++;
 			}
 		}
 		System.out.println("Total = " +total);
