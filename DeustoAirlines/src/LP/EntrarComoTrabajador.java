@@ -24,6 +24,7 @@ import LD.BasesDeDatos;
 import LN.GestorCliente;
 import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
+
 import javax.swing.JScrollPane;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
@@ -50,6 +51,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private final static int y = (680) - (480);	
 	private JTable table_1;
 	private JScrollPane scrollPane;
+	private JLabel lbliconoData;
 
 	
 	public EntrarComoTrabajador() 
@@ -122,6 +124,11 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		
 		table_1 = new JTable();
 		scrollPane.setViewportView(table_1);
+		
+		lbliconoData = new JLabel("");
+		lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/AvionNoche.jpg")));
+		lbliconoData.setBounds(0, -45, 1059, 408);
+		getContentPane().add(lbliconoData);
 	}
 
 	@Override

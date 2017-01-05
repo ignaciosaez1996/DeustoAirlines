@@ -1,5 +1,6 @@
 package LP;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,6 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -24,7 +26,7 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 	private JPanel contentPane;
 	private JButton btnTrabajador;
 	private JButton btnCliente;
-
+	private JLabel lbliconoData;
 	
 	/**
 	 * Constructor sin parámetros.
@@ -41,17 +43,10 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 	private void createAndShowGUI()
 	{
 	
-		{
-			/*setMaximizedBounds(true);
-			setIconifiable(true);
-			setResizable(true);
-			setClosable(true);
-			*/		
-			
+		{			
 			setForeground(Color.BLACK);
 			setTitle("Acceder como cliente");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
 			setBounds(450, 200, 445, 400);
 			
 			contentPane = new JPanel();
@@ -73,6 +68,11 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 			btnCliente.setActionCommand(CMD_BTN_NOREGISTRADO);
 			btnCliente.addActionListener(this);
 			contentPane.add(btnCliente);
+			
+			lbliconoData = new JLabel("");
+			lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/equipajehombre.jpg")));
+			lbliconoData.setBounds(-313, -45, 1059, 408);
+			getContentPane().add(lbliconoData);
 		
 		}
 	}
