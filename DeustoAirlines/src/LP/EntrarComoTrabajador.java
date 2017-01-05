@@ -26,6 +26,7 @@ import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
 import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
 
 public class EntrarComoTrabajador extends JFrame implements ActionListener
 {
@@ -34,7 +35,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private JLabel 	   		lblDNI;
 	private JLabel 	   		lblContrasena;
-	private JLabel 	   		lblSingUpIcon;
 
 	
 	private JButton    		btnAceptar;
@@ -52,35 +52,70 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private JTable table_1;
 	private JScrollPane scrollPane;
 	private JLabel lbliconoData;
-
+	private JComboBox comboBox;
 	
 	public EntrarComoTrabajador() 
 	{
 		createAndShowGUI();	
+		
 		connection = BasesDeDatos.getConnection();
+		llenarCombo();
 	}
 	
 	private void createAndShowGUI() 	
 	{	
+		
+		 comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				try{
+					
+				
+				String query = "select * from trabajador where dni_tra = ?";
+				PreparedStatement pat = connection.prepareStatement(query);
+				pat.setString(1, (String)comboBox.getSelectedItem());
+				
+				ResultSet rs = pat.executeQuery();	
+				
+				while(rs.next())
+				{
+					txtDNI.setText(rs.getString("dni_tra"));
+					passwordField.setText(rs.getString("contrasenya_tra"));
+					
+					
+				}
+				
+				}
+				catch(Exception ex)
+				{
+					ex.printStackTrace();
+				}
+				
+				
+			}
+		});
+		comboBox.setBounds(33, 11, 190, 41);
+		getContentPane().add(comboBox);
 		lblDNI = new JLabel("Introduzca el DNI (debe contener 9 caracteres): ");
 		lblDNI.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblDNI.setHorizontalAlignment(SwingConstants.LEFT);
-		lblDNI.setBounds(33, 64, 299, 17);
+		lblDNI.setBounds(33, 92, 299, 17);
 		getContentPane().add(lblDNI);
 		
 		txtDNI = new JTextField();
-		txtDNI.setBounds(33, 105, 274, 35);
+		txtDNI.setBounds(33, 131, 274, 35);
 		getContentPane().add(txtDNI);
 		txtDNI.setColumns(10);
 		
 		lblContrasena = new JLabel("Introduzca la contraseña: ");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
 		lblContrasena.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblContrasena.setBounds(33, 162, 190, 14);
+		lblContrasena.setBounds(33, 202, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(33, 198, 274, 35);
+		passwordField.setBounds(33, 238, 274, 35);
 		getContentPane().add(passwordField);
 		
 		
@@ -97,11 +132,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		getContentPane().add(btnCancelar);
-		
-		lblSingUpIcon = new JLabel("");
-		lblSingUpIcon.setIcon(new ImageIcon(EntrarComoTrabajador.class.getResource("/imagenes/Sign-up-icon.png")));
-		lblSingUpIcon.setBounds(-15, 244, 106, 100);
-		getContentPane().add(lblSingUpIcon);
 				
 		
 		setVisible(true);
@@ -129,6 +159,31 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/AvionNoche.jpg")));
 		lbliconoData.setBounds(0, -45, 1059, 408);
 		getContentPane().add(lbliconoData);
+	}
+	
+	
+	public void llenarCombo()
+	{
+		try{
+		
+		
+	String query = "select * from trabajador ";
+	PreparedStatement pat = connection.prepareStatement(query);
+	
+	
+	ResultSet rs = pat.executeQuery();	
+	
+	while(rs.next())
+	{
+		comboBox.addItem(rs.getString("dni_tra"));
+	}
+	
+	}
+	catch(Exception ex)
+	{
+		ex.printStackTrace();
+	}
+		
 	}
 
 	@Override

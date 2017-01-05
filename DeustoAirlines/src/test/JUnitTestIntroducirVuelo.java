@@ -23,10 +23,8 @@ public class JUnitTestIntroducirVuelo extends TestCase
 	
 	public void setUp() throws Exception 
 	{
-
 		gc = new GestorTrabajador();
 		vuelo = new ArrayList<clsVuelo>();
-		//BasesDeDatos.initBD("test.bd");
 		BasesDeDatos.initBD("DeustoAirlinesBD");
 		BasesDeDatos.crearTablaVueloBD();
 	}
