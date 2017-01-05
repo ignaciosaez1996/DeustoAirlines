@@ -243,9 +243,9 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void Historial() 
 	{
-		//Historial objHistorial = new Historial();	
-		//objHistorial.setVisible(true);
-		//panel.add(objHistorial);	
+		HistorialCompras objHistorial = new HistorialCompras(correo);	
+		objHistorial.setVisible(true);
+		panel.add(objHistorial);	
 	}
 
 	private void Justificante() 
