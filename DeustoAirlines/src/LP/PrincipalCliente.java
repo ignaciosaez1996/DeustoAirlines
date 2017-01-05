@@ -226,9 +226,9 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void CancelarBillete() 
 	{
-		//	CancelarBillete objCancel = new CancelarBillete();	
-		//objCancel.setVisible(true);
-		//panel.add(objCancel);	
+		CancelarBillete objCancel = new CancelarBillete(correo);	
+		objCancel.setVisible(true);
+		panel.add(objCancel);	
 	}
 
 	private void ConsultarHorarios() 
