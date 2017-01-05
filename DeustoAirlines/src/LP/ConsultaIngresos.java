@@ -423,7 +423,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	JButton btnTotalIngresos = new JButton("TOTAL INGRESOS");
 	btnTotalIngresos.setActionCommand(CMD_TOTALINGRESOS);
 	btnTotalIngresos.addActionListener(this);
-	btnTotalIngresos.setBounds(218, 550, 121, 35);
+	btnTotalIngresos.setBounds(169, 550, 170, 35);
 	contentPane.add(btnTotalIngresos);
 	
 	setVisible(true);
