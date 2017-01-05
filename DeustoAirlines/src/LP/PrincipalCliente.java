@@ -250,8 +250,8 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void Justificante() 
 	{
-		//Justificante objHistorial = new Justificante();	
+		Justificante objHistorial = new Justificante();	
 		//objHistorial.setVisible(true);
-		//	panel.add(objHistorial);	
+		//panel.add(objHistorial);	
 	}
 }

@@ -68,7 +68,7 @@ public class Enviar_Correo extends JInternalFrame
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				//enviarCorreo();
+				enviarCorreo();
 			}
 		});
 		btnEnviar.setBounds(381, 293, 89, 23);
@@ -78,7 +78,7 @@ public class Enviar_Correo extends JInternalFrame
 	public void enviarCorreo()
 	{
 		//Hay que buscar una contraseña de aplicación para que funcione
-		c.setContrasenya("meteraquicontraseñadeaplicacion");
+		c.setContrasenya("skdykixwcvudpjkq");
 		c.setUsuarioCorreo(correo);
 		//Editar el asunto para que mande en el mensaje lo que nos interese
 		c.setAsunto(txtAsunto.getText());
