@@ -1,11 +1,15 @@
 package LP;
 
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,12 +19,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
+
+import static COMUN.Definiciones.CMD_BTN_ACEPTAR;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
+import static COMUN.Definiciones.CMD_TOTALINGRESOS;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
 
 import LD.BasesDeDatos;
+import LN.GestorTrabajador;
+
 import javax.swing.JLabel;
 
 public class ConsultaIngresos extends JInternalFrame implements ActionListener
@@ -59,11 +68,14 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	String operations;
 	double result;
 	private JButton btnNewButton_1;
+	Statement state = BasesDeDatos.getStatement();
+	GestorTrabajador  gesTra;
 	
 	public ConsultaIngresos()
 	{
-		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
+		createAndShowGUI();
+		
 	}
 
 	public void createAndShowGUI()
@@ -359,14 +371,6 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	button_18.setFont(new Font("Tahoma", Font.PLAIN, 18));
 	button_18.setBounds(840, 224, 54, 50);
 	contentPane.add(button_18);
-
-	
-	
-	
-	
-
-	
-	
 	
 	scrollPane = new JScrollPane();
 	scrollPane.setBounds(39, 119, 529, 263);
@@ -416,6 +420,12 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	lblUtiliceLaCalculadora.setBounds(616, 32, 290, 58);
 	contentPane.add(lblUtiliceLaCalculadora);
 	
+	JButton btnTotalIngresos = new JButton("TOTAL INGRESOS");
+	btnTotalIngresos.setActionCommand(CMD_TOTALINGRESOS);
+	btnTotalIngresos.addActionListener(this);
+	btnTotalIngresos.setBounds(218, 550, 121, 35);
+	contentPane.add(btnTotalIngresos);
+	
 	setVisible(true);
 	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	setTitle("Consulta de ingresos");
@@ -424,9 +434,42 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void actionPerformed(ActionEvent e)
+	{
+		switch(e.getActionCommand())
+		{
+			case CMD_BTN_CANCELAR:
+				this.dispose();
+				break;
+				
+			case CMD_TOTALINGRESOS:
+				boolean existenBilletes; //Devolvera false en caso de que no existan
+				gesTra = new GestorTrabajador();
+				existenBilletes = gesTra.ExistenBilletes(state);
+				if(existenBilletes == true)
+				{
+					TotalIngresos();
+				}
+				break;
+		}
 	}
-
+	
+	public void TotalIngresos()
+	{
+		gesTra = new GestorTrabajador();
+		ArrayList<String> totalIngresos = new ArrayList<String>();
+		totalIngresos = gesTra.TotalIngresos(state, connection);
+		System.out.println("Total Ingresos = "  + totalIngresos.toString());
+		String total=null;
+		if(totalIngresos.size()>=1)
+		{
+			for(int i=0; i<totalIngresos.size(); i++)
+			{
+				total = total + totalIngresos.get(i);
+				i++;
+			}
+		}
+		System.out.println("Total = " +total);
+		JOptionPane.showMessageDialog(null, "El total de ingresos ha sido de " +total+ "€");
+	}
 }

@@ -36,6 +36,7 @@ public class Definiciones extends Exception
 	public final static String CMD_CALENDARIO = "CMD_CALENDARIO";
 	public final static String CMD_ELEGIRTRABAJADOR = "CMD_ELEGIRTRABAJADOR";
 	public final static String CMD_VERTRABAJADORES = "CMD_VERTRABAJADORES";
+	public final static String CMD_TOTALINGRESOS = "CMD_TOTALINGRESOS";
 	
 	
 	

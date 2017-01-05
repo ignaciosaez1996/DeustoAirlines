@@ -1,5 +1,6 @@
 package LN;
 
+import java.awt.HeadlessException;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -183,30 +184,37 @@ public class GestorTrabajador
 		}
 	}
 	
-	public ArrayList<String> CodTarea(Statement state, String dni_tra)
-	{
-		ArrayList<String> array = new ArrayList<String>();
-		try
+	public ArrayList<String> CodTarea(Statement state, String dni_tra, Connection connection)
+	{		
+		try 
 		{
+			ArrayList<String> array = new ArrayList<String>();
 			String query = "select cod_vuelo from TAREA where (dni_tra = '" + dni_tra + "')";
-			ResultSet rs;
-			rs = state.executeQuery(query);
-			if(rs.next())
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+	
+			//Recorremos el cursor hasta que no haya más registros
+			if(rs.next()==true)
 			{
-				array.add(rs.getString("cod_vuelo"));
+				do
+				{
+					String cod_vuelo= rs.getString("cod_vuelo");
+					array.add(cod_vuelo);
+				} while(rs.next() == true);
+				return array;
 			}
 			else
 			{
 				JOptionPane.showMessageDialog(null, "El trabajador seleccionado no tiene tareas asignadas");
 				return null;
 			}
+
 		} catch (SQLException e)
 		{
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "El trabajador seleccionado no tiene tareas asignadas");
+			e.printStackTrace();
 			return null;
 		}
-		return array;
 	}
 	
 	//Devolverá true si la tarea ya está registrada
@@ -230,6 +238,56 @@ public class GestorTrabajador
 		{
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	//Devolverá true si la tabla de billetes existe
+	public boolean ExistenBilletes(Statement state)
+	{	
+		try 
+		{
+			String query = "select * from billete";
+			ResultSet rs = state.executeQuery(query);
+			if(rs.next())
+			{
+				rs.close();
+				return true;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "No hay billetes vendidos");
+				return false;
+			}
+		}catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, "No hay billetes vendidos");
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public ArrayList<String> TotalIngresos(Statement state, Connection connection)
+	{
+		try 
+		{
+			ArrayList<String> array = new ArrayList<String>();
+			String query = "select * from billete";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+	
+			//Recorremos el cursor hasta que no haya más registros
+			do
+			{
+				String precio= rs.getString("precio");
+			    array.add(precio);
+			} while(rs.next() == true);
+		     return array;
+
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

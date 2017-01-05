@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -35,14 +36,14 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable table;
+	private JList listVuelos;
 	private JList list;
 	Connection connection = BasesDeDatos.getConnection();
 	String trabajadorSeleccionado;
 	
 	public CalendarioTrabajo()
 	{
-		
+		connection = BasesDeDatos.getConnection();
 		createAndShowGUI();
 		CargarLista();
 	}
@@ -88,14 +89,8 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		scrollPaneTable.setBounds(85, 401, 574, 142);
 		contentPane.add(scrollPaneTable);
 		
-		table = new JTable()
-		{
-			public boolean isCellEditable ( int rowIndez, int colIndex)
-			{
-				return false;
-			}
-		};
-		scrollPaneTable.setViewportView(table);
+		listVuelos = new JList();
+		scrollPaneTable.setViewportView(listVuelos);
 		
 		JButton btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
@@ -148,25 +143,28 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		GestorTrabajador  gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
 		String dni_tra = trabajadorSeleccionado.substring(0, 9);
-		ArrayList<String> rs = gesTra.CodTarea(state, dni_tra);
-		
+		ArrayList<String> rs = gesTra.CodTarea(state, dni_tra, connection);
 		if(rs!=null)
 		{
-			for(int i=0; i<=rs.size();i++)
+			DefaultListModel DL = new DefaultListModel();
+			ResultSet rs1;
+			for(int i=0; i<rs.size();i++)
 			{
 				try 
 				{
 					String query = "select * from VUELO where (cod_vuelo = '" + rs.get(i) + "' )";
 					PreparedStatement pat;
 					pat = connection.prepareStatement(query);
-					ResultSet rs1 = pat.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs1));
+					rs1 = pat.executeQuery();
+					DL.addElement(rs1.getString("cod_vuelo").concat(" --- ").concat(rs1.getString("fecha").concat(" --- ").concat(rs1.getString("cod_postal_o")).concat(" --- ").concat(rs1.getString("cod_postal_d"))));
+					
 				} catch (SQLException e)
 				{
 					JOptionPane.showMessageDialog(null, "La creación de tabla ha fallado");
 					e.printStackTrace();
 				}
 			}
+			listVuelos.setModel(DL);
 		}
 	}
 	
