@@ -90,7 +90,8 @@ public class GestorTrabajador
 	public boolean CancelarVuelo(Statement state, String cod_vuelo)
 	{
 		String SelectBD1 = "select * from vuelo";
-		String SelectBD2 = "delete * from vuelo where (cod_vuelo = '" + cod_vuelo + "')";
+		//String SelectBD2 = "delete * from vuelo where (cod_vuelo = '" + cod_vuelo + "')";
+		String SelectBD2 = "delete * from vuelo where (cod_vuelo = " + cod_vuelo + ")";
 		
 		try 
 		{
