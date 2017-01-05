@@ -166,7 +166,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		
 		mnitmHistorial = new JMenuItem("Historial de compras");
 		mnitmHistorial.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
-		mnitmHistorial.setActionCommand(null);
+		mnitmHistorial.setActionCommand(CMD_HISTORIAL);
 		mnitmHistorial.addActionListener(this);
 		mnHistorial.add(mnitmHistorial);
 		

@@ -38,7 +38,7 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 	private JPanel contentPane;
 	private JList listVuelos;
 	private JList list;
-	Connection connection = BasesDeDatos.getConnection();
+	Connection connection;
 	String trabajadorSeleccionado;
 	
 	public CalendarioTrabajo()
