@@ -1,8 +1,12 @@
 package LN;
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -150,8 +154,36 @@ public class GestorCliente
 		}
 	}
 	
-	public void JustificanteCompra()//Properties
+	public ArrayList<String> CodVuelo(Statement state, String correo, Connection connection)
 	{
 		
+		
+		//Recorremos el cursor hasta que no haya más registros
+		try 
+		{
+			ArrayList<String> array = new ArrayList<String>();
+			String query = "select cod_vuelo from BILLETE where (correo = '" + correo + "')";
+			PreparedStatement par = connection.prepareStatement(query);
+			ResultSet rs = par.executeQuery();
+			if(rs.next()==true)
+			{
+				do
+				{
+					String cod_vuelo = rs.getString("Cod_vuelo");
+					array.add(cod_vuelo);
+				}while(rs.next()==true);
+				return array;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "No tiene billetes comprados");
+				return null;
+			}
+		}catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(null, "No tiene billetes comprados");
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
