@@ -93,6 +93,11 @@ import LN.clsBillete;
 			btnEliminar_1.setBounds(277, 490, 102, 30);
 			contentPane.add(btnEliminar_1);
 			
+			setVisible(true);
+			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			setTitle("Cancelar Billete");
+			setBounds(70, 10, 950, 650);
+			
 		}
 			
 		public void construirTabla()

@@ -135,7 +135,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		mnInicio.add(mnitmComprBille);
 		
 		mnitmCancBille = new JMenuItem("Cancelar billete");
-		mnitmCancBille.setActionCommand(null);
+		mnitmCancBille.setActionCommand(CMD_CANCELARBILLETE);
 		mnitmCancBille.addActionListener(this);
 		mnInicio.add(mnitmCancBille);
 		
