@@ -241,8 +241,6 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		panel.add(objHorario);	
 	}
 
-
-
 	private void Historial() 
 	{
 		//Historial objHistorial = new Historial();	

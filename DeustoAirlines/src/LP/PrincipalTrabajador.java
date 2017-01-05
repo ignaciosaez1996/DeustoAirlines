@@ -52,17 +52,11 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	 */
 	public final static int panelWidth = 1400;
 	public final static int panelHeight = 680;
-	
-	
-	
 
-	
 	/**
 	 * Constructor sin parámetros.
 	 * @param usuario Nombre del usuario que accede al menu.
 	 */
-	
-	
 	public PrincipalTrabajador( ) 
 	{
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
