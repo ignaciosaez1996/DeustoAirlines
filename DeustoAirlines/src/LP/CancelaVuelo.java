@@ -1,5 +1,7 @@
 package LP;
 
+import static COMUN.Definiciones.CMD_BTN_CANCELAR;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -76,7 +78,7 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 				
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setBounds(328, 11, 142, 44);
 		contentPane.add(btnNewButton);
 		
@@ -88,7 +90,7 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEligeElCodigo = new JLabel("Elige el codigo de vuelo que quiera eliminar");
-		lblEligeElCodigo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEligeElCodigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEligeElCodigo.setBounds(97, 261, 373, 44);
 		contentPane.add(lblEligeElCodigo);
 		
@@ -110,22 +112,19 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		JButton btnEliminar = new JButton("ELIMINAR");
 		btnEliminar.setActionCommand("ELIMINAR");
 		btnEliminar.addActionListener(this);
-		btnEliminar.setBounds(417, 313, 118, 50);
+		btnEliminar.setBounds(492, 312, 118, 50);
 		contentPane.add(btnEliminar);
 		
 		JButton btnCancelar = new JButton("CANCELAR");
-	
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnCancelar.setBounds(417, 388, 118, 50);
+		btnCancelar.setActionCommand("CANCELAR");
+		btnCancelar.addActionListener(this);
+		btnCancelar.setBounds(492, 388, 118, 50);
 		contentPane.add(btnCancelar);
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Cancelar Vuelo");
-		setBounds(70, 10, 790, 540);
+		setBounds(80, 30, 859, 540);
 		
 	}
 	
@@ -158,9 +157,14 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		switch(arg0.getActionCommand())
 		{
 			case "ELIMINAR":
-				
-				EliminarVuelo();
-			
+				boolean aviso = false;			
+				aviso = this.Aviso();
+				if(aviso!=true)
+				{
+					this.EliminarVuelo();
+					this.dispose();
+				}
+				break;
 			
 			case "CANCELAR":
 				this.dispose();
@@ -169,10 +173,33 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		
 	}
 	
+	/**
+	 * Método que nos permite lanza un mensaje de confirmación al usuario.	  
+	 * @return aviso : devuelve true o false según la opción del usuario.
+	 */
+	private boolean Aviso() 
+	{
+		boolean aviso = false;
+		 int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar?", "DeustoAirlines - Aviso",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	    
+	    if (respuesta == JOptionPane.NO_OPTION) 
+	    {
+	      aviso = true;
+	    } 
+	    else if (respuesta == JOptionPane.YES_OPTION) 
+	    {
+	      aviso = false;
+	    } 
+	    else if (respuesta == JOptionPane.CLOSED_OPTION) 
+	    {
+	      aviso = true;
+	    }
+	    
+		return aviso;		
+	}
 	
 	public void EliminarVuelo()
 	{
-		
 		GestorTrabajador  gesTra = new GestorTrabajador();
 		Statement state = BasesDeDatos.getStatement();
 
