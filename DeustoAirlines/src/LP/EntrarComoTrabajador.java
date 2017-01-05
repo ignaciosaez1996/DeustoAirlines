@@ -60,12 +60,13 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		
 		connection = BasesDeDatos.getConnection();
 		llenarCombo();
+		VerTrabajadores();
 	}
 	
 	private void createAndShowGUI() 	
 	{	
 		
-		 comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -141,15 +142,8 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		setBounds(250, 200 , 900, 400);
 		getContentPane().setLayout(null);
 		
-		JButton btnVerLosTrabajadores = new JButton("VER LOS TRABAJADORES");
-		btnVerLosTrabajadores.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnVerLosTrabajadores.setActionCommand(CMD_VERTRABAJADORES);
-		btnVerLosTrabajadores.addActionListener(this);
-		btnVerLosTrabajadores.setBounds(456, 40, 244, 41);
-		getContentPane().add(btnVerLosTrabajadores);
-		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(373, 92, 501, 199);
+		scrollPane.setBounds(373, 54, 501, 149);
 		getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
@@ -164,25 +158,27 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	
 	public void llenarCombo()
 	{
-		try{
+		
+	try
+	{
 		
 		
-	String query = "select * from trabajador ";
-	PreparedStatement pat = connection.prepareStatement(query);
+		String query = "select * from trabajador ";
+		PreparedStatement pat = connection.prepareStatement(query);
 	
 	
-	ResultSet rs = pat.executeQuery();	
+		ResultSet rs = pat.executeQuery();	
 	
-	while(rs.next())
-	{
-		comboBox.addItem(rs.getString("dni_tra"));
+		while(rs.next())
+		{
+			comboBox.addItem(rs.getString("dni_tra"));
+		}
+	
 	}
-	
-	}
-	catch(Exception ex)
-	{
-		ex.printStackTrace();
-	}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 		
 	}
 
@@ -207,9 +203,9 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 				Cancelar();
 				break;	
 				
-			case CMD_VERTRABAJADORES:
-				VerTrabajadores();
-				break;
+			//case CMD_VERTRABAJADORES:
+				//VerTrabajadores();
+				//break;
 				
 		} 
 	}
