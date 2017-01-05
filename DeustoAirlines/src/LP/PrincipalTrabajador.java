@@ -213,7 +213,7 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 
 	private void CancelarVuelo() 
 	{		
-		CancelarVuelo objCancelar = new CancelarVuelo();	
+		CancelaVuelo objCancelar = new CancelaVuelo();	
 		objCancelar.setVisible(true);
 		panel.add(objCancelar);	
 	}

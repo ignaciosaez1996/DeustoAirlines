@@ -29,6 +29,9 @@ import LD.BasesDeDatos;
 import LN.GestorTrabajador;
 
 import LN.clsVuelo;
+import javax.swing.JList;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class CancelarVuelo extends JInternalFrame implements ActionListener
 {
@@ -98,14 +101,14 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		this.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(70, 78, 706, 367);
+		scrollPane.setBounds(32, 68, 706, 164);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(490, 490, 102, 30);
+		btnCancelar.setBounds(490, 488, 102, 30);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
@@ -121,8 +124,17 @@ public class CancelarVuelo extends JInternalFrame implements ActionListener
 		btnEliminar_1 = new JButton("ELIMINAR");
 		btnEliminar_1.addActionListener(this);
 		btnEliminar_1.setActionCommand(CMD_BTN_ELIMINAR);
-		btnEliminar_1.setBounds(277, 490, 102, 30);
+		btnEliminar_1.setBounds(490, 414, 102, 30);
 		contentPane.add(btnEliminar_1);
+		
+		JList list = new JList();
+		list.setBounds(181, 313, 214, 205);
+		contentPane.add(list);
+		
+		JLabel lblEligaElCodigo = new JLabel("Eliga el codigo de vuelo que quiera eliminar");
+		lblEligaElCodigo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblEligaElCodigo.setBounds(42, 258, 380, 36);
+		contentPane.add(lblEligaElCodigo);
 		
 	}
 		
