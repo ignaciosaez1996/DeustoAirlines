@@ -106,7 +106,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Acceder como trabajador");
 		//setBounds(x, y, 737, 400);
-		setBounds(100,40 , 900, 400);
+		setBounds(250, 200 , 900, 400);
 		getContentPane().setLayout(null);
 		
 		JButton btnVerLosTrabajadores = new JButton("VER LOS TRABAJADORES");

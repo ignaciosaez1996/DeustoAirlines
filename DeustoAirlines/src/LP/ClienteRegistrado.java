@@ -1,3 +1,4 @@
+
 package LP;
 
 import java.awt.Font;
@@ -94,7 +95,7 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setTitle("Acceso para los clientes registrados");
-		setBounds(x, y, 384, 349);
+		setBounds(480, 240, 384, 349);
 		getContentPane().setLayout(null);
 		
 

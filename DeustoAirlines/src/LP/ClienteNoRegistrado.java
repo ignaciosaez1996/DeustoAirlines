@@ -32,48 +32,44 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	private JPasswordField  passwordField;
 	private JTextField      txtNombre;
 	
-	private final static int x = (1400/2) - ((int)465/2);
-	private final static int y = (680/2) - (480/2);	
-	
-
 	
 	public ClienteNoRegistrado() 
 	{
 		createAndShowGUI();	
-	
 	}
+	
 	private void createAndShowGUI() 	
 	{		
-		lblcorreo = new JLabel(" Introduzca el correo electrónico:");
+		lblcorreo = new JLabel("Introduzca el correo electrónico:");
 		lblcorreo.setFont(new Font("Calibri", Font.BOLD, 14));
 		lblcorreo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblcorreo.setBounds(20, 121, 255, 17);
+		lblcorreo.setBounds(70, 121, 255, 17);
 		getContentPane().add(lblcorreo);
 		
 		txtCorreo = new JTextField();
-		txtCorreo.setBounds(20, 152, 257, 32);
+		txtCorreo.setBounds(70, 152, 257, 32);
 		getContentPane().add(txtCorreo);
 		txtCorreo.setColumns(10);
 		
 		lblContrasena = new JLabel("Introduzca la contraseña: ");
 		lblContrasena.setHorizontalAlignment(SwingConstants.LEFT);
 		lblContrasena.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblContrasena.setBounds(20, 209, 190, 14);
+		lblContrasena.setBounds(70, 209, 190, 14);
 		getContentPane().add(lblContrasena);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(20, 250, 257, 32);
+		passwordField.setBounds(70, 250, 257, 32);
 		getContentPane().add(passwordField);
 		
 		JLabel lblIntroduzcaSuNombre = new JLabel("Introduzca su nombre y apellido: ");
 		lblIntroduzcaSuNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		lblIntroduzcaSuNombre.setFont(new Font("Calibri", Font.BOLD, 14));
-		lblIntroduzcaSuNombre.setBounds(20, 38, 255, 17);
+		lblIntroduzcaSuNombre.setBounds(70, 38, 255, 17);
 		getContentPane().add(lblIntroduzcaSuNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(20, 66, 257, 32);
+		txtNombre.setBounds(70, 66, 257, 32);
 		getContentPane().add(txtNombre);
 
 		
@@ -95,7 +91,7 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);	
 		setTitle("Acceso para los clientes no registrados");
-		setBounds(x, y, 455, 402);
+		setBounds(440, 200, 455, 402);
 		getContentPane().setLayout(null);
 		
 		
