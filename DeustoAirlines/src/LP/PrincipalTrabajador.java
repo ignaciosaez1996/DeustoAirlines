@@ -98,20 +98,17 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnInicio = new JMenu("Vuelos");
 		menuBar.add(mnInicio);
 		
-		mnitmConsVuelo = new JMenuItem("Consultar vuelos");		
-		//mnitmConsVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
+		mnitmConsVuelo = new JMenuItem("Consultar vuelos");			
 		mnitmConsVuelo.setActionCommand(CMD_CONSULTAVUELO);
 		mnitmConsVuelo.addActionListener(this);
 		mnInicio.add(mnitmConsVuelo);
 		
 		mnitmCreaerVuelo = new JMenuItem("Crear vuelos");		
-		//mnitmCreaerVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
 		mnitmCreaerVuelo.setActionCommand(CMD_CREARVUELO);
 		mnitmCreaerVuelo.addActionListener(this);
 		mnInicio.add(mnitmCreaerVuelo);
 		
 		mnitmCancVuelo = new JMenuItem("Cancelar vuelos");		
-		//mnitmCancVuelo.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));		
 		mnitmCancVuelo.setActionCommand(CMD_CANCELARVUELO);
 		mnitmCancVuelo.addActionListener(this);
 		mnInicio.add(mnitmCancVuelo);
@@ -122,7 +119,6 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		
 		mnitmSalir = new JMenuItem("Salir");			
 		mnitmSalir.setActionCommand(CMD_SALIR);
-		//mnitmSalir.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/exit_icon.png")));
 		mnitmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
 		mnitmSalir.addActionListener(this);
 		mnInicio.add(mnitmSalir);
@@ -132,13 +128,11 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		menuBar.add(mnAgenda);
 		
 		mnitmAgenda = new JMenuItem("Agenda de trabajo");
-		//mnitmCancBille.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmAgenda.setActionCommand(CMD_AGENDA);
 		mnitmAgenda.addActionListener(this);
 		mnAgenda.add(mnitmAgenda);
 		
 		mnitmCalendario = new JMenuItem("Calendario de trabajo");
-		//mnitmCancBille.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
 		mnitmCalendario.setActionCommand(CMD_CALENDARIO);
 		mnitmCalendario.addActionListener(this);
 		mnAgenda.add(mnitmCalendario);
@@ -147,12 +141,10 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		menuBar.add(mnIngreso);
 		
 		mnitmConsIngresos = new JMenuItem("Consultar ingresos");		
-		//mnitmConsIngresos.setIcon(new ImageIcon(frmMenuUsuario.class.getResource("/imagenes/lista.png")));
-		//mnitmConsIngresos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
+		mnitmConsIngresos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK));
 		mnitmConsIngresos.setActionCommand(CMD_INGRESOS);
 		mnitmConsIngresos.addActionListener(this);
 		mnIngreso.add(mnitmConsIngresos);
-		
 		
 		getContentPane().setLayout(null);		
 		
