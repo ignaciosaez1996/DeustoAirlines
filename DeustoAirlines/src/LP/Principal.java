@@ -53,7 +53,7 @@ public class Principal extends JFrame implements ActionListener
 		setForeground(Color.BLACK);
 		setTitle("MENÚ PRINCIPAL");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(450, 200, 445, 400);
+		setBounds(450, 200, 549, 453);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +63,7 @@ public class Principal extends JFrame implements ActionListener
 		
 		btnTrabajador = new JButton("ENTRAR COMO TRABAJADOR");
 		btnTrabajador.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-		btnTrabajador.setBounds(68, 149, 308, 57);
+		btnTrabajador.setBounds(108, 151, 333, 75);
 		btnTrabajador.setActionCommand(CMD_BTN_TRABAJADOR);
 		contentPane.add(btnTrabajador);
 		btnTrabajador.addActionListener(this);
@@ -71,20 +71,20 @@ public class Principal extends JFrame implements ActionListener
 		
 		btnCliente = new JButton("ENTRAR COMO CLIENTE");
 		btnCliente.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-		btnCliente.setBounds(68, 247, 308, 57);
+		btnCliente.setBounds(108, 281, 333, 75);
 		btnCliente.setActionCommand(CMD_BTN_CLIENTE);
 		btnCliente.addActionListener(this);
 		contentPane.add(btnCliente);
 		
 		lblBienvenidoADeustoairlines = new JLabel("BIENVENIDO A DEUSTOAIRLINES");
 		lblBienvenidoADeustoairlines.setFont(new Font("Tekton Pro Ext", Font.ITALIC, 22));
-		lblBienvenidoADeustoairlines.setBounds(23, 11, 425, 116);
+		lblBienvenidoADeustoairlines.setBounds(69, 11, 425, 116);
 		contentPane.add(lblBienvenidoADeustoairlines);
 		btnCliente.addActionListener(this);
 
 		lbliconoData = new JLabel("");
 		lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/avion.jpg")));
-		lbliconoData.setBounds(-313, -45, 1059, 408);
+		lbliconoData.setBounds(-313, -45, 1164, 499);
 		getContentPane().add(lbliconoData);
 
 	}

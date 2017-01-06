@@ -143,7 +143,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		getContentPane().setLayout(null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(373, 54, 501, 149);
+		scrollPane.setBounds(373, 54, 501, 141);
 		getContentPane().add(scrollPane);
 		
 		table_1 = new JTable();
