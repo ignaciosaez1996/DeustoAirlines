@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 public class clsBillete implements Serializable
 {
+	/**
+	 * Variables de la clase.
+	 */
 	double precio;
 	String codigo_billete;
 	String Cod_vuelo;
+	
 	
 	public String getCod_vuelo() {
 		return Cod_vuelo;

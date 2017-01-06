@@ -10,14 +10,25 @@ public class clsPersona implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Variables de la clase clsPersona
+	 */
 	private String nombre;
 
+	/**
+	 * Constructor vacío de la clase clsPersona
+	 */
 	
 	public clsPersona()
 	{
 		
 	}
 	
+	/**
+	 * Constructor con parametros de la clase clsPersona
+	 * @param nombre
+	 * @param contrasenya
+	 */
 	
 	public clsPersona(String nombre, String contrasenya) 
 	{

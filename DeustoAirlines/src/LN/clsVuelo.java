@@ -10,6 +10,9 @@ public class clsVuelo implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Atributos de la clase clsVuelo
+	 */
 	String cod_vuelo;
 	int capacidad;
 	String fecha;
@@ -17,7 +20,15 @@ public class clsVuelo implements Serializable
 	String cod_postal_d;
 	double precio;
 	
-	
+	/**
+	 * Constructor con parametros de la clase clsVuelo
+	 * @param cod_vuelo
+	 * @param capacidad
+	 * @param fecha
+	 * @param cod_postal_o
+	 * @param cod_postal_d
+	 * @param precio
+	 */
 	public clsVuelo(String cod_vuelo, int capacidad, String fecha, String cod_postal_o, String cod_postal_d, double precio) 
 	{
 		super();
