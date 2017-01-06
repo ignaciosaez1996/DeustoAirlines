@@ -75,6 +75,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	{
 		connection = BasesDeDatos.getConnection();
 		createAndShowGUI();
+		CargarTabla();
 		
 	}
 
@@ -373,7 +374,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	contentPane.add(button_18);
 	
 	scrollPane = new JScrollPane();
-	scrollPane.setBounds(39, 119, 529, 263);
+	scrollPane.setBounds(39, 102, 529, 280);
 	contentPane.add(scrollPane);
 	
 	table = new JTable()
@@ -384,29 +385,6 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	};
 	scrollPane.setViewportView(table);
-	
-	JButton btnNewButton = new JButton("Cargar tabla de los billetes");
-	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	btnNewButton.addActionListener(new ActionListener()
-	{
-		public void actionPerformed(ActionEvent arg0)
-		{
-			try
-			{
-				String query = "select * from billete";
-				PreparedStatement pat = connection.prepareStatement(query);
-				ResultSet rs = pat.executeQuery();
-				table.setModel(DbUtils.resultSetToTableModel(rs));
-				
-						
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-	});
-	btnNewButton.setBounds(147, 62, 323, 46);
-	contentPane.add(btnNewButton);
 	
 	btnNewButton_1 = new JButton("CANCELAR");
 	btnNewButton_1.setActionCommand(CMD_BTN_CANCELAR);
@@ -431,6 +409,25 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	setTitle("Consulta de ingresos");
 	setBounds(70, 10, 950, 650);
 	
+	}
+	
+	
+	
+	public void CargarTabla()
+	{
+		try
+		{
+			String query = "select * from billete";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+					
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override

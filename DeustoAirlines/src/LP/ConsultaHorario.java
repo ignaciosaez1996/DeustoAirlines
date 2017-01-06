@@ -43,6 +43,7 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
+		LlenarTabla();
 		//setLocationRelativeTo(null);
 	}
 	
@@ -78,27 +79,23 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
-		
-		JButton btnNewButton = new JButton("Cargar Tabla");
-		btnNewButton.addActionListener(new ActionListener()
+	}
+	
+	
+	public void LlenarTabla()
+	{
+		try
 		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(223, 11, 247, 46);
-		contentPane.add(btnNewButton);
+			String query = "select * from vuelo";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 

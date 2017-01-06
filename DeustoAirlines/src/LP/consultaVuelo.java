@@ -42,6 +42,7 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
+		 LlenarTabla();
 	}
 	
 	private void createAndShowGUI()
@@ -82,34 +83,26 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
 		contentPane.add(btnCancelar);
-		
-		
+	}
 	
+	public void LlenarTabla()
+	{
 		
-		JButton btnNewButton = new JButton("Cargar Tabla");
-		btnNewButton.addActionListener(new ActionListener()
+		try
 		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-					
-					
+			String query = "select * from vuelo";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+			
 				
-					
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnNewButton.setBounds(296, 11, 247, 46);
-		contentPane.add(btnNewButton);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 	}
 
 	@Override
