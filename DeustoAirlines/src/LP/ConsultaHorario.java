@@ -29,8 +29,6 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 
 
-
-
 	JPanel contentPane;
 
 	private JTable table;

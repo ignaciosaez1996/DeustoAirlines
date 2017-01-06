@@ -146,7 +146,15 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		scrollPane.setBounds(373, 54, 501, 141);
 		getContentPane().add(scrollPane);
 		
-		table_1 = new JTable();
+		table_1 = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+			
+		};
+		
 		scrollPane.setViewportView(table_1);
 		
 		lbliconoData = new JLabel("");

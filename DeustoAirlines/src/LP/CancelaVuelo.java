@@ -64,7 +64,14 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		scrollPane.setBounds(47, 68, 667, 161);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
+		table = new JTable()
+		{
+			public boolean isCellEditable ( int rowIndez, int colIndex)
+			{
+				return false;
+			}
+			
+		};
 		scrollPane.setViewportView(table);
 		
 		JLabel lblEligeElCodigo = new JLabel("Elige el codigo de vuelo que quiera eliminar");

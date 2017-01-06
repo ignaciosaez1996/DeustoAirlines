@@ -72,8 +72,6 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 				return false;
 			}
 			
-			
-			
 		};
 		scrollPane.setViewportView(table);
 		
