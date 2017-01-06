@@ -55,8 +55,6 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	private JScrollPane scrollLista2;
 	private JScrollPane scrollLista3;
 
-	private final static int x = (1400) - ((int)465);
-	private final static int y = (680) - (480);	
 
 	Connection connection =  BasesDeDatos.getConnection();
 	
@@ -184,7 +182,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Compra de billete");
-		setBounds(70, 10, 950, 650);
+		setBounds(70, 10, 1000, 693);
 		getContentPane().setLayout(null);
 		
 		listCodPostalO = new JList();
@@ -237,8 +235,12 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			}
 		});
 		
-		setIconifiable(true);
-		setResizable(true);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Comprar Billete");
+		this.setBounds(260, 10, 1000, 1000);
+		
+		
 	}
 
 	

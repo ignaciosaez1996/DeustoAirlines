@@ -404,10 +404,10 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	btnTotalIngresos.setBounds(169, 550, 170, 35);
 	contentPane.add(btnTotalIngresos);
 	
-	setVisible(true);
-	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	setTitle("Consulta de ingresos");
-	setBounds(70, 10, 950, 650);
+	this.setVisible(true);
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	this.setTitle("Consulta de ingresos");
+	this.setBounds(260, 10, 950, 650);
 	
 	}
 	

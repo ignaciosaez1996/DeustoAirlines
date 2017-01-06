@@ -104,10 +104,10 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		btnCancelar.setBounds(427, 578, 112, 31);
 		contentPane.add(btnCancelar);
 		
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Calendario de Trabajo");
-		setBounds(70, 10, 746, 650);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Calendario de Trabajo");
+		this.setBounds(260, 10, 746, 650);
 	}
 	
 

@@ -51,6 +51,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		createAndShowGUI();
 		llenarListaVuelos();
 		llenarListaTrabajadores();
+		LlenarTabla();
 	}
 	
 	public void createAndShowGUI()
@@ -76,13 +77,13 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		contentPane.add(lblVuelosDisponibles);
 		
 		JButton btnAceptar = new JButton("ASIGNAR");
-		btnAceptar.setBounds(255, 552, 117, 33);
+		btnAceptar.setBounds(302, 552, 117, 33);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
 		btnAceptar.addActionListener(this);
 		contentPane.add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("CANCELAR");
-		btnCancelar.setBounds(410, 552, 117, 33);
+		btnCancelar.setBounds(490, 552, 117, 33);
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
@@ -115,7 +116,7 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		});
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(40, 371, 677, 158);
+		scrollPane.setBounds(40, 371, 790, 158);
 		contentPane.add(scrollPane);
 		
 		table = new JTable()
@@ -127,28 +128,6 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 				
 		};
 		scrollPane.setViewportView(table);
-		
-		JButton btnCargarTabla = new JButton("Cargar tabla");
-		btnCargarTabla.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCargarTabla.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent arg0)
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-					
-				}catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnCargarTabla.setBounds(335, 323, 127, 23);
-		contentPane.add(btnCargarTabla);
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -245,5 +224,23 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		{
 			JOptionPane.showInternalMessageDialog(null,"No hay trabajadores disponibles");
 		}
+	}
+	
+	public void LlenarTabla()
+	{
+		
+		try
+		{
+			String query = "select * from vuelo";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

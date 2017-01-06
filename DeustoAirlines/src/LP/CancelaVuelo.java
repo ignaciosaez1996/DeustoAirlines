@@ -48,6 +48,7 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
 		llenarLista();
+		LlenarTabla();
 	}
 	
 	private void createAndShowGUI()
@@ -59,31 +60,8 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("CARGAR TABLA");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) 
-			{
-				try
-				{
-					String query = "select * from vuelo";
-					PreparedStatement pat = connection.prepareStatement(query);
-					ResultSet rs = pat.executeQuery();
-					
-					table.setModel(DbUtils.resultSetToTableModel(rs));
-				}catch(Exception a)
-				{
-					a.printStackTrace();
-				}
-				
-				
-			}
-		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setBounds(328, 11, 142, 44);
-		contentPane.add(btnNewButton);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(47, 81, 667, 148);
+		scrollPane.setBounds(47, 68, 667, 161);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -121,10 +99,10 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		btnCancelar.setBounds(492, 388, 118, 50);
 		contentPane.add(btnCancelar);
 		
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Cancelar Vuelo");
-		setBounds(80, 30, 859, 540);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Cancelar Vuelo");
+		this.setBounds(260, 30, 859, 540);
 		
 	}
 	
@@ -148,6 +126,22 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		{
 			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
+	}
+	
+	public void LlenarTabla()
+	{
+		try
+		{
+			String query = "select * from vuelo";
+			PreparedStatement pat = connection.prepareStatement(query);
+			ResultSet rs = pat.executeQuery();
+			
+			table.setModel(DbUtils.resultSetToTableModel(rs));
+		}catch(Exception a)
+		{
+			a.printStackTrace();
+		}
+		
 	}
 	
 	

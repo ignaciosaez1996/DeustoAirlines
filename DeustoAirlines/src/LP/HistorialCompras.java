@@ -67,10 +67,10 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 		btnNewButton.setBounds(300, 230, 117, 38);
 		contentPane.add(btnNewButton);
 		
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Historial de compras");
-		setBounds(70, 10, 746, 650);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setTitle("Historial de compras");
+		this.setBounds(260, 10, 746, 650);
 	}
 	
 	@Override
