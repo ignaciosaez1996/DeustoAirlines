@@ -41,8 +41,8 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	private JTextField txtcodpost_o;
 	private JTextField txtcodpost_d;
 	
-	private JLabel lblCapacidad;
-	private JSpinner spinner;
+	private JLabel lblPrecio;
+	private JSpinner spinnerPrecio;
 	private JLabel lblFecha;
 	private JLabel lblCodigoPostalCiudad;
 	private JLabel lblCodigoPostalCiudad_1;
@@ -66,43 +66,43 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	
-		lblCapacidad = new JLabel("Capacidad");
-		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCapacidad.setBounds(466, 250, 93, 22);
-		contentPane.add(lblCapacidad);
+		lblPrecio = new JLabel("Precio por asiento");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblPrecio.setBounds(505, 198, 175, 22);
+		contentPane.add(lblPrecio);
 		
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(150, 20, 250, 1));
-		spinner.setBounds(476, 283, 53, 42);
-		spinner.setValue(150);
-		contentPane.add(spinner);
+		spinnerPrecio = new JSpinner();
+		spinnerPrecio.setModel(new SpinnerNumberModel(150, 20, 250, 1));
+		spinnerPrecio.setBounds(538, 231, 53, 42);
+		spinnerPrecio.setValue(150);
+		contentPane.add(spinnerPrecio);
 		
 		lblFecha = new JLabel("Fecha");
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblFecha.setBounds(20, 126, 73, 30);
+		lblFecha.setBounds(21, 149, 73, 30);
 		contentPane.add(lblFecha);
 		
 		lblCodigoPostalCiudad = new JLabel("Nombre de la ciudad origen");
 		lblCodigoPostalCiudad.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad.setBounds(465, 31, 280, 22);
+		lblCodigoPostalCiudad.setBounds(37, 43, 280, 22);
 		lblCodigoPostalCiudad.setToolTipText("Escriba el nombre de la ciudad origen");
 		contentPane.add(lblCodigoPostalCiudad);
 		
 		lblCodigoPostalCiudad_1 = new JLabel("Nombre de la ciudad destino");
 		lblCodigoPostalCiudad_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblCodigoPostalCiudad_1.setBounds(465, 130, 300, 22);
+		lblCodigoPostalCiudad_1.setBounds(450, 43, 300, 22);
 		lblCodigoPostalCiudad_1.setToolTipText("Escriba el nombre de la ciudad destino");
 		contentPane.add(lblCodigoPostalCiudad_1);
 		
 		txtcodpost_o = new JTextField();
 		txtcodpost_o.setColumns(10);
-		txtcodpost_o.setBounds(465, 58, 214, 30);
+		txtcodpost_o.setBounds(37, 76, 214, 30);
 		txtcodpost_o.setToolTipText("Escriba codigo postal - Nombre ciudad");
 		contentPane.add(txtcodpost_o);
 		
 		txtcodpost_d = new JTextField();
 		txtcodpost_d.setColumns(10);
-		txtcodpost_d.setBounds(465, 176, 214, 32);
+		txtcodpost_d.setBounds(450, 75, 214, 32);
 		txtcodpost_d.setToolTipText("Escriba codigo postal - Nombre ciudad");
 		contentPane.add(txtcodpost_d);
 		
@@ -127,18 +127,18 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setTitle("Crear un vuelo");
-		this.setBounds(260, 30, 802, 597);
+		this.setBounds(260, 30, 729, 572);
 		this.getContentPane().setLayout(null);
 		
-		JLabel lblPrecioPorAsiento = new JLabel("Precio por asiento");
+		JLabel lblPrecioPorAsiento = new JLabel("Capacidad");
 		lblPrecioPorAsiento.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPrecioPorAsiento.setBounds(599, 250, 130, 19);
+		lblPrecioPorAsiento.setBounds(505, 316, 130, 19);
 		contentPane.add(lblPrecioPorAsiento);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(30, 15, 3000, 1));
-		spinner_1.setBounds(626, 283, 53, 42);
-		contentPane.add(spinner_1);
+		JSpinner spinnerCapacidad = new JSpinner();
+		spinnerCapacidad.setModel(new SpinnerNumberModel(30, 15, 3000, 1));
+		spinnerCapacidad.setBounds(538, 346, 53, 42);
+		contentPane.add(spinnerCapacidad);
 		
 	}
 
@@ -173,8 +173,8 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 		Random rnd = new Random();
 		int CodVuelo = rnd.nextInt(100000);
-		String capacidad = spinner.getValue().toString();
-		String precio = spinner.getValue().toString();
+		String capacidad = spinnerPrecio.getValue().toString();
+		String precio = spinnerPrecio.getValue().toString();
 		String fecha = calendar.getDate().toString();
 		String codpost_o = txtcodpost_o.getText();
 		String codpost_d = txtcodpost_d.getText();

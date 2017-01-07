@@ -197,7 +197,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 			
 			case CMD_SALIR:
 				String ObjButtons[] = {"Si","Cancelar"};
-		        int PromptResult = JOptionPane.showOptionDialog(null,"¿Seguro que deseas salir?","Inmo M&J - Aviso",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+		        int PromptResult = JOptionPane.showOptionDialog(null,"¿Seguro que deseas salir?","DeustoAirlines",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
 		        if(PromptResult==JOptionPane.YES_OPTION)
 		        {
 		            System.exit(0);

@@ -97,7 +97,7 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		scrollPane_1.setBounds(96, 312, 235, 153);
 		contentPane.add(scrollPane_1);
 		
-		 list = new JList();
+		list = new JList();
 		scrollPane_1.setViewportView(list);
 		list.addMouseListener(new MouseAdapter()
 		{
@@ -156,12 +156,18 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		switch(arg0.getActionCommand())
 		{
 			case "ELIMINAR":
-				boolean aviso = false;			
-				aviso = this.Aviso();
-				if(aviso!=true)
+				boolean aviso = false;
+				if(codBilleteSelec!=null)
 				{
-					this.EliminarVuelo();
-					this.dispose();
+					aviso = this.Aviso();
+					if(aviso!=true)
+					{
+						this.EliminarVuelo();
+						this.dispose();
+					}
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Elija el billete que desea eliminar");
 				}
 				break;
 			

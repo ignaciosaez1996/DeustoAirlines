@@ -158,12 +158,18 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		switch(arg0.getActionCommand())
 		{
 			case "ELIMINAR":
-				boolean aviso = false;			
-				aviso = this.Aviso();
-				if(aviso!=true)
+				boolean aviso = false;
+				if(codVueloSelec!=null)
 				{
-					this.EliminarVuelo();
-					this.dispose();
+					aviso = this.Aviso();
+					if(aviso!=true)
+					{
+						this.EliminarVuelo();
+						this.dispose();
+					}
+				}else
+				{
+					JOptionPane.showMessageDialog(null, "Elija el vuelo que desea eliminar");
 				}
 				break;
 			
