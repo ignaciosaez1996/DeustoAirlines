@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.DefaultListModel;
@@ -29,8 +28,12 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 
 import net.proteanit.sql.DbUtils;
-import javax.swing.SwingConstants;
 
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalTrabajador y recogerá los datos necesarios para establecer una relacion, tarea, entre
+ * trabajador y vuelo 
+ * Después se los mandará al GestorTrabajador para que lo guarde en la Base de Datos
+ */
 public class AgendaTrabajo extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -46,6 +49,10 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 	private JTable table;
 	private JScrollPane scrollPane;
 	
+	/**
+	 * Crea el JInternalFrame.
+	 * Llama a los metodos necesarios para cargar la lista de vuelos, las de los trabajadores y la tabla con los vuelos existentes.
+	 */
 	public AgendaTrabajo()
 	{
 		createAndShowGUI();
@@ -54,6 +61,9 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		LlenarTabla();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Agenda de Trabajo
+	 */
 	public void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -121,6 +131,8 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		
 		table = new JTable()
 		{
+			private static final long serialVersionUID = 1L;
+
 			public boolean isCellEditable ( int rowIndez, int colIndex)
 			{
 				return false;
@@ -135,6 +147,9 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		setBounds(70, 10, 950, 650);
 	}
 	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -157,6 +172,10 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo llamado cuando se pulsa el boton de aceptar y siempre que se haya seleccionado un vuelo y un trabajador correctamente.
+	 * Recoge todos los datos necesarios para crear una tarea y se los manda al GestorTrabajador
+	 */
 	public void Asignar()
 	{
 		BasesDeDatos.crearTablaTareaBD();
@@ -175,6 +194,9 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo encargado de llenar la lista de vuelos
+	 */
 	public void llenarListaVuelos()
 	{
 		try
@@ -200,6 +222,9 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo encargado de llenar la lista de trabajadores
+	 */
 	public void llenarListaTrabajadores()
 	{
 		try
@@ -226,6 +251,9 @@ public class AgendaTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo encargado de rellenar la tabla con los datos de los vuelos existentes
+	 */
 	public void LlenarTabla()
 	{
 		

@@ -1,8 +1,5 @@
 package LP;
 
-	import static COMUN.Definiciones.CMD_BTN_CANCELAR;
-import static COMUN.Definiciones.CMD_BTN_CARGARTABLA;
-import static COMUN.Definiciones.CMD_BTN_ELIMINAR;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -29,8 +26,11 @@ import javax.swing.border.EmptyBorder;
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorCliente;
-import LN.GestorTrabajador;
 
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalCliente y recogera los datos necesarios para eliminar un billete.
+ * Despues se los mandara a GestorCliente para que elimine el billete de la Base de Datos
+ */
 public class CancelarBillete extends JInternalFrame implements ActionListener
 {
 	
@@ -42,6 +42,11 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 	private JList list ;
 	private String codBilleteSelec;
 	
+	/**
+	 * Crea el JInternalFrame
+	 * Obtiene la conexion de la Base de Datos
+	 * Llama al metodo para que llene la lista con los billetes que tenga comprados el cliente
+	 */
 	public CancelarBillete()
 	{
 		createAndShowGUI();
@@ -49,10 +54,11 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		llenarLista();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Agenda de Trabajo
+	 */
 	private void createAndShowGUI()
 	{
-		
-		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -126,7 +132,10 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		setBounds(80, 30, 859, 540);
 		
 	}
-	
+
+	/**
+	 * Metodo que se encarga de rellenar la lista con los codigos de los billetes que tenga comprados el cliente
+	 */
 	public void llenarLista()
 	{
 		try
@@ -149,7 +158,9 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		}
 	}
 	
-	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
@@ -179,8 +190,8 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 	}
 	
 	/**
-	 * Método que nos permite lanza un mensaje de confirmación al usuario.	  
-	 * @return aviso : devuelve true o false según la opción del usuario.
+	 * Metodo que vuelve a preguntar al cliente si esta seguro de que desea eliminar el billete
+	 * @return true en caso de que el cliente no quiera eliminar el billete
 	 */
 	private boolean Aviso() 
 	{
@@ -203,6 +214,9 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		return aviso;		
 	}
 	
+	/**
+	 * Metodo encargado de recoger el codigo de billete seleccionado y mandarselo al GestorCliente para que lo elimine
+	 */
 	public void EliminarVuelo()
 	{
 		GestorCliente  gesCliente = new GestorCliente();
@@ -211,8 +225,6 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 		String cod_billete =codBilleteSelec;
 		
 		gesCliente.CancelarBillete(state, cod_billete);
-		
-		
 	}
 	
 }

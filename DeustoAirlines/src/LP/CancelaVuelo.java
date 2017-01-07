@@ -1,7 +1,5 @@
 package LP;
 
-import static COMUN.Definiciones.CMD_BTN_CANCELAR;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -32,6 +30,10 @@ import javax.swing.JList;
 
 import net.proteanit.sql.DbUtils;
 
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalTrabajador y recogera los datos necesarios para eliminar un vuelo.
+ * Despues se los mandara a GestorTrabajador para que elimine el vuelo de la Base de Datos
+ */
 public class CancelaVuelo extends JInternalFrame implements ActionListener
 {
 	
@@ -43,6 +45,12 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 	private JList list ;
 	private String codVueloSelec;
 	
+	/**
+	 * Crea el JInternalFrame.
+	 * Obtiene la conexion con la Base de Datos.
+	 * Llama al metodo para que rellene la lista con los codigos de los vuelos.
+	 * Llama al metodo para que rellene la tabla con la informacion completa de los vuelos existentes.
+	 */
 	public CancelaVuelo()
 	{
 		createAndShowGUI();
@@ -51,10 +59,11 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		LlenarTabla();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Agenda de Trabajo
+	 */
 	private void createAndShowGUI()
 	{
-		
-		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -113,6 +122,9 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		
 	}
 	
+	/**
+	 * Metodo que se encarga de rellenar la lista con los codigos de los vuelos que existan
+	 */
 	public void llenarLista()
 	{
 		try
@@ -135,6 +147,9 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo encargado de rellenar la tabla con la informacion completa de los vuelos existentes
+	 */
 	public void LlenarTabla()
 	{
 		try
@@ -151,7 +166,9 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		
 	}
 	
-	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
@@ -181,8 +198,8 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 	}
 	
 	/**
-	 * Método que nos permite lanza un mensaje de confirmación al usuario.	  
-	 * @return aviso : devuelve true o false según la opción del usuario.
+	 * Metodo que vuelve a preguntar al trabajador si esta seguro de que desea eliminar el vuelo
+	 * @return true en caso de que el trabajador no quiera eliminar el vuelo
 	 */
 	private boolean Aviso() 
 	{
@@ -205,6 +222,9 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		return aviso;		
 	}
 	
+	/**
+	 * Metodo encargado de recoger el codigo de vuelo seleccionado y mandarselo al GestorTrabajador para que lo elimine
+	 */
 	public void EliminarVuelo()
 	{
 		GestorTrabajador  gesTra = new GestorTrabajador();
@@ -213,7 +233,5 @@ public class CancelaVuelo extends JInternalFrame implements ActionListener
 		String cod_vuelo = codVueloSelec;
 		
 		gesTra.CancelarVuelo(state, cod_vuelo);
-		
-		
 	}
 }

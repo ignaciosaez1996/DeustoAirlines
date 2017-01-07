@@ -12,9 +12,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -27,11 +25,14 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalTrabajador y despues de recoger los datos necesarios mostrara por pantalla las tareas
+ * asignadas a cada trabajador
+ */
 public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -41,6 +42,11 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 	Connection connection;
 	String trabajadorSeleccionado;
 	
+	/**
+	 * Crea el JInternalFrame.
+	 * Obtiene la conexion con la Base de Datos.
+	 * Llama al metodo para que cargue la lista con los trabajadores existentes.
+	 */
 	public CalendarioTrabajo()
 	{
 		connection = BasesDeDatos.getConnection();
@@ -48,6 +54,9 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		CargarLista();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Agenda de Trabajo
+	 */
 	public void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -110,7 +119,9 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		this.setBounds(260, 10, 746, 650);
 	}
 	
-
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -138,6 +149,9 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo que se encarga de rellenar la lista con las tareas del trabajador que se haya seleccionado
+	 */
 	public void ElegirTrabajador()
 	{
 		GestorTrabajador  gesTra = new GestorTrabajador();
@@ -168,6 +182,9 @@ public class CalendarioTrabajo extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo encargado de mostrar por pantalla los trabajadores existentes
+	 */
 	public void CargarLista()
 	{
 		try
