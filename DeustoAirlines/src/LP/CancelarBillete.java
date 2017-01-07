@@ -4,158 +4,209 @@ package LP;
 import static COMUN.Definiciones.CMD_BTN_CARGARTABLA;
 import static COMUN.Definiciones.CMD_BTN_ELIMINAR;
 
-	import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
-	import javax.swing.JButton;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
-	import net.proteanit.sql.DbUtils;
+import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
-import LN.clsBillete;
+import LN.GestorCliente;
+import LN.GestorTrabajador;
 
-
-	public class CancelarBillete extends JFrame implements ActionListener
+public class CancelarBillete extends JInternalFrame implements ActionListener
+{
+	
+	private static final long serialVersionUID = 1L;
+	
+	Connection connection = null;
+	JPanel contentPane;
+	private JTable table;
+	private JList list ;
+	private String codBilleteSelec;
+	
+	public CancelarBillete()
 	{
-
-		ArrayList<clsBillete>ListaBilletes;
-
-		JPanel contentPane; 
-		JLabel label;
-		private JTable tabla;
-		private JButton btnCancelar;
-		private JScrollPane scrollPane;
-		String correo;
-		Connection connection = null;
-		private JButton btnEliminar_1;
-
-//		public static void main(String[] args)
-//		{
-//			BasesDeDatos.initBD("DeustoAirlinesBD");
-//			CancelarBillete objCancel = new CancelarBillete();	
-//			objCancel.setVisible(true);
-//			
-//		}
-		public CancelarBillete(String correo) 
+		createAndShowGUI();
+		connection = BasesDeDatos.getConnection();
+		llenarLista();
+	}
+	
+	private void createAndShowGUI()
+	{
 		
-		{
-			this.correo=correo;
-			connection = BasesDeDatos.getConnection();
-			CreateAndShowGUI();
-			construirTabla();
-		}
 		
-		public void CreateAndShowGUI()
-		{
-			
-			contentPane = new JPanel();
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
-			
-			this.setVisible(true);
-			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			this.setTitle("CANCELAR BILLETES");
-			this.setBounds(260, 30, 802, 597);
-			this.getContentPane().setLayout(null);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(70, 78, 706, 367);
-			contentPane.add(scrollPane);
-			
-			
-			label= new JLabel("TUS BILLETES");
-			label.setBounds(324, 11, 200, 56);
-			contentPane.add(label);
-			
-			btnCancelar = new JButton("CANCELAR");
-			btnCancelar.setBounds(490, 490, 102, 30);
-			btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
-			btnCancelar.addActionListener(this);
-			this.getRootPane().setDefaultButton(btnCancelar);
-			contentPane.add(btnCancelar);
-			
-			
-			btnEliminar_1 = new JButton("ELIMINAR");
-			btnEliminar_1.addActionListener(this);
-			btnEliminar_1.setActionCommand(CMD_BTN_ELIMINAR);
-			btnEliminar_1.setBounds(277, 490, 102, 30);
-			contentPane.add(btnEliminar_1);
-			
-			setVisible(true);
-			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			setTitle("Cancelar Billete");
-			setBounds(70, 10, 950, 650);
-			
-		}
-			
-		public void construirTabla()
-		{
-			String COLUMNAS[]={ "CODIGO BILLETE", "PRECIO","VUELO"};
-			String informacion[][]= obtenerMatriz();
-			tabla= new JTable(informacion, COLUMNAS);
-			scrollPane.setViewportView(tabla);
-			
-		}	
-		public ArrayList<clsBillete> buscarBilletes()
-		{
-			Connection connection = null;
-			connection = BasesDeDatos.getConnection();
-			Statement state = BasesDeDatos.getStatement();
-			ArrayList<clsBillete>listaBilletes= new ArrayList<clsBillete>();
-			clsBillete objBillete;
-			try
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("CARGAR TABLA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
 			{
-				String query = "select * from BILLETE where (correo = '" + correo +  "')";
-				PreparedStatement pat = connection.prepareStatement(query);
-				ResultSet rs = pat.executeQuery();
-				//tabla.setModel(DbUtils.resultSetToTableModel(rs));
-				while(rs.next())
+				try
 				{
-					 objBillete = new clsBillete();
-					 objBillete.setCod_vuelo(rs.getString("cod_billete"));
-					 objBillete.setPrecio(Double.parseDouble(rs.getString("precio")));
-					 objBillete.setCodigo_billete(rs.getString("cod_vuelo"));
+					String query = "select * from billete";
+					PreparedStatement pat = connection.prepareStatement(query);
+					ResultSet rs = pat.executeQuery();
 					
-					 listaBilletes.add(objBillete);
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+				}catch(Exception a)
+				{
+					a.printStackTrace();
 				}
-				rs.close();
-				state.close();
-			}catch(Exception e)
-			{
-				e.printStackTrace();
+				
+				
 			}
-			return listaBilletes;
-			
-		}
-		public String[][] obtenerMatriz() 
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(328, 11, 142, 44);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(47, 81, 667, 148);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JLabel lblEligeElCodigo = new JLabel("Elige el codigo del billete que quiera eliminar");
+		lblEligeElCodigo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblEligeElCodigo.setBounds(97, 261, 373, 44);
+		contentPane.add(lblEligeElCodigo);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(96, 312, 235, 153);
+		contentPane.add(scrollPane_1);
+		
+		 list = new JList();
+		scrollPane_1.setViewportView(list);
+		list.addMouseListener(new MouseAdapter()
 		{
-			ArrayList<clsBillete> listaBILLETES = buscarBilletes();
-			String matrizInfo[][]= new String[listaBILLETES.size()][5];
-			for (int i=0;i<listaBILLETES.size();i++)
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
 			{
-				matrizInfo[i][0]=listaBILLETES.get(i).getCod_vuelo().toString();
-				matrizInfo[i][1]=listaBILLETES.get(i).getCodigo_billete().toString();
-				matrizInfo[i][2]=listaBILLETES.get(i).getPrecio()+"";
+				codBilleteSelec = list.getSelectedValue().toString();
 			}
-			return matrizInfo;
+		});
+		
+		JButton btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setActionCommand("ELIMINAR");
+		btnEliminar.addActionListener(this);
+		btnEliminar.setBounds(492, 312, 118, 50);
+		contentPane.add(btnEliminar);
+		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.setActionCommand("CANCELAR");
+		btnCancelar.addActionListener(this);
+		btnCancelar.setBounds(492, 388, 118, 50);
+		contentPane.add(btnCancelar);
+		
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Cancelar Billete");
+		setBounds(80, 30, 859, 540);
+		
+	}
+	
+	public void llenarLista()
+	{
+		try
+		{
+			String query = "select cod_vuelo from billete "; 
+			PreparedStatement pst = connection.prepareStatement(query);	
+			ResultSet rs = pst.executeQuery();
+			DefaultListModel DL = new DefaultListModel();
+			while(rs.next())
+				{
+					DL.addElement(rs.getString("cod_billete"));
+				}
+			list.setModel(DL);
+			pst.close();
+			rs.close();
 		}
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
+		catch ( Exception e)
+		{
+			JOptionPane.showInternalMessageDialog(null,"No hay billetes disponibles");
+		}
+	}
+	
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		switch(arg0.getActionCommand())
+		{
+			case "ELIMINAR":
+				boolean aviso = false;			
+				aviso = this.Aviso();
+				if(aviso!=true)
+				{
+					this.EliminarVuelo();
+					this.dispose();
+				}
+				break;
 			
+			case "CANCELAR":
+				this.dispose();
+				break;
 		}
 		
 	}
+	
+	/**
+	 * Método que nos permite lanza un mensaje de confirmación al usuario.	  
+	 * @return aviso : devuelve true o false según la opción del usuario.
+	 */
+	private boolean Aviso() 
+	{
+		boolean aviso = false;
+		 int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar?", "DeustoAirlines - Aviso",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	    
+	    if (respuesta == JOptionPane.NO_OPTION) 
+	    {
+	      aviso = true;
+	    } 
+	    else if (respuesta == JOptionPane.YES_OPTION) 
+	    {
+	      aviso = false;
+	    } 
+	    else if (respuesta == JOptionPane.CLOSED_OPTION) 
+	    {
+	      aviso = true;
+	    }
+	    
+		return aviso;		
+	}
+	
+	public void EliminarVuelo()
+	{
+		GestorCliente  gesCliente = new GestorCliente();
+		Statement state = BasesDeDatos.getStatement();
+
+		String cod_billete =codBilleteSelec;
+		
+		gesCliente.CancelarBillete(state, cod_billete);
+		
+		
+	}
+	
+}

@@ -229,7 +229,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 
 	private void CancelarBillete() 
 	{
-		CancelarBillete objCancel = new CancelarBillete(correo);	
+		CancelarBillete objCancel = new CancelarBillete();	
 		objCancel.setVisible(true);
 		panel.add(objCancel);	
 	}

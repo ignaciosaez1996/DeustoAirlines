@@ -185,4 +185,31 @@ public class GestorCliente
 			return null;
 		}
 	}
-}
+	public boolean CancelarBillete(Statement state, String cod_billete)
+	{
+		String SelectBD1 = "select * from billete";
+		String SelectBD2 = "delete from billete where (cod_billete = '" + cod_billete + "')";
+		
+		try 
+		{
+			ResultSet rs1 = state.executeQuery( SelectBD1 );
+			ResultSet rs2 = state.executeQuery( SelectBD2 );
+			
+			if(rs1==rs2)
+			{
+				return false;
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Se ha eliminado el billete", "Correcto",JOptionPane.INFORMATION_MESSAGE);
+				return true;
+			}
+			
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+
+	}
+	}
