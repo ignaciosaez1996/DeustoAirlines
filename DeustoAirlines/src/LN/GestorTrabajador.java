@@ -41,7 +41,7 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve true si crea un vuelo
-	public boolean CrearVuelos(Statement state, String CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, String precio)
+	public boolean CrearVuelos(Statement state, int CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, String precio)
 	{
 		try 
 		{
@@ -64,7 +64,7 @@ public class GestorTrabajador
 	}
 
 	//Devolvera true en caso de que ya halla un vuelo con ese codigo
-	public boolean ExisteVuelo(Statement state, String codigo)
+	public boolean ExisteVuelo(Statement state, int codigo)
 	{
 		String SelectBD = "select * from VUELO where (cod_vuelo = '" + codigo + "')";
 		try 
@@ -115,7 +115,7 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve los vuelos existentes en un ArrayList
-	public ArrayList<clsVuelo> DevolverVuelos (Statement state, String codigo)
+	public ArrayList<clsVuelo> DevolverVuelos (Statement state, int codigo)
 	{
 		ArrayList<clsVuelo> ArrayVuelos = new ArrayList<clsVuelo>();
 		
@@ -126,7 +126,7 @@ public class GestorTrabajador
 			rs = state.executeQuery(SelectBD);
 			while(rs.next())
 			{
-				ArrayVuelos.add(new clsVuelo(rs.getString("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d"), rs.getInt("precio")));
+				ArrayVuelos.add(new clsVuelo(rs.getInt("cod_vuelo"), rs.getInt("capacidad"), rs.getString("fecha"),rs.getString("cod_postal_o"), rs.getString("cod_postal_d"), rs.getInt("precio")));
 			}
 		} catch (SQLException e)
 		{

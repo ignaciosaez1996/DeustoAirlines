@@ -15,8 +15,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 
+
 import java.awt.Font;
 import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
@@ -36,11 +38,9 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	private static final long serialVersionUID = 1L;
 	
 	JPanel contentPane;
-	private JTextField txtcodvuelo;
 	private JTextField txtcodpost_o;
 	private JTextField txtcodpost_d;
 	
-	private JLabel lblIntroduzcaElCodigo;
 	private JLabel lblCapacidad;
 	private JSpinner spinner;
 	private JLabel lblFecha;
@@ -65,17 +65,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		lblIntroduzcaElCodigo = new JLabel("Codigo del vuelo");
-		lblIntroduzcaElCodigo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIntroduzcaElCodigo.setBounds(20, 31, 214, 22);
-		contentPane.add(lblIntroduzcaElCodigo);
-		
-		txtcodvuelo = new JTextField();
-		txtcodvuelo.setBounds(20, 58, 225, 30);
-		contentPane.add(txtcodvuelo);
-		txtcodvuelo.setColumns(10);
-		
+	
 		lblCapacidad = new JLabel("Capacidad");
 		lblCapacidad.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCapacidad.setBounds(466, 250, 93, 22);
@@ -159,7 +149,7 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		 {
 			case CMD_BTN_ACEPTAR:
 				
-				if(txtcodvuelo.getText().isEmpty()|| txtcodpost_o.getText().isEmpty() ||txtcodpost_d.getText().isEmpty() || calendar.getDate().toString().isEmpty() )
+				if(txtcodpost_o.getText().isEmpty() ||txtcodpost_d.getText().isEmpty() || calendar.getDate().toString().isEmpty() )
 				{
 					JOptionPane.showMessageDialog(this, "Rellene todos los campos");
 				}
@@ -181,7 +171,8 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		BasesDeDatos.crearTablaVueloBD();
 		GestorTrabajador  gesTra = new GestorTrabajador();
 		
-		String CodVuelo = txtcodvuelo.getText();
+		Random rnd = new Random();
+		int CodVuelo = rnd.nextInt(100000);
 		String capacidad = spinner.getValue().toString();
 		String precio = spinner.getValue().toString();
 		String fecha = calendar.getDate().toString();

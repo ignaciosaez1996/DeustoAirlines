@@ -13,7 +13,7 @@ public class clsVuelo implements Serializable
 	/**
 	 * Atributos de la clase clsVuelo
 	 */
-	String cod_vuelo;
+	int cod_vuelo;
 	int capacidad;
 	String fecha;
 	String cod_postal_o;
@@ -29,7 +29,7 @@ public class clsVuelo implements Serializable
 	 * @param cod_postal_d
 	 * @param precio
 	 */
-	public clsVuelo(String cod_vuelo, int capacidad, String fecha, String cod_postal_o, String cod_postal_d, double precio) 
+	public clsVuelo(int cod_vuelo, int capacidad, String fecha, String cod_postal_o, String cod_postal_d, double precio) 
 	{
 		super();
 		this.cod_vuelo = cod_vuelo;
@@ -56,11 +56,11 @@ public class clsVuelo implements Serializable
 		this.capacidad = capacidad;
 	}
 
-	public String getCod_vuelo() {
+	public int getCod_vuelo() {
 		return cod_vuelo;
 	}
 
-	public void setCod_vuelo(String cod_vuelo) {
+	public void setCod_vuelo(int cod_vuelo) {
 		this.cod_vuelo = cod_vuelo;
 	}
 
