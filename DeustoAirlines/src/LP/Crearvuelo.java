@@ -92,16 +92,16 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		lblFecha.setBounds(20, 126, 73, 30);
 		contentPane.add(lblFecha);
 		
-		lblCodigoPostalCiudad = new JLabel("Codigo postal y nombre de la ciudad origen");
+		lblCodigoPostalCiudad = new JLabel("Nombre de la ciudad origen");
 		lblCodigoPostalCiudad.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCodigoPostalCiudad.setBounds(465, 31, 280, 22);
-		lblCodigoPostalCiudad.setToolTipText("Escriba codigo postal - Nombre ciudad");
+		lblCodigoPostalCiudad.setToolTipText("Escriba el nombre de la ciudad origen");
 		contentPane.add(lblCodigoPostalCiudad);
 		
-		lblCodigoPostalCiudad_1 = new JLabel("Codigo postal y nombre de la ciudad destino");
+		lblCodigoPostalCiudad_1 = new JLabel("Nombre de la ciudad destino");
 		lblCodigoPostalCiudad_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCodigoPostalCiudad_1.setBounds(465, 130, 300, 22);
-		lblCodigoPostalCiudad_1.setToolTipText("Escriba codigo postal - Nombre ciudad");
+		lblCodigoPostalCiudad_1.setToolTipText("Escriba el nombre de la ciudad destino");
 		contentPane.add(lblCodigoPostalCiudad_1);
 		
 		txtcodpost_o = new JTextField();
