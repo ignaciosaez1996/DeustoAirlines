@@ -131,7 +131,7 @@ public class CancelarBillete extends JInternalFrame implements ActionListener
 	{
 		try
 		{
-			String query = "select cod_vuelo from billete "; 
+			String query = "select cod_billete from billete "; 
 			PreparedStatement pst = connection.prepareStatement(query);	
 			ResultSet rs = pst.executeQuery();
 			DefaultListModel DL = new DefaultListModel();
