@@ -1,13 +1,11 @@
 package LP;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -15,7 +13,6 @@ import java.util.Random;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -25,8 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import LD.BasesDeDatos;
@@ -38,6 +33,10 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JTextField;
 
+/**
+ * Clase para que el cliente pueda comprar el billete que desea
+ *
+ */
 public class ComprarBillete extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -63,6 +62,14 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	 */
 	String correo;
 	
+	/**
+	 * Construcor de la clase que llama a otro metodo para crear el JInternalFrame
+	 * Llama al metodo llenar lista, que rellenará el JList con la información correspondiente
+	 * Llama al metodo llenar lista, que rellenará el JList con la información correspondiente
+	 * Llama al metodo llenar lista, que rellenará el JList con la información correspondiente
+	 * @param correo
+	 */
+	
 	public ComprarBillete(String correo)
 	{
 		this.correo = correo;
@@ -73,8 +80,10 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	}
 
 	/**
-	 * Create the frame.
+	 * 
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de compra de billete
 	 */
+	 
 	public  void createAndShowGUI()
 	{
 		
@@ -202,7 +211,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 	
 		
 		listCodPostalD = new JList();
-		//contentPane.add(list_1);
+		contentPane.add(listCodPostalD);
 		scrollLista2 = new JScrollPane();
 		scrollLista2.setViewportView(listCodPostalD);
 		scrollLista2.setBounds(610, 90, 146, 65);
@@ -243,7 +252,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		
 	}
 
-	
+	/**
+	 * Llena el primer JList con los codigos postales de origen 
+	 */
 	public void llenarLista()
 	{
 		try
@@ -265,7 +276,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
 	}
-	
+	/**
+	 * Llena el segundo JList con los codigos postales de destino 
+	 */
 	public void llenarLista_1()
 	{
 		try
@@ -289,6 +302,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		}
 	}
 
+	/**
+	 * Llena el tercer JList con los codigos de vuelo 
+	 */
 	public void llenarLista_2()
 	{
 		try
@@ -310,7 +326,9 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 			JOptionPane.showInternalMessageDialog(null,"No hay vuelos disponibles");
 		}
 	}
-	
+	/**
+	 * Metodo que se conecta con la base de datos y llama a otro metodo del gestor para realizar la compra del billete
+	 */
 	public void RealizarCompra()
 	{
 		BasesDeDatos.crearTablaBilleteBD();

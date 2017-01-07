@@ -4,24 +4,21 @@ package LP;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.sql.Statement;
-
-import javax.swing.ImageIcon;
-import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-
 import LD.BasesDeDatos;
 import LN.GestorCliente;
 import static COMUN.Definiciones.*;
 
+/**
+ * Clase para aquellos clientes que no es la primera vez que acceden a la aplicación
+ */
 
 public class ClienteRegistrado extends JFrame implements ActionListener
 {
@@ -38,21 +35,21 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 	private JPasswordField passwordField;
 
 	
-
 	@SuppressWarnings("unused")
-
 	private int DNI;
 
-	
-	private final static int x = (1400/2) - ((int)465/2);
-	private final static int y = (680/2) - (480/2);	
+	/**
+	 * Constructor de la clase que llama a un metodo que crea el JInternalFrame
+	 */
 
-	
 	public ClienteRegistrado() 
 	{
 		createAndShowGUI();	
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Cliente  Registrado
+	 */
 	private void createAndShowGUI() 	
 	{		
 		lblcorreo = new JLabel("Introduzca el correo electrónico: ");
@@ -101,6 +98,10 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 
 
 	}
+	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -133,6 +134,11 @@ public class ClienteRegistrado extends JFrame implements ActionListener
 		this.dispose();
 	}
 	
+	
+	/**
+	 * Metodo para comprobar que el cliente ya existe en la base de datos y los datos son correctos. 
+	 * Llama a un metodo del gestor para realizar la comprobación.
+	 */
 	private void Cliente() 
 	{
 		String correo = txtCorreo.getText();

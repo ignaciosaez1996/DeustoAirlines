@@ -18,7 +18,9 @@ import LD.BasesDeDatos;
 import LN.GestorCliente;
 import static COMUN.Definiciones.*;
 
-
+/**
+ * Clase para registrar aquellos clientes que acceden por primera vez a la aplicación
+ */
 public class ClienteNoRegistrado extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -32,12 +34,18 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 	private JPasswordField  passwordField;
 	private JTextField      txtNombre;
 	
+	/**
+	 * El constructor de la clase, que  llama al metodo que crea el JInternalFrame
+	 */
 	
 	public ClienteNoRegistrado() 
 	{
 		createAndShowGUI();	
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Cliente No Registrado
+	 */
 	private void createAndShowGUI() 	
 	{		
 		lblcorreo = new JLabel("Introduzca el correo electrónico:");
@@ -96,6 +104,11 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		
 		
 	}
+	
+
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -128,6 +141,10 @@ public class ClienteNoRegistrado extends JFrame implements ActionListener
 		this.dispose();
 	}
 	
+	
+	/**
+	 * Metodo en el cual se abre la conexión con la base de datos y mediante la llamada a un metodo del gestor se crea el cliente.
+	 */
 	private void Cliente() 
 	{
 		BasesDeDatos.crearTablaClienteBD();

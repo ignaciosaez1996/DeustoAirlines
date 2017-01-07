@@ -2,28 +2,23 @@ package LP;
 
 import javax.swing.JInternalFrame;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
-
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
-
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Clase que muestra en una tabla los horarios de los vuelos disponibles
+ *
+ */
 public class ConsultaHorario extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +31,11 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 	
 	Connection connection = null;
 
-	
+	/**
+	 * Constructor de la clase que llama a otro metodo para crear JInternalFrame
+	 * Se conecta con la base de datos
+	 * Llama al metodo de rellenar tabla
+	 */
 	public ConsultaHorario()
 	{
 		createAndShowGUI();
@@ -45,6 +44,9 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 		//setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de consultar horario
+	 */
 	private void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -79,7 +81,9 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 		contentPane.add(btnCancelar);
 	}
 	
-	
+	/**
+	 * Metodo que se conecta a la base de datos y rellena la tabla con la información de los vuelos
+	 */
 	public void LlenarTabla()
 	{
 		try
@@ -95,8 +99,10 @@ public class ConsultaHorario extends JInternalFrame implements ActionListener
 		}
 		
 	}
-
-
+	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	public void actionPerformed(ActionEvent arg0)
 	{
 		switch(arg0.getActionCommand())
