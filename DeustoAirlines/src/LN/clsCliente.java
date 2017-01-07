@@ -1,17 +1,14 @@
 package LN;
-
+/**
+ * Clase que hace posible crear un  objeto clsCliente.
+ * Desciende de clsPersona
+ */
 public class clsCliente extends clsPersona
 {
-	
-	/**
-	 * Variables de la clase.
-	 */
+	private static final long serialVersionUID = 1L;
 	String correo_cliente;
 
-	/**
-	 * Constructor con parametros de la clase clsCliente
-	 * @param correo_cliente
-	 */
+
 	public clsCliente(String correo_cliente) 
 	{
 		super();
@@ -28,15 +25,15 @@ public class clsCliente extends clsPersona
 		this.correo_cliente = correo_cliente;
 	}
 
+	/** 
+	 * Método que hace posible sacar los datos del cliente por pantalla
+	 */
 	public String toString()
 	{		
 	
 		StringBuffer salida = new StringBuffer();
 	
-		salida.append("Nombre: ");
-		salida.append(this.getNombre());
-		salida.append("Contrasenya:");
-		salida.append(this.getContrasenya());
+		salida.append(super.toString());
 		salida.append("Correo electrónico:");
 		salida.append(this.getCorreo_cliente());
 	

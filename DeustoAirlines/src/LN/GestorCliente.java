@@ -9,9 +9,21 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Clase que relaciona la logica de presentacion (LP) con la logica de datos(LD).
+ * La mayoria de los metodos que precisan informacion de la Base de Datos se encuentran en esta clase
+ */
 public class GestorCliente
 {
-	//Devolvera false en caso de que no se halla podido introducir el cliente
+
+	/**
+	 * Metodo que lleva a cabo la creacion de una fila nueva en la tabla de clientes
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param correo: Correo del cliente que es el identificativo de cada uno 
+	 * @param nombre: Nombre del cliente
+	 * @param contrasenya: Contrasenya fijada por el cliente que sirve para que solo el pueda entrar en su cuenta
+	 * @return false en caso de que no se haya podido guardar el cliente en la Base de Datos
+	 */
 	public boolean ClienteNuevo(Statement state, String correo, String nombre, String contrasenya) 
 	{
 		try 
@@ -35,7 +47,12 @@ public class GestorCliente
 		}
 	}
 	
-	//Devolvera true en caso de que ya halla un cliente con ese correo
+	/**
+	 * Metodo que comprueba si existe algun cliente que coincida con el correo introducido, que es el identificativo de cada cliente
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param correo: Correo del cliente que es identificativo de cada uno
+	 * @return true en caso de que haya algun cliente con el correo introducido
+	 */
 	public boolean ExisteCliente(Statement state, String correo)
 	{
 		String SelectBD = "select * from CLIENTE where (correo = '" + correo + "')";
@@ -58,7 +75,13 @@ public class GestorCliente
 		}
 	}
 	
-	//Devolvera la true si existe algún cliente con el correo y contraseña introducidos
+	/**
+	 * Metodo que valida la entrada del cliente al programa, es decir, valida si el correo introducido coincide con la contrasenya introducida
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param correo: Correo del cliente que es identificativo de cada uno
+	 * @param contrasenya: Contrasenuya fijada por el cliente que sirve para que solo el pueda entrar en su cuenta
+	 * @return true si existe algun cliente con la contrasenya y correo introducidos
+	 */
 	public boolean ValidarEntradaCli(Statement state, String correo, String contrasenya)
 	{
 		String SelectBD = "select * from CLIENTE where (correo = '" + correo + "' and contrasenya = '" + contrasenya + "')";
@@ -81,6 +104,13 @@ public class GestorCliente
 		}
 	}
 	
+	/**
+	 * Metodo que comprueba si existe algun vuelo con la ciudad de origen y destino introducidas
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param seleccionado1: Ciudad de origen del vuelo
+	 * @param seleccionado2: Ciudad de destino del vuelo
+	 * @return true si existe el vuelo con la ciudad de origen y destino introducidas
+	 */
 	public boolean EncontrarVueloOrigenDestino(Statement state, String seleccionado1, String seleccionado2)
 	{
 		String query = "select * from VUELO where (cod_postal_o = '" + seleccionado1 + "' and cod_postal_d = '" + seleccionado2 + "')";
@@ -103,6 +133,12 @@ public class GestorCliente
 		}
 	}
 	
+	/**
+	 * Metodo que devuelve el precio por asiento del vuelo introducido
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_vuelo: Codigo del vuelo del que se quiere obtener el precio, variable identificativa de cada vuelo
+	 * @return el precio que tenga el vuelo introducido. Si no existiera devolveria 0.
+	 */
 	public int DevolverPrecio(Statement state, String cod_vuelo)
 	{
 		try
@@ -128,7 +164,15 @@ public class GestorCliente
 		}
 	}
 	
-	//Devolverá false en caso de que no se halla podido comprar el billete
+	/**
+	 * Metodo que crea una fila en la tabla de billetes creando el billete a cada cliente
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_billete: Codigo del billete que es identificativo de cada uno
+	 * @param precio: Precio del billete que viene fijado desde el vuelo. Cada vuelo tiene un precio por asiento
+	 * @param cod_vuelo: Codigo del vuelo del que se esta obteniendo el billete
+	 * @param correo: Correo del cliente que esta comprando el billete, es identificativo de cada cliente
+	 * @return false en caso de que no se haya podido comprar el billete
+	 */
 	public boolean Comprar(Statement state, int cod_billete, int precio, String cod_vuelo, String correo)
 	{
 		
@@ -153,10 +197,15 @@ public class GestorCliente
 		}
 	}
 	
+	/**
+	 * Metodo que devuelve los codigos de vuelo de los billetes que haya comprado UN cliente en un ArrayList de Strings
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param correo: Correo del cliente del que se quieren extraer los billetes que haya comprado
+	 * @param connection: Objeto que une el DriverManager con el Statement
+	 * @return ArrayList de Strings que contienen los codigos de vuelo de los billetes que haya comprado el cliente
+	 */
 	public ArrayList<String> CodVuelo(Statement state, String correo, Connection connection)
 	{
-		
-		
 		//Recorremos el cursor hasta que no haya más registros
 		try 
 		{
@@ -185,6 +234,13 @@ public class GestorCliente
 			return null;
 		}
 	}
+	
+	/**
+	 * Metodo encargado de eliminar los billetes enviados mediante el codigo de billete
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_billete: Variable identificativa de cada billete, es con el que se localiza el billete 
+	 * @return false en caso de que no se haya podido eliminar el billete
+	 */
 	public boolean CancelarBillete(Statement state, String cod_billete)
 	{
 		String SelectBD1 = "select * from billete";

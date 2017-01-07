@@ -1,7 +1,5 @@
 package LN;
 
-import java.awt.HeadlessException;
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,14 +7,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+/**
+ * Clase que relaciona la logica de presentacion (LP) con la logica de datos(LD).
+ * La mayoria de los metodos que precisan informacion de la Base de Datos se encuentran en esta clase
+ */
 public class GestorTrabajador 
 {
 	
-	//Devolvera la true si existe algún trabajador con el DNI y contraseña introducidos
+	/**
+	 * Metodo que se encarga de comprobar si el DNI y la contrasenya introducidos para acceder como trabajador coinciden con alguna que este 
+	 * guardada en la Base de Datos
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param DNI: Variable identificativa de cada trabajador
+	 * @param contrasenya: Contrasenya que elige cada trabajador para que solo el pueda acceder a su perfil
+	 * @return true en caso de que el DNI y la contrasenya introducidas coincidan con alguna guardada en la Base de Datos
+	 */
 	public boolean ValidarEntradaTra(Statement state, String DNI, String contrasenya)
 	{
 		String SelectBD = "select * from TRABAJADOR where (dni_tra = '" + DNI + "' and contrasenya_tra = '" + contrasenya + "')";
@@ -40,7 +47,17 @@ public class GestorTrabajador
 		}
 	}
 	
-	//Devuelve true si crea un vuelo
+	/**
+	 * Metrodo que crea una fila en la tabla de Vuelos, es decir crea un vuelo
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param CodVuelo: Codigo identificativo de cada vuelo
+	 * @param capacidad: Capacidad asignada a cada vuelo
+	 * @param fecha: Fecha en la que se efectuara el viaje
+	 * @param codpost_o: Ciudad de la que saldra el vuelo
+	 * @param codpost_d: Ciudad a la que se dirigira el vuelo
+	 * @param precio: Precio por asiento asignado
+	 * @return true en caso de que se consiga crear un vuelo
+	 */
 	public boolean CrearVuelos(Statement state, int CodVuelo , String capacidad,String fecha, String codpost_o, String codpost_d, String precio)
 	{
 		try 
@@ -63,7 +80,12 @@ public class GestorTrabajador
 		}
 	}
 
-	//Devolvera true en caso de que ya halla un vuelo con ese codigo
+	/**
+	 * Metodo que comprueba si el codigo introducido coincide con alguno introducido anteriormente
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param codigo: Variable identificativa de cada vuelo
+	 * @return true en casod de que haya un vuelo con ese codigo
+	 */
 	public boolean ExisteVuelo(Statement state, int codigo)
 	{
 		String SelectBD = "select * from VUELO where (cod_vuelo = '" + codigo + "')";
@@ -86,7 +108,12 @@ public class GestorTrabajador
 		}
 	}
 
-	//Devolvera true si se ha logrado eliminar 1 fila
+	/**
+	 * Metodo que elimina el vuelo que se elija
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_vuelo: Variable identificativa de cada vuelo y con la que se elegira que vuelo se desea eliminar
+	 * @return true en caso de que se haya logrado eliminar el vuelo seleccionado
+	 */
 	public boolean CancelarVuelo(Statement state, String cod_vuelo)
 	{
 		String SelectBD1 = "select * from vuelo";
@@ -115,6 +142,12 @@ public class GestorTrabajador
 	}
 	
 	//Devuelve los vuelos existentes en un ArrayList
+	/**
+	 * Metodo que devuelve los vuelos que tengan el codigo introducido
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param codigo: Metodo identificativo de cada vuelo y con el que se elegira el vuelo
+	 * @return ArrayList<clsVuelo> de vuelos con los datos del vuelo seleccionado
+	 */
 	public ArrayList<clsVuelo> DevolverVuelos (Statement state, int codigo)
 	{
 		ArrayList<clsVuelo> ArrayVuelos = new ArrayList<clsVuelo>();
@@ -137,7 +170,13 @@ public class GestorTrabajador
 		return ArrayVuelos;
 	}
 	
-	//Devuelve true si crea la tarea
+	/**
+	 * Metodo que se ocupa de crear las relaciones entre trabajadores y vuelos, es decir, donde debera trabajar cada trabajador
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_vuelo: Variable identificativa de cada vuelo en la que debera trabajar cada trabajador
+	 * @param dni_tra: Variable identificativa de cada trabajador, mediante la cual sera elegida
+	 * @return true en caso de que se consiga guardar la tarea en la Base de Datos
+	 */
 	public boolean CrearTarea(Statement state, String cod_vuelo, String dni_tra)
 	{
 		try 
@@ -160,7 +199,11 @@ public class GestorTrabajador
 		}
 	}
 	
-	//Devolverá true si ya estan guardados los trabajadores
+	/**
+	 * Metodo que se encarga de comprobar si ya hay trabajadores guardados en la Base de Datos
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @return true en caso de que ya existan trabajadores en la Base de Datos
+	 */
 	public boolean ExistenTrabajadores(Statement state)
 	{		
 		try
@@ -184,6 +227,13 @@ public class GestorTrabajador
 		}
 	}
 	
+	/**
+	 * Metodo que se ocupa de devolver mediante un ArrayList de Strings las tareas asignadas a cada trabajador
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param dni_tra: Variable identificativa de cada trabajador mediante el cual sera elegido para sacar por pantalla sus tareas
+	 * @param connection: Objeto que une el DriverManager con el Statement
+	 * @return un ArrayList de String que contendrá las tareas asignadas al trabajador. En caso de que no tenga ninguna será null
+	 */
 	public ArrayList<String> CodTarea(Statement state, String dni_tra, Connection connection)
 	{		
 		try 
@@ -217,7 +267,13 @@ public class GestorTrabajador
 		}
 	}
 	
-	//Devolverá true si la tarea ya está registrada
+	/**
+	 * Metodo que comprueba si la tarea que se intenta guardar ya esta guardada anteriormente
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param cod_vuelo: Variable identificativa de cada vuelo
+	 * @param dni_tra: Variable identificativa de cada trabajador
+	 * @return true en caso de que la tarea ya estuviese guardada en la Base de Datos
+	 */
 	public boolean TareaRepetida (Statement state, String cod_vuelo, String dni_tra)
 	{
 		String SelectBD = "select * from tarea where (dni_tra = '" + dni_tra + "' and cod_vuelo = '" + cod_vuelo + "')";
@@ -241,7 +297,11 @@ public class GestorTrabajador
 		}
 	}
 	
-	//Devolverá true si la tabla de billetes existe
+	/**
+	 * Metodo que comprueba si en la tabla de billetes ya existen billetes
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @return true en caso de que haya billetes guardados
+	 */
 	public boolean ExistenBilletes(Statement state)
 	{	
 		try 
@@ -266,6 +326,12 @@ public class GestorTrabajador
 		}
 	}
 	
+	/**
+	 * Metodo encargado de extraer los datos de los billetes ya guardados y calculando la suma de los billetes vendidos saca el total de ingresos conseguidos
+	 * @param state: Objeto necesario para ejecutar una sentencia de SQL sobre la Base de Datos que debe estar abierta anteriormente mediante connection
+	 * @param connection: Objeto que une el DriverManager con el Statement
+	 * @return un int que contiene el total de ingresos sumando los precios de los billetes guardados
+	 */
 	public int TotalIngresos(Statement state, Connection connection)
 	{
 		try 
@@ -294,7 +360,6 @@ public class GestorTrabajador
 
 		} catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		}

@@ -4,36 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
-import LN.clsVuelo;
 
 public class BasesDeDatos 
 {
-	
-	
 	private static Connection connection = null;
 	private static Statement statement = null;
 	
-	/** 
-	 * Inicializa una BD SQLITE y devuelve una conexion con ella. Debe llamarse a este 
-	 * metodo antes que ningun otro, y debe devolver no null para poder seguir trabajando con la BD.
-	 * @param nombreBD	Nombre de fichero de la base de datos
-	 * @return	Conexion con la base de datos indicada. Si hay algún error, se devuelve null
-	
+	/**
+	 * Carga SQLite-JDBC driver usando el cargador de clases
+	 * Crea la conexión a la Base de Datos
+	 * Es el primer metodo al que se debe llamar para poder empezar a trabajar con la Base de Datos
+	 * @param BD Nombre de la Base de Datos
+	 * @return la conexión con la Base de Datos, en caso de que haya error devolvera null
 	 */
-	
-	
-	public static Connection initBD (String nombreBD)
+	public static Connection initBD (String BD)
 	{
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
-			connection = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
+			connection = DriverManager.getConnection("jdbc:sqlite:" + BD );
 			statement = connection.createStatement();
-			statement.setQueryTimeout(30); //poner timeout 30 msg
+			/*Se pone un timeout de 30 msg porque al crear un statement puede quedarse atascado, 
+			 * para que no ocurra lo cerramos y nos notificará de un error
+			 */
+			statement.setQueryTimeout(30); 
 			JOptionPane.showMessageDialog(null, "La Base de Datos se ha conectado");
 			return connection;
 		} catch (ClassNotFoundException | SQLException e)
@@ -44,37 +41,35 @@ public class BasesDeDatos
 		}
 	}
 	  
-	
-	/** 
-	 * Cierra la conexion con la Base de Datos
+	/**
+	 * Cierra la conexion de la Base de Datos. En caso de que haya error se notificara mediante JOptionPane
 	 */
 	public static void close()
 	{
-		 	if(statement != null)
-			try
-		 	{
-				statement.close();
-				connection.close();
-			
-		 	} catch (SQLException e)
-		 	{
-				JOptionPane.showMessageDialog(null, "El cierre de la conexión ha fallado");
-			}
+		 if(statement != null)
+		try
+		 {
+			statement.close();
+			connection.close();
+		 } catch (SQLException e)
+		 {
+			JOptionPane.showMessageDialog(null, "El cierre de la conexión ha fallado");
+		}
 	}
 
-	/** 
-	 * Devuelve la conexion si ha sido establecida previamente (#initBD()).
-	 * @return	Conexion con la BD, null si no se ha establecido correctamente.
+	/**
+	 * Devuelve la conexión con la Base de Datos
+	 * @return la conexión con la Base de Datos
 	 */
 	public static Connection getConnection()
 	{
 		return connection;
 	}
 	
-	/** 
-	 * Devuelve una sentencia para trabajar con la BD,
-	 * si la conexion si ha sido establecida previamente (#initBD()).
-	 * @return	Sentencia de trabajo con la BD, null si no se ha establecido correctamente.
+	/**
+	 * Recupera el objeto tipo Statement que genero el ResulSet. Si el conjunto de resultados se llevo a cabo de alguna otra 
+	 * manera devolvera null.
+	 * @return objeto Statement que sera null en caso de que se llevara a cabo de otra manera
 	 */
 	public static Statement getStatement()
 	{
@@ -178,7 +173,7 @@ public class BasesDeDatos
 	}
 	
 	/** 
-	 * Crea una tabla de ciudades destino en una base de datos, si no existía ya.
+	 * Crea una tabla de tareas que tendran los trabajadores en una base de datos, si no existía ya.
 	 * Debe haberse inicializado la conexión correctamente.
 	 */
 	public static void crearTablaTareaBD()
@@ -194,12 +189,9 @@ public class BasesDeDatos
 	}
 	
 	/**
-	 * Crea filas para la tabla de trabajadores.
+	 * Crea filas para la tabla de trabajadores, insertando trabajadores.
 	 * Debe haberse inicializada la conexión correctamente.
 	 */
-
-		
-	
 	public static void InsertarTrabajadores(Statement statement)
 	{
 		if(statement==null)

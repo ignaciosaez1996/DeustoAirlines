@@ -1,19 +1,17 @@
 package LN;
 
+/**
+ * Clase que hace posible crear un  objeto clsCliente.
+ * Desciende de clsPersona
+ */
 public class clsTrabajador extends clsPersona
 {
-	/**
-	 * Parametros de la clase clsTrabajador
-	 */
+	private static final long serialVersionUID = 1L;
+	
 	String DNI;
 	String categoria;
 	
 	
-	/**
-	 * Constructor de la clase clsTrabajador con parametros
-	 * @param dNI
-	 * @param categoria
-	 */
 	public clsTrabajador(String dNI, String categoria)
 	{
 		super();
@@ -41,14 +39,14 @@ public class clsTrabajador extends clsPersona
 		this.categoria = categoria;
 	}
 	
+	/** 
+	 * Método que hace posible sacar los datos del trabajador por pantalla
+	 */
 	public String toString()
 	{		
 		StringBuffer salida = new StringBuffer();
 	
-		salida.append("Nombre: ");
-		salida.append(this.getNombre());
-		salida.append("Contrasenya:");
-		salida.append(this.getContrasenya());
+		salida.append(super.toString());
 		salida.append("DNI:");
 		salida.append(this.getDNI());
 		salida.append("Puesto de trabajo:");

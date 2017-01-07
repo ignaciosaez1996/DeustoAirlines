@@ -2,33 +2,23 @@ package LN;
 
 import java.io.Serializable;
 
+/**
+ * Clase que será base para crear objetos clsCliente y clsTrabajador, ya que no se creará ningún objeto clsPersona en todo el
+ * programa.
+ * Implementa Serializable
+ */
 public class clsPersona implements Serializable
 {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
-	/**
-	 * Variables de la clase clsPersona
-	 */
 	private String nombre;
+	private String contrasenya;
 
-	/**
-	 * Constructor vacío de la clase clsPersona
-	 */
-	
 	public clsPersona()
 	{
 		
 	}
-	
-	/**
-	 * Constructor con parametros de la clase clsPersona
-	 * @param nombre
-	 * @param contrasenya
-	 */
 	
 	public clsPersona(String nombre, String contrasenya) 
 	{
@@ -36,9 +26,6 @@ public class clsPersona implements Serializable
 		this.nombre = nombre;
 		this.contrasenya = contrasenya;
 	}
-	
-	
-	private String contrasenya;
 	
 	public String getNombre() 
 	{
@@ -61,14 +48,16 @@ public class clsPersona implements Serializable
 		return serialVersionUID;
 	}
 	
-	
+	/** 
+	 * Método que hace posible sacar los datos de la persona por pantalla
+	 */
 	public String toString()
 	{		
 		StringBuffer salida = new StringBuffer();
 		
 		salida.append("Nombre: ");
 		salida.append(this.getNombre());
-		salida.append("Contrasenya:");
+		salida.append("Contraseña:");
 		salida.append(this.getContrasenya());
 		
 		return salida.toString();

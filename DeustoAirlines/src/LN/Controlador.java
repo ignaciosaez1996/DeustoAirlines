@@ -4,7 +4,6 @@ import java.util.Properties;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
-import javax.mail.Authenticator;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -17,6 +16,9 @@ import javax.mail.internet.MimeMultipart;
 
 import LP.Correo;
 
+/**
+ * Metodo creado para hacer posible el envio de los correos (no funciona)
+ */
 public class Controlador
 {
 	

@@ -2,11 +2,14 @@ package LN;
 
 import java.io.Serializable;
 
+/**
+ * Clase que hace posible crear un objeto clsBillete.
+ * Implementa Serializable.
+ */
 public class clsBillete implements Serializable
 {
-	/**
-	 * Variables de la clase.
-	 */
+	private static final long serialVersionUID = 1L;
+
 	int precio;
 	String codigo_billete;
 	String Cod_vuelo;
@@ -34,10 +37,19 @@ public class clsBillete implements Serializable
 	{
 		this.codigo_billete = codigo_billete;
 	}
+	
+	/** 
+	 * Método que hace posible sacar los datos del billete por pantalla
+	 */
 	@Override
-	public String toString() {
-		return "clsBillete [precio=" + precio + ", codigo_billete="
-				+ codigo_billete + "]";
+	public String toString() 
+	{
+		StringBuffer retorno = new StringBuffer();
+		retorno.append("-------BILLETE-------"+"\n");
+		retorno.append("Código de billete: " + this.codigo_billete+"\n");
+		retorno.append("Precio: "+ this.precio+"\n");
+		retorno.append("Código de vuelo: "+ this.Cod_vuelo+"\n");
+		return retorno.toString();
 	}
 	
 	
