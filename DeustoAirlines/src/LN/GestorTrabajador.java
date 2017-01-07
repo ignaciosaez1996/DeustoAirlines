@@ -266,10 +266,11 @@ public class GestorTrabajador
 		}
 	}
 	
-	public ArrayList<Integer> TotalIngresos(Statement state, Connection connection)
+	public int TotalIngresos(Statement state, Connection connection)
 	{
 		try 
 		{
+			int total=0;
 			ArrayList<Integer> array = new ArrayList<Integer>();
 			String query = "select * from billete";
 			PreparedStatement pat = connection.prepareStatement(query);
@@ -281,13 +282,21 @@ public class GestorTrabajador
 				int precio= rs.getInt("precio");
 			    array.add(precio);
 			} while(rs.next() == true);
-		     return array;
+			
+			if(array.size()>=1)
+			{
+				for(int i=1; i<array.size(); i++)
+				{
+					total = total + array.get(i);
+				}
+			}
+		     return total;
 
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return 0;
 		}
 	}
 }

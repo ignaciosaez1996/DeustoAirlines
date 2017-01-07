@@ -7,7 +7,7 @@ public class clsBillete implements Serializable
 	/**
 	 * Variables de la clase.
 	 */
-	double precio;
+	int precio;
 	String codigo_billete;
 	String Cod_vuelo;
 	
@@ -22,7 +22,7 @@ public class clsBillete implements Serializable
 	{
 		return precio;
 	}
-	public void setPrecio(double precio) 
+	public void setPrecio(int precio) 
 	{
 		this.precio = precio;
 	}

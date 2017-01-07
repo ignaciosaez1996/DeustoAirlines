@@ -316,7 +316,7 @@ public class ComprarBillete extends JInternalFrame implements ActionListener
 		BasesDeDatos.crearTablaBilleteBD();
 		GestorCliente gesCli = new GestorCliente();
 		Statement state = BasesDeDatos.getStatement();
-		String precio = gesCli.DevolverPrecio(state, codVueloSelec);
+		int precio = gesCli.DevolverPrecio(state, codVueloSelec);
 		int cantidad = (int) spinner.getValue();
 		boolean comprado; //Si es false es que no se ha podido comprar
 		

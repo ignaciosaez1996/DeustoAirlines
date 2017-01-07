@@ -103,33 +103,33 @@ public class GestorCliente
 		}
 	}
 	
-	public String DevolverPrecio(Statement state, String cod_vuelo)
+	public int DevolverPrecio(Statement state, String cod_vuelo)
 	{
 		try
 		{
-			String resultado;
+			int resultado;
 			String query = "select precio from VUELO where(cod_vuelo = '" + cod_vuelo + "')";
 			ResultSet rs;
 			rs = state.executeQuery(query);
 			if(rs.next())
 			{
-				resultado = rs.getString("precio");
+				resultado = rs.getInt("precio");
 				return resultado;
 			}
 			else
 			{
 				JOptionPane.showMessageDialog(null, "Nunca debería aparecer este mensaje");
-				return null;
+				return 0;
 			}
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
-			return null;
+			return 0;
 		}
 	}
 	
 	//Devolverá false en caso de que no se halla podido comprar el billete
-	public boolean Comprar(Statement state, int cod_billete, String precio, String cod_vuelo, String correo)
+	public boolean Comprar(Statement state, int cod_billete, int precio, String cod_vuelo, String correo)
 	{
 		
 		try 
