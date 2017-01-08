@@ -1,8 +1,6 @@
 package LP;
 
-import static COMUN.Definiciones.CMD_BTN_ACEPTAR;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
-import static COMUN.Definiciones.CMD_ELEGIRTRABAJADOR;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,18 +15,17 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
-import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 import LN.GestorCliente;
 
+/**
+ * Clase que crea un muestra a cada cliente la informacion de los billetes que haya comprado en una lista.
+ */
 public class HistorialCompras extends JInternalFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +35,10 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 	private JList list;
 	Connection connection;
 	
-	
+	/**
+	 * Crea el JInternalFrame.
+	 * Llama a los metodos necesarios para cargar la lista tabla con la informacion de los billetes que haya adquirido el cliente.
+	 */
 	public HistorialCompras(String correo)
 	{
 		connection = BasesDeDatos.getConnection();
@@ -47,6 +47,9 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 		llenarTabla();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de HistorialCompras
+	 */
 	public void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -73,6 +76,9 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 		this.setBounds(260, 10, 746, 650);
 	}
 	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -82,10 +88,12 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;
-
 		}
 	}
-	
+
+	/**
+	 * Metodo encargado de rellenar la tabla con la informacion de los billetes adquiridos
+	 */
 	public void llenarTabla()
 	{
 		GestorCliente gesCli = new GestorCliente();

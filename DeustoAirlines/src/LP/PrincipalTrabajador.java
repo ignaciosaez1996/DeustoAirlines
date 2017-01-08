@@ -19,10 +19,11 @@ import javax.swing.KeyStroke;
 
 import static COMUN.Definiciones.*;
 
-
+/**
+ * Clase que una vez accedido como trabajador sera su pantalla principal y muestra todas las opciones a las que puede acceder
+ */
 public class PrincipalTrabajador extends JFrame implements ActionListener
 {
-	
 	private JDesktopPane 	panel;
 	
 	private JMenuBar 		menuBar;
@@ -39,12 +40,8 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	private JMenuItem 		mnitmCreaerVuelo;
 	private JMenuItem 		mnitmCancVuelo;
 	
-
 	private JSeparator 		separator_4;
 	
-	/**
-	 * @serialField Default Version UID
-	 */
 	private static final long serialVersionUID = 1L;
 		
 	/**
@@ -54,20 +51,16 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 	public final static int panelHeight = 680;
 
 	/**
-	 * Constructor sin parámetros.
-	 * @param usuario Nombre del usuario que accede al menu.
+	 * Crea el JFrame que será el menu principal de trabajadores y le asigna un titulo
 	 */
 	public PrincipalTrabajador( ) 
-	{
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
-	
+	{	
 		setTitle("Opciones del trabajador - Menu Principal ");
-		
 		createAndShowGUI();
 	}
 	
 	/**
-	 * Crear el frame Menu Principal para el administrador.
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de PrincipalTrabajador
 	 */
 	private void createAndShowGUI()
 	{
@@ -113,7 +106,6 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnitmCancVuelo.addActionListener(this);
 		mnInicio.add(mnitmCancVuelo);
 		
-		
 		separator_4 = new JSeparator();
 		mnInicio.add(separator_4);
 		
@@ -122,7 +114,6 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnitmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_MASK));
 		mnitmSalir.addActionListener(this);
 		mnInicio.add(mnitmSalir);
-		
 		
 		mnAgenda = new JMenu("Agenda");
 		menuBar.add(mnAgenda);
@@ -147,9 +138,11 @@ public class PrincipalTrabajador extends JFrame implements ActionListener
 		mnIngreso.add(mnitmConsIngresos);
 		
 		getContentPane().setLayout(null);		
-		
 	}
 	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{

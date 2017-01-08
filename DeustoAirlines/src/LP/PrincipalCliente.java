@@ -2,17 +2,12 @@ package LP;
 
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-
-
-
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -23,10 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
 
-
-
-
-
 import static COMUN.Definiciones.*;
 
 import javax.swing.JLabel;
@@ -34,6 +25,9 @@ import javax.swing.JTextField;
 
 import java.awt.Color;
 
+/**
+ * Clase que una vez accedido como cliente sera su pantalla principal y muestra todas las opciones a las que puede acceder
+ */
 public class PrincipalCliente extends JFrame implements ActionListener
 {
 	private JDesktopPane 	panel;
@@ -43,21 +37,15 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	private JMenu			mnInicio;
 	private JMenu 			mnHorario;
 	private JMenu 			mnHistorial;
-	private JMenu 			mnJustificante;
 
 	private JMenuItem 		mnitmComprBille;
 	private JMenuItem		mnitmCancBille;
 	private JMenuItem 		mnitmSalir;
 	private JMenuItem 		mnitmConsHorario;
 	private JMenuItem 		mnitmHistorial;
-	private JMenuItem 		mnitmJustifi;
 	
-
 	private JSeparator 		separator_4;
-	
-	/**
-	 * @serialField Default Version UID
-	 */
+
 	private static final long serialVersionUID = 1L;
 		
 	/**
@@ -73,22 +61,20 @@ public class PrincipalCliente extends JFrame implements ActionListener
 	
 	String correo;
 
-	
 	/**
-	 * Constructor con el parámetro del correo del cliente para que se pueda identificar.
-	 * @param usuario Nombre del usuario que accede al menu.
+	 * Crea el JFrame del menu principal.
+	 * Asigna un titulo a la clase.
+	 * @param correo: Recoge el correo del cliente para que se puedan identificar sus transacciones
 	 */
 	public PrincipalCliente(String correo) 
 	{
 		this.correo = correo;
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(PrincipalCliente.class.getResource("/imagenes/Appicon.png")));	
 		setTitle("Opciones del cliente - Menu Principal (" + correo + ")");
-		
 		createAndShowGUI();
 	}
 	
 	/**
-	 * Crear el frame Menu Principal para el cliente.
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de PrincipalCliente
 	 */
 	private void createAndShowGUI()
 	{
@@ -170,18 +156,12 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		mnitmHistorial.addActionListener(this);
 		mnHistorial.add(mnitmHistorial);
 		
-		mnJustificante = new JMenu("Justificante");				
-		menuBar.add(mnJustificante);
-		
-		mnitmJustifi = new JMenuItem("Justificante de compras");
-		mnitmJustifi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
-		mnitmJustifi.setActionCommand(null);
-		mnitmJustifi.addActionListener(this);
-		mnJustificante.add(mnitmJustifi);
-		
 		getContentPane().setLayout(null);			
 	}
 	
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
@@ -212,12 +192,7 @@ public class PrincipalCliente extends JFrame implements ActionListener
 				this.Historial();
 				break;
 
-			case CMD_JUSTIFICANTE:
-				this.Justificante();
-				break;
 		}
-		
-		
 	}
 
 	private void ComprarBillete() 
@@ -248,10 +223,4 @@ public class PrincipalCliente extends JFrame implements ActionListener
 		panel.add(objHistorial);	
 	}
 
-	private void Justificante() 
-	{
-		Justificante objHistorial = new Justificante();	
-		//objHistorial.setVisible(true);
-		//panel.add(objHistorial);	
-	}
 }

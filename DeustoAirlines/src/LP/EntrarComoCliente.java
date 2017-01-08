@@ -18,7 +18,10 @@ import LD.BasesDeDatos;
 import LN.GestorCliente;
 import static COMUN.Definiciones.*;
 
-
+/**
+ * Metodo que aparece al principio del programa y permite al usuario entrar como cliente. Despues debera elegir si se trata
+ * de un cliente registrado o no registrado.
+ */
 public class EntrarComoCliente extends JFrame implements ActionListener
 {
 	
@@ -29,55 +32,54 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 	private JLabel lbliconoData;
 	
 	/**
-	 * Constructor sin parámetros.
+	 * Crea el JFrame
 	 */
 	public EntrarComoCliente() 
 	{
 		createAndShowGUI();
 	}
 	
-	
 	/**
-	 * Crear el frame para iniciar sesión.
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de EntrarComoCliente
 	 */
 	private void createAndShowGUI()
 	{
-	
-		{			
-			setForeground(Color.BLACK);
-			setTitle("Acceder como cliente");
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(450, 200, 445, 400);
+					
+		setForeground(Color.BLACK);
+		setTitle("Acceder como cliente");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(450, 200, 445, 400);
 			
-			contentPane = new JPanel();
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			setContentPane(contentPane);
-			contentPane.setLayout(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 			
-			btnTrabajador = new JButton("CLIENTE REGISTRADO");
-			btnTrabajador.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-			btnTrabajador.setBounds(68, 85, 308, 57);
-			btnTrabajador.setActionCommand(CMD_BTN_REGISTRADO);
-			contentPane.add(btnTrabajador);
-			btnTrabajador.addActionListener(this);
+		btnTrabajador = new JButton("CLIENTE REGISTRADO");
+		btnTrabajador.setFont(new Font("Tekton Pro", Font.BOLD, 15));
+		btnTrabajador.setBounds(68, 85, 308, 57);
+		btnTrabajador.setActionCommand(CMD_BTN_REGISTRADO);
+		contentPane.add(btnTrabajador);
+		btnTrabajador.addActionListener(this);
 			
 			
-			btnCliente = new JButton("CLIENTE NO REGISTRADO");
-			btnCliente.setFont(new Font("Tekton Pro", Font.BOLD, 15));
-			btnCliente.setBounds(68, 199, 308, 57);
-			btnCliente.setActionCommand(CMD_BTN_NOREGISTRADO);
-			btnCliente.addActionListener(this);
-			contentPane.add(btnCliente);
+		btnCliente = new JButton("CLIENTE NO REGISTRADO");
+		btnCliente.setFont(new Font("Tekton Pro", Font.BOLD, 15));
+		btnCliente.setBounds(68, 199, 308, 57);
+		btnCliente.setActionCommand(CMD_BTN_NOREGISTRADO);
+		btnCliente.addActionListener(this);
+		contentPane.add(btnCliente);
 			
-			lbliconoData = new JLabel("");
-			lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/equipajehombre.jpg")));
-			lbliconoData.setBounds(-313, -45, 1059, 408);
-			getContentPane().add(lbliconoData);
+		lbliconoData = new JLabel("");
+		lbliconoData.setIcon(new ImageIcon(Principal.class.getResource("/imagenes/equipajehombre.jpg")));
+		lbliconoData.setBounds(-313, -45, 1059, 408);
+		getContentPane().add(lbliconoData);
 		
-		}
 	}
 
-
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -93,14 +95,19 @@ public class EntrarComoCliente extends JFrame implements ActionListener
 		} 
 	}
 
-
+	/**
+	 * Metodo al que se accede cuando un cliente ya esta registrado y hace que aparezca la ventana para poder acceder al programa
+	 */
 	private void Registrado() 
 	{
 		ClienteRegistrado objCliente = new ClienteRegistrado();
 		objCliente.setVisible(true);
 		this.dispose();
 	}
-
+	
+	/**
+	 * Metodo al que se accede cuando un cliente no esta registrado y hace que aparezca la ventana para poder acceder al programa
+	 */
 	private void NoRegistrado() 
 	{
 		ClienteNoRegistrado objClienteNo = new ClienteNoRegistrado();

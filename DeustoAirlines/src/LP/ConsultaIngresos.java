@@ -1,15 +1,12 @@
 package LP;
 
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 
-import static COMUN.Definiciones.CMD_BTN_ACEPTAR;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 import static COMUN.Definiciones.CMD_TOTALINGRESOS;
 import net.proteanit.sql.DbUtils;
@@ -32,9 +28,12 @@ import LN.GestorTrabajador;
 
 import javax.swing.JLabel;
 
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalTrabajador y sacara por pantalla la informacion sobre los billetes
+ * vendidos, una calculadora para poder hacer operaciones y el total de los ingresos conseguidos
+ */
 public class ConsultaIngresos extends JInternalFrame implements ActionListener
 {
-	
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
@@ -71,14 +70,21 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	Statement state = BasesDeDatos.getStatement();
 	GestorTrabajador  gesTra;
 	
+	/**
+	 * Crea el JInternalFrame.
+	 * Llama a los metodos necesarios para cargar la tabla con los billetes vendidos.
+	 * Obtiene la conexion con la Base de Datos. 
+	 */
 	public ConsultaIngresos()
 	{
 		connection = BasesDeDatos.getConnection();
 		createAndShowGUI();
 		CargarTabla();
-		
 	}
 
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de ConsultaIngresos
+	 */
 	public void createAndShowGUI()
 	{
 	contentPane = new JPanel();
@@ -86,16 +92,12 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	setContentPane(contentPane);
 	contentPane.setLayout(null);
 	
-	
-	
-	
-	
 	textField = new JTextField();
 	textField.setBounds(634, 102, 260, 50);
 	contentPane.add(textField);
 	textField.setColumns(10);
 	
-	 btnNewButton = new JButton("7");
+	btnNewButton = new JButton("7");
 	btnNewButton.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) 
 		{
@@ -306,9 +308,7 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 				result = firstnum % secondnum;
 				answer = String.format("%.2f", result);
 				textField.setText(answer);
-			}
-			
-			
+			}			
 		}
 	});
 	button_14.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -408,11 +408,11 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	this.setTitle("Consulta de ingresos");
 	this.setBounds(260, 10, 950, 650);
-	
 	}
 	
-	
-	
+	/**
+	 * Metodo que se encarga de cargar la tabla con la informacion completa de los billetes que se hayan vendido
+	 */
 	public void CargarTabla()
 	{
 		try
@@ -430,6 +430,9 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		
 	}
 
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
@@ -451,6 +454,9 @@ public class ConsultaIngresos extends JInternalFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo que llama a GestorTrabajador para poder mostrar por pantalla el total de los ingresos
+	 */
 	public void TotalIngresos()
 	{
 		gesTra = new GestorTrabajador();

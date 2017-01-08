@@ -1,6 +1,5 @@
 package LP;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,13 +20,15 @@ import javax.swing.SwingConstants;
 
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
-import LN.GestorCliente;
 import LN.GestorTrabajador;
 import static COMUN.Definiciones.*;
 
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
+/**
+ * Metodo que aparece al principio del programa y permite al usuario entrar como trabajador
+ */
 public class EntrarComoTrabajador extends JFrame implements ActionListener
 {
 
@@ -46,7 +47,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 
 	Connection connection = null;
 
-	
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 	private JTable table_1;
@@ -54,15 +54,23 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 	private JLabel lbliconoData;
 	private JComboBox comboBox;
 	
+	/**
+	 * Crea el JFrame.
+	 * Obtiene la conexion con la Base de Datos.
+	 * Llama al metodo para que llene el comboBox con los DNIs de los trabajadores existentes.
+	 * Llama al metodo para que muestre por pantalla los trabajadores guardados en la Base de Datos
+	 */
 	public EntrarComoTrabajador() 
 	{
 		createAndShowGUI();	
-		
 		connection = BasesDeDatos.getConnection();
 		llenarCombo();
 		VerTrabajadores();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de EntrarComoTrabajador
+	 */
 	private void createAndShowGUI() 	
 	{	
 		
@@ -70,30 +78,24 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				try{
-					
-				
-				String query = "select * from trabajador where dni_tra = ?";
-				PreparedStatement pat = connection.prepareStatement(query);
-				pat.setString(1, (String)comboBox.getSelectedItem());
-				
-				ResultSet rs = pat.executeQuery();	
-				
-				while(rs.next())
+				try
 				{
-					txtDNI.setText(rs.getString("dni_tra"));
-					passwordField.setText(rs.getString("contrasenya_tra"));
-					
-					
-				}
+					String query = "select * from trabajador where dni_tra = ?";
+					PreparedStatement pat = connection.prepareStatement(query);
+					pat.setString(1, (String)comboBox.getSelectedItem());
 				
+					ResultSet rs = pat.executeQuery();	
+				
+					while(rs.next())
+					{
+						txtDNI.setText(rs.getString("dni_tra"));
+						passwordField.setText(rs.getString("contrasenya_tra"));
+					}
 				}
 				catch(Exception ex)
 				{
 					ex.printStackTrace();
-				}
-				
-				
+				}				
 			}
 		});
 		comboBox.setBounds(33, 11, 190, 41);
@@ -119,7 +121,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		passwordField.setBounds(33, 238, 274, 35);
 		getContentPane().add(passwordField);
 		
-		
 		btnAceptar = new JButton("ACEPTAR");
 		btnAceptar.setBounds(307, 326, 100, 23);
 		btnAceptar.setActionCommand(CMD_BTN_ACEPTAR);
@@ -132,8 +133,7 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		btnCancelar.setActionCommand(CMD_BTN_CANCELAR);
 		btnCancelar.addActionListener(this);
 		this.getRootPane().setDefaultButton(btnCancelar);
-		getContentPane().add(btnCancelar);
-				
+		getContentPane().add(btnCancelar);	
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -163,33 +163,33 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		getContentPane().add(lbliconoData);
 	}
 	
-	
+	/**
+	 * Metodo encargado de llenar el comboBox con los DNIs de los trabajadores existentes
+	 */
 	public void llenarCombo()
 	{
-		
-	try
-	{
-		
-		
-		String query = "select * from trabajador ";
-		PreparedStatement pat = connection.prepareStatement(query);
-	
-	
-		ResultSet rs = pat.executeQuery();	
-	
-		while(rs.next())
+		try
 		{
-			comboBox.addItem(rs.getString("dni_tra"));
-		}
+			String query = "select * from trabajador ";
+			PreparedStatement pat = connection.prepareStatement(query);
+
+			ResultSet rs = pat.executeQuery();	
 	
-	}
+			while(rs.next())
+			{
+				comboBox.addItem(rs.getString("dni_tra"));
+			}
+	
+		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
 		}
-		
 	}
 
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 	
 	{
@@ -210,11 +210,6 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 			case CMD_BTN_CANCELAR:
 				Cancelar();
 				break;	
-				
-			//case CMD_VERTRABAJADORES:
-				//VerTrabajadores();
-				//break;
-				
 		} 
 	}
 	
@@ -225,6 +220,9 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		this.dispose();
 	}
 	
+	/**
+	 * Metodo que muestra en la tabla la informacion completa sobre los trabajadores guardados
+	 */
 	private void VerTrabajadores()
 	{
 		try
@@ -240,6 +238,10 @@ public class EntrarComoTrabajador extends JFrame implements ActionListener
 		}
 	}
 	
+	/**
+	 * Metodo que recoge los datos introducidos en el formulario y manda a GestorTrabajador para que compruebe que el correo
+	 * y la contrasenya introducidas coinciden
+	 */
 	private void Trabajador() 
 	{
 		GestorTrabajador gesTra = new GestorTrabajador();

@@ -14,7 +14,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import LP.Correo;
+import LN.Correo;
 
 /**
  * Metodo creado para hacer posible el envio de los correos (no funciona)

@@ -1,6 +1,5 @@
 package LP;
 
-
 import static COMUN.Definiciones.CMD_BTN_ACEPTAR;
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 
@@ -31,7 +30,10 @@ import com.toedter.calendar.JCalendar;
 import javax.swing.JButton;
 import javax.swing.SpinnerNumberModel;
 
-
+/**
+ * Clase que crea un formulario que será llamado desde PrincipalTrabajador y recogerá los datos necesarios para crear un nuevo vuelo
+ * Después se los mandará al GestorTrabajador para que lo guarde en la Base de Datos
+ */
 public class Crearvuelo extends JInternalFrame implements ActionListener
 
 {
@@ -54,11 +56,17 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 	private final static int x = (1400) - ((int)465);
 	private final static int y = (680) - (480);	
 	
+	/**
+	 * Crea la ventana de JInternalFrame
+	 */
 	public Crearvuelo()
 	{
 		createAndShowGUI();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de CrearVuelo
+	 */
 	private void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -142,6 +150,9 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		
 	}
 
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
@@ -166,6 +177,9 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		} 
 	}
 
+	/**
+	 * Metodo encargado de guardar los datos recogidos en el formulario en la Base de Datos. Para elllo llama a gestor Trabajador.
+	 */
 	public void Vuelo()
 	{
 		BasesDeDatos.crearTablaVueloBD();
@@ -178,7 +192,6 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 		String fecha = calendar.getDate().toString();
 		String codpost_o = txtcodpost_o.getText();
 		String codpost_d = txtcodpost_d.getText();
-		
 		
 		boolean existe;
 	
@@ -200,8 +213,5 @@ public class Crearvuelo extends JInternalFrame implements ActionListener
 			}
 			this.dispose();
 		}
-		
-		
-		
 	}
 }

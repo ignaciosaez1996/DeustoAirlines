@@ -9,12 +9,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import LN.Controlador;
+import LN.Correo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que usando las clases Controlador y Correo hace posible mandar un correo (no funciona).
+ */
 public class Enviar_Correo extends JInternalFrame 
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtDestino;
 	private JTextField txtAsunto;
@@ -24,6 +29,9 @@ public class Enviar_Correo extends JInternalFrame
 	
 	Correo c = new Correo();
 	
+	/**
+	 * Crea un JInternalFrame
+	 */
 	public Enviar_Correo(String correo)
 	{
 		this.correo = correo;
@@ -33,6 +41,9 @@ public class Enviar_Correo extends JInternalFrame
 		createAndShowGUI();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de Enviar_Correo
+	 */
 	public void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -75,6 +86,9 @@ public class Enviar_Correo extends JInternalFrame
 		contentPane.add(btnEnviar);
 	}
 	
+	/**
+	 * Metodo al que introduciendo los datos correctos del correo haria posible mandar un correo
+	 */
 	public void enviarCorreo()
 	{
 		//Hay que buscar una contraseña de aplicación para que funcione

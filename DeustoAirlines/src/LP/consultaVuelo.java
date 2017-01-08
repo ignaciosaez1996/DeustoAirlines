@@ -1,6 +1,5 @@
 package LP;
 
-
 import static COMUN.Definiciones.CMD_BTN_CANCELAR;
 
 import javax.swing.JFrame;
@@ -19,11 +18,12 @@ import javax.swing.JScrollPane;
 import net.proteanit.sql.DbUtils;
 import LD.BasesDeDatos;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Clase que muestra mediante una tabla la informacion sobre los vuelos disponibles
+ */
 public class consultaVuelo extends JInternalFrame  implements ActionListener
 {
 
@@ -37,14 +37,21 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 	Connection connection = null;
 	private JScrollPane scrollPane_1;
 
-	
+	/**
+	 * Crea el JInternalFrame.
+	 * Llama a los metodos necesarios para cargar la tabla con los vuelos existentes.
+	 * Obtiene la conexion con la Base de Datos.
+	 */
 	public consultaVuelo()
 	{
 		createAndShowGUI();
 		connection = BasesDeDatos.getConnection();
-		 LlenarTabla();
+		LlenarTabla();
 	}
 	
+	/**
+	 * Crea las etiquetas, campos de texto y botones y los agrega a la ventana de consultaVuelo
+	 */
 	private void createAndShowGUI()
 	{
 		contentPane = new JPanel();
@@ -83,6 +90,9 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 		contentPane.add(btnCancelar);
 	}
 	
+	/**
+	 * Metodo encargado de llenar la tabla con los vuelos que esten guardados en la Base de Datos
+	 */
 	public void LlenarTabla()
 	{
 		
@@ -92,17 +102,15 @@ public class consultaVuelo extends JInternalFrame  implements ActionListener
 			PreparedStatement pat = connection.prepareStatement(query);
 			ResultSet rs = pat.executeQuery();
 			table.setModel(DbUtils.resultSetToTableModel(rs));
-			
-			
-				
-			
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
 	}
 
+	/**
+	 * Metodo para poder detectar cuando un boton es pulsado.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{

@@ -1,5 +1,8 @@
-package LP;
+package LN;
 
+/**
+ * Clase que hace posible crear un objeto correo.
+ */
 public class Correo 
 {
 	String usuarioCorreo;
