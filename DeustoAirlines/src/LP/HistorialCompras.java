@@ -77,14 +77,13 @@ public class HistorialCompras extends JInternalFrame implements ActionListener
 	}
 	
 	/**
-	 * Metodo para poder detectar cuando un boton es pulsado.
+	 * Metodo para poder detectar cuando un boton es pulsado
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		switch(e.getActionCommand())
-		{
-				
+		{	
 			case CMD_BTN_CANCELAR:
 				this.dispose();
 				break;
